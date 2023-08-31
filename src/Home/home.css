@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.carrusel {
+  height: 92vh;
+}
+.down {
+  bottom: -9%;
+  left: 48%;
+  transform: translateX(50%);
+  -webkit-animation: slide-top 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-iteration-count: infinite;
+}
+@-webkit-keyframes slide-top {
+  0%,
+  50%,
+  100% {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  25%,
+  75% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+@keyframes slide-top {
+  0%,
+  50%,
+  100% {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  25%,
+  75% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+.principal::after{
+  content: 'Helechos en tu futuro hogar que dan buen rollo';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; 
+  font-size: 28px;
+}
+.principal1::after{
+  content: 'Mi dormitorio escandinavo';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: absolute;
+  top: 113px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 28px;
+}
+.principal2::after{
+  content: 'La terraza de mis sueños';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: absolute;
+  top: 78px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 28px;
+}
+.principal3::after{
+  content: 'Nuestra renovación del baño';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: absolute;
+  top: 83px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 22px;
+}
+
+.footer::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.598);
+}
+
+.trans{
+  transform: translate(-50%,-50%);
+}
