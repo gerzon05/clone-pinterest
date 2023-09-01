@@ -2,17 +2,9 @@ import { Button } from "./Button";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import {BsFacebook, BsGoogle, BsPinterest} from "react-icons/Bs"
 
-const imgf = (
-  <img
-    className="w-5"
-    alt="logo de facebook"
-    src="https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/U7MAWJlE6hZ.png"
-  />
-);
-const imgg = (
-  <img className="w-5" alt="logo de google" src="../src/assets/google.svg" />
-);
+
 export const IniciarSesion = (props) => {
   const [user, setUser] = useState({
     email: "",
@@ -48,7 +40,7 @@ export const IniciarSesion = (props) => {
         >
           ×
         </button>
-        <img src="../src/assets/logo-pinteres.svg" className="w-10 m-auto" />
+        <BsPinterest className="text-4xl w-full text-red-700"/>
         <h2 className="text-xl font-semibold text-center text">
           Bienvenidos a Pinterest
         </h2>
@@ -88,13 +80,13 @@ export const IniciarSesion = (props) => {
           <Button
             click={handlefacebook}
             placeholder="Continuar con Facebook"
-            imgf={imgf}
+            imgf={<BsFacebook className="text-lg text-white"/>}
             style="w-full py-2 bg-blue-700 text-white rounded-full flex justify-evenly items-center"
           />
           <Button
             click={handlegoogle}
             placeholder="Continuar con Google"
-            imgf={imgg}
+            imgf={<BsGoogle className="text-lg text-black"/>}
             style="w-full py-2 border-2 border-zinc-300 text-black rounded-full flex justify-evenly items-center"
           />
           <p className="text-center text-xs w-full m-auto">

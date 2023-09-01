@@ -1,10 +1,9 @@
 import { Header } from "../components/Header";
-import { Imagenes } from "../components/Imagenes";
 import { Registro } from "../components/Registro";
 import DefaultCarousel from "./Carrusel";
 import { Sesion2, Sesion3, Sesiones } from "./Sesiones";
 import "./home.css";
-
+import {BiChevronDown} from 'react-icons/Bi'
 export const Home = () => {
 
   return (
@@ -18,7 +17,7 @@ export const Home = () => {
         <h3 className="flex items-center justify-center p-3 text-base">
           Así es como funciona
           <span>
-            <Imagenes src="../src/assets/down2.svg" className="w-8" />
+            <BiChevronDown className="text-3xl"/>
           </span>
         </h3>
         <Sesiones />

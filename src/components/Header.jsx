@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { IniciarSesion } from "./IniciarSesion";
 import { Registro } from "./Registro";
+import {BsPinterest} from 'react-icons/Bs'
+
 
 export const Header = () => {
   const [wachtsesion, setWachtSesion] = useState(false)
@@ -15,7 +17,7 @@ export const Header = () => {
   return (
     <header className="flex justify-between p-5 fixed w-full flex-wrap bg-white z-10">
       <section className="flex items-center">
-        <img src="../src/assets/logo-pinteres.svg" className="w-10" />
+        <BsPinterest className='text-4xl text-red-700'/>
         <h1 className="text-1xl text-red-700 font-sans font-semibold">
           Pinterest
         </h1>
