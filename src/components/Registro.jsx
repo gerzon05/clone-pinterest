@@ -19,40 +19,25 @@ export const Registro = (props) => {
     password: "",
   });
 
-  const [auterror, setAuterror] = useState('');
-  const { signup, loginwhithgoogle,loginwhithfacebook } = useAuth("");
-  const navigate = useNavigate()
+  const { signup, loginwhithgoogle, loginwhithfacebook, erroemail } = useAuth("");
+  const navigate = useNavigate();
 
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
   };
-// const handleChange = (e)=>{
-//   // const {name, value} = e.target
-//   setUser(e.target.value)
-// }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setAuterror("");
-    try {
-      if (user.password.length > 6) {
-        await signup(user.email, user.password);
-        setAuterror("Se Registro correctamente");
-        return;
-      }else{
-        return setAuterror('contraseña inconrrecta')
-      }
-    } catch (error) {
-      setAuterror(error.code);
-    }
+      await signup(user.email, user.password);
   };
   const handlegoogle = async () => {
     await loginwhithgoogle();
-    navigate('/pagehome')
+    navigate("/pagehome");
     console.log("como estas");
   };
   const handlefacebook = async () => {
     await loginwhithfacebook();
-    navigate('/pagehome')
+    navigate("/pagehome");
     console.log("como estas");
   };
   return (
@@ -91,7 +76,7 @@ export const Registro = (props) => {
           <p className="text-xs">
             la contraseña debe tener mas de 6 caracteres
           </p>
-          {auterror && <p>{auterror}</p>}
+          {erroemail}
         </div>
         {/* <div>
           <label>Fecha de nacimiento</label>

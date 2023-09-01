@@ -19,27 +19,15 @@ export const IniciarSesion = (props) => {
     password: "",
   });
 
-  const [auterror, setAuterror] = useState();
-  const { login, loginwhithgoogle, loginwhithfacebook } = useAuth("");
+  const { login, loginwhithgoogle, loginwhithfacebook, erropass } =
+    useAuth("");
   const navigate = useNavigate();
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    setAuterror("");
-    try {
-      if (user.password.length > 6) {
-        login(user.email, user.password);
-        navigate("/pagehome");
-        setAuterror("Se Registro correctamente");
-        return;
-      } else {
-        return setAuterror("contraseña inconrrecta");
-      }
-    } catch (error) {
-      setAuterror(error.code);
-    }
+    login(user.email, user.password);
   };
   const handlegoogle = async () => {
     await loginwhithgoogle();
@@ -89,7 +77,7 @@ export const IniciarSesion = (props) => {
             />
           </div>
           <a>¿olvidate tu contraseña?</a>
-          {auterror && <p>{auterror}</p>}
+          <p>{erropass}</p>
           <Button
             placeholder="Continuar"
             style="w-full py-2 bg-red-700 text-white rounded-full"
