@@ -1,25 +1,24 @@
 import { Button } from "../components/Button";
-import { Imagenes } from "../components/Imagenes";
 
 export const Sesiones = () => {
   return (
     <div className="flex justify-center items-center flex-wrap">
       <article className="max-w-md flex justify-evenly flex-wrap py-12 gap-2">
-        <Imagenes
+        <img
           src="https://s.pinimg.com/webapp/center-77497603.png"
-          style=" w-48 object-cover"
+          className=" w-48 object-cover"
         />
-        <Imagenes
+        <img
           src="https://s.pinimg.com/webapp/topRight-d0230035.png "
-          style=" w-48 object-cover"
+          className=" w-48 object-cover"
         />
-        <Imagenes
+        <img
           src="https://s.pinimg.com/webapp/left-511a9304.png"
-          style=" w-48 object-cover"
+          className=" w-48 object-cover"
         />
-        <Imagenes
+        <img
           src="https://s.pinimg.com/webapp/right-88044782.png"
-          style=" w-48 object-cover"
+          className=" w-48 object-cover"
         />
       </article>
       <article className="w-2/4 px-4 py-16 flex flex-col gap-4">
@@ -55,27 +54,27 @@ export const Sesion2 = () => {
       </article>
       <article className="max-w-md flex justify-evenly flex-wrap py-12 gap-2">
         <figure className="w-48 relative principal">
-          <Imagenes
+          <img
             src="https://s.pinimg.com/webapp/future-home-vibes-55a673b9.png"
-            style="w-full object-cover"
+            className="w-full object-cover"
           />
         </figure>
         <figure className="w-48 relative principal1">
-          <Imagenes
+          <img
             src="https://s.pinimg.com/webapp/scandinavian-bedroom-917ad89c.png"
-            style="w-full object-cover"
+            className="w-full object-cover"
           />
         </figure>
         <figure className="w-48 relative principal2">
-          <Imagenes
+          <img
             src="https://s.pinimg.com/webapp/deck-of-dreams-fb527bf1.png"
-            style=" w-full object-cover"
+            className=" w-full object-cover"
           />
         </figure>
         <figure className="w-48 relative principal3">
-          <Imagenes
+          <img
             src="https://s.pinimg.com/webapp/bathroom-upgrade-48ebb8fc.png"
-            style=" w-full object-cover"
+            className=" w-full object-cover"
           />
         </figure>
       </article>
@@ -86,14 +85,14 @@ export const Sesion3 = () => {
   return (
     <div className="flex justify-between items-center flex-wrap">
       <article className="w-2/4 relative sesion3camb m-auto">
-        <Imagenes
+        <img
           src="https://s.pinimg.com/webapp/shop-bd0c8a04.png"
-          style="w-full object-cover"
+          className="w-full object-cover"
         />
         <figure className="w-24 absolute bottom-3 left-9">
-          <Imagenes
+          <img
             src="https://s.pinimg.com/webapp/creator-pin-img-491ebb56.png"
-            style=" w-full object-cover"
+            className=" w-full object-cover"
           />
         </figure>
       </article>
