@@ -6,8 +6,10 @@ import { BiUserCircle } from "react-icons/Bi";
 import { BiChevronDown } from "react-icons/Bi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
 export const Header2 = () => {
+  const {user} = useAuth()
   const [back, setBack] = useState(false);
   const navigate = useNavigate();
 
@@ -86,7 +88,7 @@ export const Header2 = () => {
       </div>
       <div className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300">
         <figure>
-          <BiUserCircle className="text-3xl" />
+          {<img src={user.photoURL } className="rounded-full"/> || <BiUserCircle className="text-3xl" />}
         </figure>
       </div>
       <div className="flex w-10 h-10 justify-center items-center rounded-full p-2 hover:bg-slate-300">

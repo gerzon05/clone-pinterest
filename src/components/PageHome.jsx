@@ -4,8 +4,7 @@ import { Header2 } from "./Header2";
 
 
 export const PageHome = () => {
-  const { user, loading, logout } = useAuth();
-
+  const { loading, logout } = useAuth();
   const handlelogout = () => {
     logout();
   };
@@ -32,7 +31,6 @@ export const PageHome = () => {
   return (
     <>
       <Header2 />
-      <div>Bienvenido {user.displayName || user.email}</div>
       <div className="w-full h-full flex justify-center">
         <div className="w-10/12 flex flex-wrap columns-5 my-auto h-full max-w-7xl gap-2">
           {photos.map((photo) => (
