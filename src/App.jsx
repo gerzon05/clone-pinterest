@@ -5,6 +5,7 @@ import { Registro } from "./components/Registro";
 import { IniciarSesion } from "./components/IniciarSesion";
 import { AuthProvider } from "./context/authContext";
 import { ProtectRoute } from "./components/ProtectRoute";
+import { SavePin } from "./components/SavePin";
 
 function App() {
   return (
@@ -18,6 +19,14 @@ function App() {
           element={
             <ProtectRoute>
               <PageHome />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/savepin"
+          element={
+            <ProtectRoute>
+              <SavePin />
             </ProtectRoute>
           }
         />
