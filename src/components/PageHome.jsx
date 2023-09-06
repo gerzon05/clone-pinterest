@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { Header2 } from "./Header2";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { app } from "../firebase/firebase";
 
+const db = getFirestore(app);
 
 export const PageHome = () => {
   const { loading, logout } = useAuth();
@@ -14,19 +17,32 @@ export const PageHome = () => {
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
+    const getimg = async () => {
+      try {
+        const basedatos = await getDocs(collection(db, "imagenes"));
+        const docs = [];
+        basedatos.forEach((img) => {
+          docs.push({ ...img.data(), id: img.id });
+        });
+        setPhotos(docs);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getimg();
+
     // const apiUrl = "https://api.unsplash.com/search/photos";
     // const autori = "nPhLgCjVpjHfZiSXri4UaUj1u9rxKkxf6mJzS8Ffd7w";
 
-    const renderCharacter = async () => {
-      const respuestaDelServidor = await fetch(
-        "https://api.unsplash.com/search/photos?query=lapto&client_id=nPhLgCjVpjHfZiSXri4UaUj1u9rxKkxf6mJzS8Ffd7w"
-      );
-      const conversionJson = await respuestaDelServidor.json();
-      setPhotos(conversionJson.results);
-    };
-    renderCharacter();
+    // const renderCharacter = async () => {
+    //   const respuestaDelServidor = await fetch(
+    //     "https://api.unsplash.com/search/photos?query=lapto&client_id=nPhLgCjVpjHfZiSXri4UaUj1u9rxKkxf6mJzS8Ffd7w"
+    //   );
+    //   const conversionJson = await respuestaDelServidor.json();
+    //   setPhotos(conversionJson.results);
+    // };
+    // renderCharacter();
   }, []);
-
 
   return (
     <>
@@ -37,9 +53,9 @@ export const PageHome = () => {
             <div key={photo.id} className="inline-flex">
               <section className="flex items-center box-content w-56">
                 <img
-                  src={photo.urls.small}
+                  src={photo.imagen}
                   className="w-full flex"
-                  alt={photo.description}
+                  alt={photo.titulo}
                 />
               </section>
             </div>
