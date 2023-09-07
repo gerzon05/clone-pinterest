@@ -8,16 +8,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { Perfil } from "./Perfil";
 
-export const Header2 = () => {
+export const Header2 = ({enviar}) => {
   const {user} = useAuth()
   const [back, setBack] = useState(false);
-  const [perfil, setPerfil] = useState(false);
   const [buscador, setBuscador] = useState("");
+  const [perfil, setPerfil] = useState(false);
   const navigate = useNavigate();
   const handlePerfil = ()=>{
     setPerfil(!perfil)
   }
-
+  console.log(buscador)
   const handleOptionChange = (event) => {
     const selectedOption = event.target.value;
     if (selectedOption === "option1") {
@@ -80,7 +80,6 @@ export const Header2 = () => {
           <FaSearch className="text-slate-600" />
         </label>
         <input
-          value={buscador}
           onChange={handleChange}
           type="text"
           className="rounded-full p-2 pl-7  w-full bg-slate-200 border-0"

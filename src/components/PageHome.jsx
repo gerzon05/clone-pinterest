@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAuth } from "../context/authContext";
 import { Header2 } from "./Header2";
 import { Pin } from "./Pin";
@@ -9,6 +10,10 @@ export const PageHome = () => {
 
   if (loading) return <h2>loading</h2>;
 
+
+  // const onsubmit = (term)=>{
+  //   console.log(term)
+  // }
 
   return (
     <>
