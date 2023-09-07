@@ -9,7 +9,11 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 export const SavePin = () => {
-  const [cargueimg,setCargueImg] = useState("")
+  const [cargueimg, setCargueImg] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const handleCategoria = (event) =>{
+    setCategoria(event.target.value)
+  }
   const { user } = useAuth();
   let Urlimg;
   const saveinfo = async (event) => {
@@ -30,10 +34,10 @@ export const SavePin = () => {
       await addDoc(collection(db, "imagenes"), {
         ...newimage,
       });
-      setCargueImg("su imagen se guardo con exito")
+      setCargueImg("su imagen se guardo con exito");
     } catch (error) {
       console.log(error);
-      setCargueImg("hubo un error al subir la imagem")
+      setCargueImg("hubo un error al subir la imagem");
     }
     event.target.titulo.value = "";
     event.target.descripcionimg.value = "";
@@ -43,7 +47,7 @@ export const SavePin = () => {
   };
   const handleFile = async (event) => {
     const archivoimg = event.target.files[0];
-    const refImg = ref(storage, `capImagenes/${archivoimg.name}`);
+    const refImg = ref(storage, `${categoria}/${archivoimg.name}`);
     await uploadBytes(refImg, archivoimg);
     Urlimg = await getDownloadURL(refImg);
   };
@@ -87,7 +91,7 @@ export const SavePin = () => {
                     <hr className="bg-black h-px" />
                   </div>
                   <figure className="flex items-center gap-3">
-                    <img src={user.photoURL} className="w-8 h-8 rounded-full" />
+                    <img src={user.photoURL || "https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png"} alt="foto de perfil" className="w-8 h-8 rounded-full object-cover" />
                     <span>
                       <h2>{user.displayName || user.email}</h2>
                     </span>
@@ -112,6 +116,7 @@ export const SavePin = () => {
                   </figure>
                   <figure>
                     <input
+                      onChange={handleCategoria}
                       required
                       id="categoria"
                       type="text"

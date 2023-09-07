@@ -1,62 +1,21 @@
-import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { Header2 } from "./Header2";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
-import { app } from "../firebase/firebase";
+import { Pin } from "./Pin";
 
-const db = getFirestore(app);
+
 
 export const PageHome = () => {
   const { loading } = useAuth();
 
   if (loading) return <h2>loading</h2>;
 
-  const [photos, setPhotos] = useState([]);
-
-  useEffect(() => {
-    const getimg = async () => {
-      try {
-        const basedatos = await getDocs(collection(db, "imagenes"));
-        const docs = [];
-        basedatos.forEach((img) => {
-          docs.push({ ...img.data(), id: img.id });
-        });
-        setPhotos(docs);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getimg();
-
-    // const apiUrl = "https://api.unsplash.com/search/photos";
-    // const autori = "nPhLgCjVpjHfZiSXri4UaUj1u9rxKkxf6mJzS8Ffd7w";
-
-    // const renderCharacter = async () => {
-    //   const respuestaDelServidor = await fetch(
-    //     "https://api.unsplash.com/search/photos?query=lapto&client_id=nPhLgCjVpjHfZiSXri4UaUj1u9rxKkxf6mJzS8Ffd7w"
-    //   );
-    //   const conversionJson = await respuestaDelServidor.json();
-    //   setPhotos(conversionJson.results);
-    // };
-    // renderCharacter();
-  }, []);
 
   return (
     <>
       <Header2 />
-      <div className="w-full mt-16 h-full flex justify-center">
-        <div className="w-10/12 flex flex-wrap columns-5 my-auto h-full max-w-7xl gap-2">
-          {photos.map((photo) => (
-            <div key={photo.id} className="inline-flex">
-              <section className="flex items-center box-content w-56">
-                <img
-                  src={photo.imagen}
-                  className="w-full flex"
-                  alt={photo.titulo}
-                />
-              </section>
-            </div>
-          ))}
+      <div className="w-full mt-16 flex justify-center items-center">
+        <div className="sm:columns-2 md:columns-3 lg:columns-5 xl:columns-6 2xl:columns-9 gap-8 p-4">
+          <Pin />
         </div>
       </div>
     </>

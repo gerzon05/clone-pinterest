@@ -31,7 +31,7 @@ export const Header2 = () => {
     setBack(!back);
   };
   return (
-    <header className="p-1 flex justify-evenly items-center fixed top-0 w-full bg-white">
+    <header className="p-1 flex justify-evenly items-center fixed z-30 top-0 w-full bg-white">
       <div className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300">
         <BsPinterest className="text-3xl text-red-700" />
       </div>
