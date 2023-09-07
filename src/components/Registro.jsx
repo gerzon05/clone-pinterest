@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Button } from "./Button";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
-import {BsFacebook, BsGoogle, BsPinterest} from "react-icons/Bs"
-
+import { BsFacebook, BsGoogle, BsPinterest } from "react-icons/Bs";
 
 export const Registro = (props) => {
   const [user, setUser] = useState({
@@ -11,7 +10,8 @@ export const Registro = (props) => {
     password: "",
   });
 
-  const { signup, loginwhithgoogle, loginwhithfacebook, erroemail } = useAuth("");
+  const { signup, loginwhithgoogle, loginwhithfacebook, erroemail } =
+    useAuth("");
   const navigate = useNavigate();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -20,7 +20,7 @@ export const Registro = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-      await signup(user.email, user.password);
+    await signup(user.email, user.password);
   };
   const handlegoogle = async () => {
     await loginwhithgoogle();
@@ -49,6 +49,7 @@ export const Registro = (props) => {
         <div className="flex flex-col">
           <label>Correo</label>
           <input
+            required
             type="email"
             placeholder="correo"
             name="email"
@@ -59,6 +60,7 @@ export const Registro = (props) => {
         <div>
           <label>Contraseña</label>
           <input
+            required
             type="password"
             name="password"
             placeholder="crea una contraseña"
@@ -89,13 +91,13 @@ export const Registro = (props) => {
         <Button
           click={handlefacebook}
           placeholder="Continuar con Facebook"
-          imgf={<BsFacebook className="text-lg text-white"/>}
+          imgf={<BsFacebook className="text-lg text-white" />}
           style="w-full py-2 bg-blue-700 text-white rounded-full flex justify-evenly items-center"
         />
         <Button
           click={handlegoogle}
           placeholder="Continuar con Google"
-          imgf={<BsGoogle className="text-lg text-black"/>}
+          imgf={<BsGoogle className="text-lg text-black" />}
           style="w-full py-2 border-2 border-zinc-300 text-black rounded-full flex justify-evenly items-center"
         />
         <p className="text-center text-xs w-full m-auto">
