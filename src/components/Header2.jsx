@@ -2,17 +2,20 @@ import { BsPinterest } from "react-icons/Bs";
 import { FaSearch } from "react-icons/Fa";
 import { IoIosNotifications } from "react-icons/Io";
 import { AiFillMessage } from "react-icons/Ai";
-import { BiUserCircle } from "react-icons/Bi";
 import { BiChevronDown } from "react-icons/Bi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
+import { Perfil } from "./Perfil";
 
 export const Header2 = () => {
   const {user} = useAuth()
   const [back, setBack] = useState(false);
+  const [perfil, setPerfil] = useState(false);
   const navigate = useNavigate();
-
+  const handlePerfil = ()=>{
+    setPerfil(!perfil)
+  }
   const handleOptionChange = (event) => {
     const selectedOption = event.target.value;
     if (selectedOption === "option1") {
@@ -28,7 +31,7 @@ export const Header2 = () => {
     setBack(!back);
   };
   return (
-    <header className="p-1 flex justify-evenly items-center">
+    <header className="p-1 flex justify-evenly items-center fixed top-0 w-full bg-white">
       <div className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300">
         <BsPinterest className="text-3xl text-red-700" />
       </div>
@@ -88,14 +91,15 @@ export const Header2 = () => {
       </div>
       <div className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300">
         <figure>
-          {<img src={user.photoURL } className="rounded-full"/> || <BiUserCircle className="text-3xl" />}
+          <img src={user.photoURL || "https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png"} className="rounded-full object-cover" alt="foto de perfil"/>
         </figure>
       </div>
       <div className="flex w-10 h-10 justify-center items-center rounded-full p-2 hover:bg-slate-300">
-        <figure>
+        <button onClick={handlePerfil} className="border-0 border-white rounded-full bg-white">
           <BiChevronDown className="text-3xl" />
-        </figure>
+        </button>
       </div>
+      <Perfil valor={perfil}/>
     </header>
   );
 };

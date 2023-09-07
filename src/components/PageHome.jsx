@@ -7,10 +7,7 @@ import { app } from "../firebase/firebase";
 const db = getFirestore(app);
 
 export const PageHome = () => {
-  const { loading, logout } = useAuth();
-  const handlelogout = () => {
-    logout();
-  };
+  const { loading } = useAuth();
 
   if (loading) return <h2>loading</h2>;
 
@@ -47,7 +44,7 @@ export const PageHome = () => {
   return (
     <>
       <Header2 />
-      <div className="w-full h-full flex justify-center">
+      <div className="w-full mt-16 h-full flex justify-center">
         <div className="w-10/12 flex flex-wrap columns-5 my-auto h-full max-w-7xl gap-2">
           {photos.map((photo) => (
             <div key={photo.id} className="inline-flex">
@@ -62,7 +59,6 @@ export const PageHome = () => {
           ))}
         </div>
       </div>
-      <button onClick={handlelogout}>logout</button>
     </>
   );
 };
