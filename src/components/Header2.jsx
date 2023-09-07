@@ -12,10 +12,12 @@ export const Header2 = () => {
   const {user} = useAuth()
   const [back, setBack] = useState(false);
   const [perfil, setPerfil] = useState(false);
+  const [buscador, setBuscador] = useState("");
   const navigate = useNavigate();
   const handlePerfil = ()=>{
     setPerfil(!perfil)
   }
+
   const handleOptionChange = (event) => {
     const selectedOption = event.target.value;
     if (selectedOption === "option1") {
@@ -23,6 +25,10 @@ export const Header2 = () => {
     } else if (selectedOption === "option2") {
       navigate("/savepin");
     }
+  };
+  const handleChange = (event) => {
+    event.preventDefault()
+    setBuscador(event.target.value);
   };
   const handeclick = () => {
     navigate("/pagehome");
@@ -74,6 +80,8 @@ export const Header2 = () => {
           <FaSearch className="text-slate-600" />
         </label>
         <input
+          value={buscador}
+          onChange={handleChange}
           type="text"
           className="rounded-full p-2 pl-7  w-full bg-slate-200 border-0"
           placeholder="Buscar"

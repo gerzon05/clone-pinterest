@@ -10,7 +10,6 @@ const storage = getStorage(app);
 
 export const SavePin = () => {
   const [cargueimg, setCargueImg] = useState("");
-  const [categoria, setCategoria] = useState("");
   const handleCategoria = (event) =>{
     setCategoria(event.target.value)
   }
@@ -36,8 +35,7 @@ export const SavePin = () => {
       });
       setCargueImg("su imagen se guardo con exito");
     } catch (error) {
-      console.log(error);
-      setCargueImg("hubo un error al subir la imagem");
+      setCargueImg("hubo un error al subir la imagen"+error);
     }
     event.target.titulo.value = "";
     event.target.descripcionimg.value = "";
@@ -47,14 +45,14 @@ export const SavePin = () => {
   };
   const handleFile = async (event) => {
     const archivoimg = event.target.files[0];
-    const refImg = ref(storage, `${categoria}/${archivoimg.name}`);
+    const refImg = ref(storage, `imagenes/${archivoimg.name}`);
     await uploadBytes(refImg, archivoimg);
     Urlimg = await getDownloadURL(refImg);
   };
   return (
     <>
       <Header2 />
-      <main className="bg-slate-300 p-12 flex justify-center">
+      <main className="bg-slate-300 p-12 flex justify-center mt-16">
         <div className="bg-white rounded-2xl max-w-4xl p-8">
           <section>
             <form onSubmit={saveinfo}>

@@ -7,7 +7,6 @@ const db = getFirestore(app);
 
 export const Pin = () => {
   const [photos, setPhotos] = useState([]);
-
   useEffect(() => {
     const getimg = async () => {
       try {
@@ -17,6 +16,7 @@ export const Pin = () => {
           docs.push({ ...img.data(), id: img.id });
         });
         setPhotos(docs);
+        setPhotos2(docs);
       } catch (error) {
         console.log(error);
       }
@@ -40,10 +40,10 @@ export const Pin = () => {
               </button>
             </article>
             <article className="flex gap-2 justify-end p-3 opacity-0 group-hover:opacity-100">
-              <div className="w-9 h-9 bg-slate-300 rounded-full flex justify-center items-center">
+              <div className="w-7 h-7 bg-slate-300 rounded-full flex justify-center items-center">
                 <FiShare className=" text-1xl" />
               </div>
-              <div className="w-9 h-9 bg-slate-300 rounded-full flex justify-center items-center">
+              <div className="w-7 h-7 bg-slate-300 rounded-full flex justify-center items-center">
                 <AiOutlineEllipsis className=" text-3xl" />
               </div>
             </article>
