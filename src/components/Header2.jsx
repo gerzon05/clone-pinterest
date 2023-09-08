@@ -12,6 +12,7 @@ import { Perfil } from "./Perfil";
 export const Header2 = ({como}) => {
 
   const {user} = useAuth()
+  console.log(user)
   const [back, setBack] = useState(false);
   const [perfil, setPerfil] = useState(false);
   const navigate = useNavigate();
