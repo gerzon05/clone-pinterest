@@ -48,8 +48,8 @@ export const Header2 = ({como}) => {
           onClick={handeclickback}
           className={
             back == false
-              ? "rounded-full text-white px-5 py-2 bg-black"
-              : "rounded-full text-black px-5 py-2 "
+              ? "rounded-full text-white px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg bg-black"
+              : "rounded-full text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg "
           }
         >
           Inicio
@@ -60,8 +60,8 @@ export const Header2 = ({como}) => {
           onClick={handeclickback}
           className={
             back == true
-              ? "rounded-full text-white px-5 py-2 bg-black"
-              : "rounded-full text-black px-5 py-2 "
+              ? "rounded-full text-white px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg bg-black"
+              : "rounded-full text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg "
           }
         >
           Explorar
@@ -88,17 +88,17 @@ export const Header2 = ({como}) => {
           placeholder="Buscar"
         />
       </form>
-      <div className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300">
+      <div className="flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300">
         <figure>
-          <IoIosNotifications className="text-3xl text-gray-600" />
+          <IoIosNotifications className="sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-lg text-gray-600" />
         </figure>
       </div>
-      <div className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300">
+      <div className="flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300">
         <figure>
-          <AiFillMessage className="text-3xl text-gray-600" />
+          <AiFillMessage className="sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-lg text-gray-600" />
         </figure>
       </div>
-      <div className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300">
+      <div className="flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300">
         <figure>
           <img src={user.photoURL || "https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png"} className="rounded-full object-cover" alt="foto de perfil"/>
         </figure>
