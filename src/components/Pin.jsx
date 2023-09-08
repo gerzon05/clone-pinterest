@@ -22,7 +22,7 @@ export const Pin = ({hola}) => {
       }
     };
     function filtrar() {
-      setPhotos2(photos.filter((elem)=>elem.categoria === hola))
+      setPhotos2(photos.filter((elem)=> elem.categoria === hola || elem.titulo === hola ))
     }
     getimg();
     filtrar();
