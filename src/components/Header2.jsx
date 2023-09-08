@@ -8,16 +8,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { Perfil } from "./Perfil";
 
-export const Header2 = ({enviar}) => {
+
+export const Header2 = ({como}) => {
+
   const {user} = useAuth()
   const [back, setBack] = useState(false);
-  const [buscador, setBuscador] = useState("");
   const [perfil, setPerfil] = useState(false);
   const navigate = useNavigate();
   const handlePerfil = ()=>{
     setPerfil(!perfil)
   }
-  console.log(buscador)
   const handleOptionChange = (event) => {
     const selectedOption = event.target.value;
     if (selectedOption === "option1") {
@@ -28,7 +28,7 @@ export const Header2 = ({enviar}) => {
   };
   const handleChange = (event) => {
     event.preventDefault()
-    setBuscador(event.target.value);
+    como(event.target.value);
   };
   const handeclick = () => {
     navigate("/pagehome");
@@ -37,7 +37,8 @@ export const Header2 = ({enviar}) => {
     setBack(!back);
   };
   return (
-    <header className="p-1 flex justify-evenly items-center fixed z-30 top-0 w-full bg-white">
+    <>
+      <header className="p-1 flex justify-evenly items-center fixed z-30 top-0 w-full bg-white">
       <div className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300">
         <BsPinterest className="text-3xl text-red-700" />
       </div>
@@ -108,5 +109,6 @@ export const Header2 = ({enviar}) => {
       </div>
       <Perfil valor={perfil}/>
     </header>
+    </>
   );
 };

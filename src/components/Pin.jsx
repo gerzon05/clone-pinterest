@@ -5,10 +5,9 @@ import { AiOutlineEllipsis } from "react-icons/Ai";
 import { FiShare } from "react-icons/Fi";
 const db = getFirestore(app);
 
-export const Pin = () => {
+export const Pin = ({hola}) => {
   const [photos, setPhotos] = useState([]);
   const [photos2, setPhotos2] = useState([]);
-
   useEffect(() => {
     const getimg = async () => {
       try {
@@ -23,15 +22,15 @@ export const Pin = () => {
       }
     };
     function filtrar() {
-      setPhotos2(photos.filter((elem)=>elem.categoria === ""))
+      setPhotos2(photos.filter((elem)=>elem.categoria === hola))
     }
     getimg();
     filtrar();
-  }, []);
+  }, [hola]);
 
   return (
     <>
-      {photos2.length >= 1? photos2.map((photo) => (
+      {photos2.length > 0? photos2.map((photo) => (
         <div key={photo.id} className="group py-2 cursor-zoom-in relative overflow-hidden">
           <img
             src={photo.imagen}

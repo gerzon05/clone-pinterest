@@ -10,17 +10,15 @@ export const PageHome = () => {
 
   if (loading) return <h2>loading</h2>;
 
+  const [estabus,setEstaBus] = useState("")
 
-  // const onsubmit = (term)=>{
-  //   console.log(term)
-  // }
 
   return (
     <>
-      <Header2 />
+      <Header2 como={setEstaBus}/>
       <div className="w-full mt-16 flex justify-center items-center">
         <div className="container sm:columns-2 md:columns-4 lg:columns-5 xl:columns-6 2xl:columns-8 gap-8 p-4">
-          <Pin />
+          <Pin hola={estabus}/>
         </div>
       </div>
     </>
