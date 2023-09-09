@@ -22,7 +22,7 @@ export const Perfil = (props) => {
           <article className="relative pt-4">
             <p className="absolute text-xs top-0 left-0">Actualmente en</p>
             <BsCheck className="absolute right-4 top-10 text-lg" />
-            <div className="rounded-2xl flex justify-center items-center p-2 gap-2 hover:bg-slate-300 ">
+            <div onClick={props.handeclick} className="rounded-2xl flex justify-center items-center p-2 gap-2 hover:bg-slate-300 ">
               <div>
                 <img
                   src={user.photoURL || "https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png"}

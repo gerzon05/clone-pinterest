@@ -6,6 +6,7 @@ import { IniciarSesion } from "./components/IniciarSesion";
 import { AuthProvider } from "./context/authContext";
 import { ProtectRoute } from "./components/ProtectRoute";
 import { SavePin } from "./components/SavePin";
+import { MyPerfil } from "./components/MyPerfil";
 
 function App() {
   return (
@@ -27,6 +28,14 @@ function App() {
           element={
             <ProtectRoute>
               <SavePin />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/mi-perfil"
+          element={
+            <ProtectRoute>
+              <MyPerfil />
             </ProtectRoute>
           }
         />

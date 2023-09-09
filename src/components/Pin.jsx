@@ -44,10 +44,10 @@ export const Pin = ({hola}) => {
               </button>
             </article>
             <article className="flex gap-2 justify-end p-3 opacity-0 group-hover:opacity-100">
-              <div className="w-7 h-7 bg-slate-300 rounded-full flex justify-center items-center">
+              <div className="cursor-pointer w-7 h-7 bg-slate-300 rounded-full flex justify-center items-center">
                 <FiShare className=" text-1xl" />
               </div>
-              <div className="w-7 h-7 bg-slate-300 rounded-full flex justify-center items-center">
+              <div className="cursor-pointer w-7 h-7 bg-slate-300 rounded-full flex justify-center items-center">
                 <AiOutlineEllipsis className=" text-3xl" />
               </div>
             </article>
@@ -67,10 +67,10 @@ export const Pin = ({hola}) => {
               </button>
             </article>
             <article className="flex gap-2 justify-end p-3 opacity-0 group-hover:opacity-100">
-              <div className="w-7 h-7 bg-slate-300 rounded-full flex justify-center items-center">
+              <div className="cursor-pointer w-7 h-7 bg-slate-300 rounded-full flex justify-center items-center">
                 <FiShare className=" text-1xl" />
               </div>
-              <div className="w-7 h-7 bg-slate-300 rounded-full flex justify-center items-center">
+              <div className="cursor-pointer w-7 h-7 bg-slate-300 rounded-full flex justify-center items-center">
                 <AiOutlineEllipsis className=" text-3xl" />
               </div>
             </article>
