@@ -1,13 +1,30 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
 import { app } from "../firebase/firebase";
 import { AiOutlineEllipsis } from "react-icons/Ai";
 import { FiShare } from "react-icons/Fi";
+import { useAuth } from "../context/authContext";
+
 const db = getFirestore(app);
 
-export const Pin = ({hola}) => {
+export const Pin = ({buscador}) => {
+  const {user} = useAuth()
   const [photos, setPhotos] = useState([]);
   const [photos2, setPhotos2] = useState([]);
+
+  const handlesaveimg = async(url)=>{
+    const guardar = {
+      imgURL : url
+    }
+    try {
+      await addDoc(collection(db, user.email),{
+        ...guardar
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     const getimg = async () => {
       try {
@@ -22,11 +39,11 @@ export const Pin = ({hola}) => {
       }
     };
     function filtrar() {
-      setPhotos2(photos.filter((elem)=> elem.categoria === hola || elem.titulo === hola ))
+      setPhotos2(photos.filter((elem)=> elem.categoria === buscador || elem.titulo === buscador ))
     }
     getimg();
     filtrar();
-  }, [hola]);
+  }, [buscador]);
 
   return (
     <>
@@ -39,7 +56,7 @@ export const Pin = ({hola}) => {
           />
           <span className="absolute flex flex-col justify-between my-2 z-10 top-0 w-full bottom-0 bg-transparent pointer-events-none rounded-xl group-hover:bg-black/50 group-hover:pointer-events-auto ">
             <article className="flex justify-end p-3 opacity-0 group-hover:opacity-100">
-              <button className="py-1 px-4 bg-red-700 text-base rounded-full text-white">
+              <button onClick={() => handlesaveimg(photo.imagen)} className="py-1 px-4 bg-red-700 text-base rounded-full text-white">
                 Guardar
               </button>
             </article>
@@ -62,7 +79,7 @@ export const Pin = ({hola}) => {
           />
           <span className="absolute flex flex-col justify-between my-2 z-10 top-0 w-full bottom-0 bg-transparent pointer-events-none rounded-xl group-hover:bg-black/50 group-hover:pointer-events-auto ">
             <article className="flex justify-end p-3 opacity-0 group-hover:opacity-100">
-              <button className="py-1 px-4 bg-red-700 text-base rounded-full text-white">
+              <button onClick={() => handlesaveimg(photo.imagen)} className="py-1 px-4 bg-red-700 text-base rounded-full text-white">
                 Guardar
               </button>
             </article>

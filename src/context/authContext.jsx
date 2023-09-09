@@ -21,7 +21,6 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }) {
   const navigate = useNavigate();
-
   const [erroemail, setErrorEmail] = useState("");
   const [erropass, setErrorpass] = useState("");
 

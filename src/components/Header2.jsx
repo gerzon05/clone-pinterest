@@ -8,9 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { Perfil } from "./Perfil";
 
-export const Header2 = ({ como }) => {
+export const Header2 = ({ buscador }) => {
   const { user } = useAuth();
-  console.log(user);
   const [back, setBack] = useState(false);
   const [perfil, setPerfil] = useState(false);
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ export const Header2 = ({ como }) => {
   };
   const handleChange = (event) => {
     event.preventDefault();
-    como(event.target.value);
+    buscador(event.target.value);
   };
   const handeclick = () => {
     navigate("/pagehome");

@@ -29,7 +29,6 @@ export const IniciarSesion = (props) => {
   const handlefacebook = async () => {
     await loginwhithfacebook();
     navigate("/pagehome");
-    console.log("como estas");
   };
   return (
     <>
