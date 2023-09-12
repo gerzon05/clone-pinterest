@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineEllipsis } from "react-icons/Ai";
+import { AiOutlineEllipsis, AiOutlineLoading } from "react-icons/Ai";
 import { FiShare } from "react-icons/Fi";
 import { useAuth } from "../context/authContext";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
@@ -25,7 +25,7 @@ export const Saveimg = () => {
   }, []);
   return (
     <>
-      {mostrarimg.map((imagenes, index) => (
+      {mostrarimg.length > 0 ? mostrarimg.map((imagenes, index) => (
         <div
           key={index}
           className="group py-2 cursor-zoom-in relative overflow-hidden"
@@ -42,7 +42,9 @@ export const Saveimg = () => {
             </article>
           </span>
         </div>
-      ))}
+      )):
+      <div className="absolute py-2 left-1/2 top-[95%] translate-[-50%,-50%]"><AiOutlineLoading className="text-3xl font-bold animate-spin"/></div>
+      }
     </>
   );
 };
