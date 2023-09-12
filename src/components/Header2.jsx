@@ -10,7 +10,6 @@ import { Perfil } from "./Perfil";
 
 export const Header2 = ({ buscador }) => {
   const { user } = useAuth();
-  const [back, setBack] = useState(false);
   const [perfil, setPerfil] = useState(false);
   const navigate = useNavigate();
   const handlePerfil = () => {
@@ -34,8 +33,8 @@ export const Header2 = ({ buscador }) => {
   const handeclickperfil = () => {
     navigate("/mi-perfil");
   };
-  const handeclickback = () => {
-    setBack(!back);
+  const handeclickexplorar = () => {
+    navigate("/explorar");
   };
   return (
     <>
@@ -43,26 +42,18 @@ export const Header2 = ({ buscador }) => {
         <div onClick={handeclick} className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300">
           <BsPinterest className="text-3xl text-red-700" />
         </div>
-        <div onClick={handeclick}>
+        <div>
           <button
-            onClick={handeclickback}
-            className={
-              back == false
-                ? "rounded-full text-white px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg bg-black"
-                : "rounded-full text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg "
-            }
+            onClick={handeclick}
+            className="rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black"
           >
             Inicio
           </button>
         </div>
         <div>
           <button
-            onClick={handeclickback}
-            className={
-              back == true
-                ? "rounded-full text-white px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg bg-black"
-                : "rounded-full text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg "
-            }
+            onClick={handeclickexplorar}
+            className="rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black"
           >
             Explorar
           </button>
@@ -78,7 +69,7 @@ export const Header2 = ({ buscador }) => {
           </select>
         </div>
         <form className="w-2/6 relative">
-          <label className="absolute top-1/3 left-1">
+          <label className="absolute top-1/3 left-[10px]">
             <FaSearch className="text-slate-600" />
           </label>
           <input

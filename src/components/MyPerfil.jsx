@@ -5,7 +5,7 @@ import { Saveimg } from "./saveimg";
 
 export const MyPerfil = () => {
   const { user, saveimage } = useAuth();
-  const [saveima, setSaveIma] = useState(false);
+  const [saveima, setSaveIma] = useState(null);
 
   return (
     <>
@@ -46,11 +46,11 @@ export const MyPerfil = () => {
               onClick={() => setSaveIma(true)}
               className='hover:bg-slate-300 rounded-xl p-2 text-xl relative font-semibold after:content-[""] after:absolute after:w-full after:-bottom-1 after:h-[3px] focus:after:bg-black after:left-0'
             >
-              Editar perfil
+              Guardados
             </button>
           </div>
         </aside>
-        <div>
+        <div >
           {saveima ? (
             <div className="container sm:columns-2 md:columns-4 lg:columns-5 xl:columns-6 2xl:columns-8 gap-8 p-4">
               <Saveimg saveimage={saveimage} />

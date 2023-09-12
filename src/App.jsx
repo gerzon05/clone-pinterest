@@ -7,6 +7,11 @@ import { AuthProvider } from "./context/authContext";
 import { ProtectRoute } from "./components/ProtectRoute";
 import { SavePin } from "./components/SavePin";
 import { MyPerfil } from "./components/MyPerfil";
+import { Explorar } from "./components/explorar/explorar";
+import { Dulces } from "./components/explorar/Dulces";
+import { Fraces } from "./components/explorar/Fraces";
+import { Futbol } from "./components/explorar/Futbol";
+import { Carros } from "./components/explorar/Carros";
 
 function App() {
   return (
@@ -36,6 +41,46 @@ function App() {
           element={
             <ProtectRoute>
               <MyPerfil />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/explorar"
+          element={
+            <ProtectRoute>
+              <Explorar />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/explorar/dulces"
+          element={
+            <ProtectRoute>
+              <Dulces />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/explorar/fraces"
+          element={
+            <ProtectRoute>
+              <Fraces />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/explorar/futbol"
+          element={
+            <ProtectRoute>
+              <Futbol />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/explorar/carros"
+          element={
+            <ProtectRoute>
+              <Carros />
             </ProtectRoute>
           }
         />
