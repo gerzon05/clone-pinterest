@@ -9,7 +9,7 @@ export const Explorar = () => {
     navigate("/explorar/dulces");
   };
   const handlefrases = () => {
-    navigate("/explorar/fraces");
+    navigate("/explorar/frases");
   };
   const handlefutbol = () => {
     navigate("/explorar/futbol");

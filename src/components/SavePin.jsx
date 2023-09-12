@@ -10,9 +10,7 @@ const storage = getStorage(app);
 
 export const SavePin = () => {
   const [cargueimg, setCargueImg] = useState("");
-  const handleCategoria = (event) =>{
-    setCategoria(event.target.value)
-  }
+
   const { user } = useAuth();
   let Urlimg;
   const saveinfo = async (event) => {
@@ -122,7 +120,6 @@ export const SavePin = () => {
                   </figure>
                   <figure>
                     <input
-                      onChange={handleCategoria}
                       required
                       id="categoria"
                       type="text"

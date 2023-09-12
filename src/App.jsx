@@ -9,7 +9,7 @@ import { SavePin } from "./components/SavePin";
 import { MyPerfil } from "./components/MyPerfil";
 import { Explorar } from "./components/explorar/explorar";
 import { Dulces } from "./components/explorar/Dulces";
-import { Fraces } from "./components/explorar/Fraces";
+import { Frases } from "./components/explorar/Frases";
 import { Futbol } from "./components/explorar/Futbol";
 import { Carros } from "./components/explorar/Carros";
 
@@ -61,10 +61,10 @@ function App() {
           }
         />
         <Route
-          path="/explorar/fraces"
+          path="/explorar/frases"
           element={
             <ProtectRoute>
-              <Fraces />
+              <Frases />
             </ProtectRoute>
           }
         />
