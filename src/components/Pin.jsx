@@ -47,7 +47,7 @@ export const Pin = ({buscador}) => {
 
   return (
     <>
-      {photos2.length > 0? photos2.map((photo) => (
+      {photos2.length > 0 ? photos2.map((photo) => (
         <div key={photo.id} className="group py-2 cursor-zoom-in relative overflow-hidden">
           <img
             src={photo.imagen}
