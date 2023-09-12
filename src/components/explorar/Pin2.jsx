@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
 import { app } from "../../firebase/firebase";
-import { AiOutlineEllipsis } from "react-icons/Ai";
+import { AiOutlineEllipsis,AiOutlineLoading } from "react-icons/Ai";
 import { FiShare } from "react-icons/Fi";
 import { useAuth } from "../../context/authContext";
 
@@ -37,12 +37,15 @@ export const Pin2 = ({filter}) => {
         console.log(error);
       }
     };
-    getimg();
+    const time = setTimeout(()=>{
+      getimg();
+    },3000)
+    return ()=> clearTimeout(time)
   }, [filter]);
 
   return (
     <>
-      {photos.map((photo) => (
+      {photos.length > 0 ? photos.map((photo) => (
         <div key={photo.id} className="group py-2 cursor-zoom-in relative overflow-hidden">
           <img
             src={photo.imagen}
@@ -65,7 +68,9 @@ export const Pin2 = ({filter}) => {
             </article>
           </span>
         </div>
-      ))}
+      )):
+        <div className="absolute py-2 left-1/2 top-[95%] translate-[-50%,-50%]"><AiOutlineLoading className="text-3xl font-bold animate-spin"/></div>
+      }
     </>
   );
 };
