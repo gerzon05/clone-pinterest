@@ -30,6 +30,14 @@ export const SavePin = () => {
     };
     //guardar informacion
     try {
+      await addDoc(collection(db, categoria), {
+        ...newimage,
+      });
+      setCargueImg("su imagen se guardo con exito");
+    } catch (error) {
+      setCargueImg("hubo un error al subir la imagen"+error);
+    }
+    try {
       await addDoc(collection(db, "imagenes"), {
         ...newimage,
       });
