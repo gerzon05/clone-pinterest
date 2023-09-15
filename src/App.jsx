@@ -12,6 +12,7 @@ import { Dulces } from "./components/explorar/Dulces";
 import { Frases } from "./components/explorar/Frases";
 import { Futbol } from "./components/explorar/Futbol";
 import { Carros } from "./components/explorar/Carros";
+import { EditarPerfil } from "./components/EditarPerfil";
 
 function App() {
   return (
@@ -81,6 +82,14 @@ function App() {
           element={
             <ProtectRoute>
               <Carros />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/perfil/editarperfil"
+          element={
+            <ProtectRoute>
+              <EditarPerfil />
             </ProtectRoute>
           }
         />

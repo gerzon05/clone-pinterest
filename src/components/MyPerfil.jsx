@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Header2 } from "./Header2";
 import { useAuth } from "../context/authContext";
 import { Saveimg } from "./saveimg";
+import { useNavigate } from "react-router-dom";
 
 export const MyPerfil = () => {
+  const navigate = useNavigate();
   const { user, saveimage } = useAuth();
   const [saveima, setSaveIma] = useState(null);
 
@@ -29,7 +31,10 @@ export const MyPerfil = () => {
             <button className="text-lg px-5 py-3 font-semibold rounded-full bg-slate-200">
               Compartir
             </button>
-            <button className="text-lg px-5 py-3 font-semibold rounded-full bg-slate-200">
+            <button
+              onClick={() => navigate("/perfil/editarperfil")}
+              className="text-lg px-5 py-3 font-semibold rounded-full bg-slate-200"
+            >
               Editar perfil
             </button>
           </div>
@@ -50,7 +55,7 @@ export const MyPerfil = () => {
             </button>
           </div>
         </aside>
-        <div >
+        <div>
           {saveima ? (
             <div className="container sm:columns-2 md:columns-4 lg:columns-5 xl:columns-6 2xl:columns-8 gap-8 p-4">
               <Saveimg saveimage={saveimage} />
