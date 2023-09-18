@@ -1,4 +1,4 @@
-import { BsPinterest } from "react-icons/Bs";
+import { BsMoonStars, BsPinterest } from "react-icons/Bs";
 import { FaSearch } from "react-icons/Fa";
 import { IoIosNotifications } from "react-icons/Io";
 import { AiFillMessage } from "react-icons/Ai";
@@ -11,6 +11,7 @@ import { Perfil } from "./Perfil";
 export const Header2 = ({ buscador }) => {
   const { user } = useAuth();
   const [perfil, setPerfil] = useState(false);
+  const [mostrar, setMostrar] = useState(false);
   const navigate = useNavigate();
   const handlePerfil = () => {
     setPerfil(!perfil);
@@ -29,6 +30,7 @@ export const Header2 = ({ buscador }) => {
   };
   const handeclick = () => {
     navigate("/pagehome");
+    setMostrar(!mostrar);
   };
   const handeclickperfil = () => {
     navigate("/mi-perfil");
@@ -39,35 +41,42 @@ export const Header2 = ({ buscador }) => {
   return (
     <>
       <header className="p-1 flex justify-evenly items-center fixed z-30 top-0 w-full bg-white">
-        <div onClick={handeclick} className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300">
-          <BsPinterest className="text-3xl text-red-700" />
-        </div>
-        <div>
-          <button
+        <section className="flex justify-between">
+          <div
             onClick={handeclick}
-            className="rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black"
+            className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300"
           >
-            Inicio
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={handeclickexplorar}
-            className="rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black"
-          >
-            Explorar
-          </button>
-        </div>
-        <div>
-          <select
-            onChange={handleOptionChange}
-            className="flex justify-center items-center border-0 w-28"
-          >
-            <option>Crear</option>
-            <option value="option1">Crear Idea Pin</option>
-            <option value="option2">Crear Pin</option>
-          </select>
-        </div>
+            <BsPinterest className="text-3xl text-red-700" />
+          </div>
+          <div className="md:flex items-center">
+            <div>
+              <button
+                onClick={handeclick}
+                className="rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black"
+              >
+                Inicio
+              </button>
+            </div>
+            <div className={mostrar === false && "hidden md:flex"}>
+              <button
+                onClick={handeclickexplorar}
+                className="rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black"
+              >
+                Explorar
+              </button>
+            </div>
+            <div className={mostrar === false && "hidden md:flex"}>
+              <select
+                onChange={handleOptionChange}
+                className="flex justify-center items-center border-0 w-28"
+              >
+                <option>Crear</option>
+                <option value="option1">Crear Idea Pin</option>
+                <option value="option2">Crear Pin</option>
+              </select>
+            </div>
+          </div>
+        </section>
         <form className="w-2/6 relative">
           <label className="absolute top-1/3 left-[10px]">
             <FaSearch className="text-slate-600" />

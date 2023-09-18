@@ -89,7 +89,7 @@ function App() {
           path="/perfil/editarperfil"
           element={
             <ProtectRoute>
-              <EditarPerfil />
+              <EditarPerfil nombre="" />
             </ProtectRoute>
           }
         />
