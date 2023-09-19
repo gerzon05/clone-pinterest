@@ -1,16 +1,70 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Header2 } from "./Header2";
 import { Buttonperfil } from "./editarperfil/Buttonperfil";
 import { useAuth } from "../context/authContext";
+import { app } from "../firebase/firebase";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 export const EditarPerfil = (props) => {
   const { user } = useAuth();
   const text = user.displayName;
   const email = user.email;
+  const [save, setSave] = useState("");
+  const [nombre, setNombre] = useState(text.split(" ")[0]);
+  const [apellido, setApellido] = useState(text.split(" ")[1]);
+  const [web, setWeb] = useState("");
+  const [nameuser, setNameuser] = useState(email.split("@")[0]);
+  const [info, setInfo] = useState("");
+  const [infomostrar, setInfoMostrar] = useState([]);
+
+  const saveinfo = async (event) => {
+    event.preventDefault();
+    const info = event.target.info.value;
+    const newimage = {
+      nombre,
+      apellido,
+      info,
+      web,
+      nameuser,
+    };
+    console.log(newimage)
+    // guardar informacion
+    try {
+      await addDoc(collection(db, email.split("@")[0]), {
+        ...newimage,
+      });
+      setSave("su informacion se guardo con exito");
+    } catch (error) {
+      setSave("hubo un error al guardar su informacion" + error);
+    }
+
+    setNombre("")
+    setApellido("")
+    setWeb("")
+    setNameuser("")
+    event.target.info.value = "";
+    setSave("");
+  };
+
+  const handlechangename = (event) => {
+    setNombre(event.target.value);
+  };
+  const handlechangefirsname = (event) => {
+    setApellido(event.target.value);
+  };
+  const handlechangeweb = (event) => {
+    setWeb(event.target.value);
+  };
+  const handlechangeusername = (event) => {
+    setNameuser(event.target.value);
+  };
+
   return (
     <>
       <Header2 />
-      <div className="mt-16 flex">
+      <div className="my-16 flex">
         <section className="py-14 px-5 flex flex-col w-1/4 gap-2">
           <Buttonperfil value="Editar Perfil" />
           <Buttonperfil value="Gestión de la cuenta" />
@@ -41,28 +95,33 @@ export const EditarPerfil = (props) => {
               Modificar
             </button>
           </article>
-          <form className="mb-[100px]">
+          <form className="mb-[100px]" onSubmit={saveinfo}>
             <div className="flex gap-3 flex-wrap">
               <section className="flex flex-col gap-2">
                 <label className="text-xs">Nombre</label>
                 <input
                   type="text"
+                  id="nombre"
                   className="border-2 rounded-2xl border-gray-400"
-                  value={props.nombre || text.split(" ")[0]}
+                  value={nombre}
+                  onChange={handlechangename}
                 />
               </section>
               <section className="flex flex-col gap-2">
-                <label className="text-xs">Nombre</label>
+                <label className="text-xs">Apellido</label>
                 <input
                   type="text"
+                  id="apellido"
                   className="border-2 rounded-2xl border-gray-400"
-                  value={props.nombre || text.split(" ")[1]}
+                  value={apellido}
+                  onChange={handlechangefirsname}
                 />
               </section>
             </div>
             <div className="flex flex-col gap-2 mt-7">
               <label className="text-xs">info</label>
               <textarea
+                id="info"
                 className="border-2 rounded-2xl h-24 border-gray-400 resize-none"
                 placeholder="cuenta tu historia"
               ></textarea>
@@ -71,25 +130,36 @@ export const EditarPerfil = (props) => {
               <label className="text-xs">sitio web</label>
               <input
                 type="url"
+                id="web"
                 className="border-2 rounded-2xl border-gray-400 resize-none"
                 placeholder="Añade un enlace para impulser en tráfico a tu sitio"
+                onChange={handlechangeweb}
               />
             </div>
             <div className="flex flex-col gap-2 mt-7">
               <label className="text-xs">nombre de usuario</label>
               <input
                 type="text"
+                id="nameuser"
                 className="border-2 rounded-2xl border-gray-400 resize-none"
-                value={email.split("@")[0]}
+                value={nameuser}
+                onChange={handlechangeusername}
               />
-              <div className="text-xs">www.pinterest.com/{email.split("@")[0]}</div>
+              <div className="text-xs">
+                www.pinterest.com/{nameuser}
+              </div>
+              <p>{save}</p>
+            </div>
+            <div className="fixed left-0 flex justify-center items-center gap-3 bottom-0 w-full p-5 bg-white">
+              <button className="bg-slate-200 rounded-full border-0 font-semibold px-3 py-2 text-lg">
+                Restablecer
+              </button>
+              <button className="bg-red-700 text-white rounded-full border-0 font-semibold px-3 py-2 text-lg">
+                Guardar
+              </button>
             </div>
           </form>
         </section>
-      </div>
-      <div className="fixed flex justify-center items-center gap-3 bottom-0 w-full p-5 bg-white">
-        <button className="bg-slate-200 rounded-full border-0 font-semibold px-3 py-2 text-lg">Restablecer</button>
-        <button className="bg-red-700 text-white rounded-full border-0 font-semibold px-3 py-2 text-lg">Guardar</button>
       </div>
     </>
   );
