@@ -31,7 +31,7 @@ export const Saveimg = () => {
             {popap && (
                 <div
                   onClick={() => setPopap("", false)}
-                  className="z-20 fixed flex justify-center items-center w-full left-0 top-16 bottom-0 bg-slate-50/5"
+                  className="z-20 fixed flex justify-center items-center w-full left-0 top-16 bottom-0 bg-transparent backdrop-blur-[1px]"
                 >
                   <div>
                     <img

@@ -52,7 +52,7 @@ export const Pin2 = ({ filter }) => {
             {popap && (
               <div
                 onClick={() => setPopap("", false)}
-                className="fixed flex justify-center items-center w-full left-0 top-16 bottom-0 bg-slate-50/5 z-20"
+                className="fixed flex justify-center items-center w-full left-0 top-16 bottom-0 z-20 bg-transparent backdrop-blur-[1px]"
               >
                 <div>
                   <img
