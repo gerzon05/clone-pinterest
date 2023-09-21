@@ -8,7 +8,7 @@ export const MyPerfil = () => {
   const navigate = useNavigate();
   const { user, saveimage } = useAuth();
   const [saveima, setSaveIma] = useState(null);
-
+  const email = user.email
   return (
     <>
       <Header2 />
@@ -26,7 +26,7 @@ export const MyPerfil = () => {
             {user.displayName.charAt(0).toUpperCase() +
               user.displayName.slice(1) || "Usuario"}
           </h2>
-          <p className="text-center text-xs py-1">{user.email}</p>
+          <p className="text-center text-xs py-1">@{email.split("@")[0]}</p>
           <div className="flex justify-center gap-3 pt-4">
             <button className="text-lg px-5 py-3 font-semibold rounded-full bg-slate-200">
               Compartir
