@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://gerzon05/clone-pinterest",
+  "homepage": "https://gerzon05.github.io/clone-pinterest/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
