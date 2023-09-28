@@ -9,7 +9,7 @@ const db = getFirestore(app);
 
 export const EditarPerfil = (props) => {
   const { user } = useAuth();
-  const text = user.displayName;
+  const text =user.displayName || "usuario apellidousuario" ;
   const email = user.email;
   const [save, setSave] = useState("");
   const [nombre, setNombre] = useState(text.split(" ")[0]);
@@ -103,7 +103,7 @@ export const EditarPerfil = (props) => {
                   type="text"
                   id="nombre"
                   className="border-2 rounded-2xl border-gray-400"
-                  value={nombre}
+                  value={"" || nombre}
                   onChange={handlechangename}
                 />
               </section>
@@ -113,7 +113,7 @@ export const EditarPerfil = (props) => {
                   type="text"
                   id="apellido"
                   className="border-2 rounded-2xl border-gray-400"
-                  value={apellido}
+                  value={"" || apellido}
                   onChange={handlechangefirsname}
                 />
               </section>

@@ -63,7 +63,7 @@ export const Saveimg = () => {
               </div>
             </div>
       )):
-      <div className="absolute py-2 left-1/2 top-[95%] translate-[-50%,-50%]"><AiOutlineLoading className="text-3xl font-bold animate-spin"/></div>
+      <div className="absolute py-2 left-1/2 top-[95%] translate-[-50%,-50%] text-center"><AiOutlineLoading className="text-3xl font-bold animate-spin"/></div>
       }
     </>
   );

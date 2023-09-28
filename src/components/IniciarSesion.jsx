@@ -24,7 +24,6 @@ export const IniciarSesion = (props) => {
   const handlegoogle = async () => {
     await loginwhithgoogle();
     navigate("/pagehome");
-    console.log("como estas");
   };
   const handlefacebook = async () => {
     await loginwhithfacebook();

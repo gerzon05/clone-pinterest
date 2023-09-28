@@ -23,8 +23,8 @@ export const MyPerfil = () => {
             alt="foto de perfil"
           />
           <h2 className="text-center font-medium text-3xl py-1">
-            {user.displayName.charAt(0).toUpperCase() +
-              user.displayName.slice(1) || "Usuario"}
+            {"Usuario" || user.displayName.charAt(0).toUpperCase() +
+              user.displayName.slice(1)}
           </h2>
           <p className="text-center text-xs py-1">@{email.split("@")[0]}</p>
           <div className="flex justify-center gap-3 pt-4">
