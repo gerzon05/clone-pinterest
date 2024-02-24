@@ -1,42 +1,39 @@
-import { useState } from "react";
-import { Button } from "./Button";
-import { useAuth } from "../context/authContext";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Button } from "./ui/Button";
+// import { useAuth } from "../context/authContext";
+// import { useNavigate } from "react-router-dom";
 import { BsFacebook, BsGoogle, BsPinterest } from "react-icons/Bs";
 
-export const Registro = (props) => {
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
+export const Registro = (props: string) => {
+  // const [user, setUser] = useState({
+  //   email: "",
+  //   password: "",
+  // });
 
-  const { signup, loginwhithgoogle, loginwhithfacebook, erroemail } =
-    useAuth("");
-  const navigate = useNavigate();
+  // const { signup, loginwhithgoogle, loginwhithfacebook, erroemail } = useAuth("");
+  // const navigate = useNavigate();
 
-  const handleChange = ({ target: { name, value } }) => {
-    setUser({ ...user, [name]: value });
-  };
+  // const handleChange = ({ target: { name, value } }) => {
+  //   setUser({ ...user, [name]: value });
+  // };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    await signup(user.email, user.password);
-  };
-  const handlegoogle = async () => {
-    await loginwhithgoogle();
-    navigate("/pagehome");
-    console.log("como estas");
-  };
-  const handlefacebook = async () => {
-    await loginwhithfacebook();
-    navigate("/pagehome");
-    console.log("como estas");
-  };
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   await signup(user.email, user.password);
+  // };
+  // const handlegoogle = async () => {
+  //   await loginwhithgoogle();
+  //   navigate("/pagehome");
+  // };
+  // const handlefacebook = async () => {
+  //   await loginwhithfacebook();
+  //   navigate("/pagehome");
+  // };
   return (
     <div className={props.style}>
       <div className="relative ">
         <button
-          onClick={props.envi}
+          // onClick={props.envi}
           className="absolute right-2 -top-4 text-4xl"
         >
           ×
@@ -47,7 +44,7 @@ export const Registro = (props) => {
         </h2>
         <p className="text-center">Encuentra nuevas ideas para probar</p>
         <form
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
           className="flex flex-col w-4/5 m-auto gap-2"
         >
           <div className="flex flex-col">
@@ -58,7 +55,7 @@ export const Registro = (props) => {
               placeholder="correo"
               name="email"
               className="rounded-2xl w-full border-spacing-1"
-              onChange={handleChange}
+            // onChange={handleChange}
             />
           </div>
           <div>
@@ -69,12 +66,12 @@ export const Registro = (props) => {
               name="password"
               placeholder="crea una contraseña"
               className="rounded-2xl w-full border-spacing-1"
-              onChange={handleChange}
+            // onChange={handleChange}
             />
             <p className="text-xs">
               la contraseña debe tener mas de 6 caracteres
             </p>
-            {erroemail}
+            {/* {erroemail} */}
           </div>
           {/* <div>
           <label>Fecha de nacimiento</label>
@@ -86,24 +83,19 @@ export const Registro = (props) => {
           />
         </div> */}
           <Button
-            placeholder="Continuar"
-            style="w-full py-2 bg-red-700 text-white rounded-full"
-          />
+            className="w-full py-2 bg-red-700 text-white rounded-full"
+          >Continuar</Button>
           <b className="text-center">O</b>
         </form>
         <div className="flex flex-col w-4/5 m-auto gap-2">
           <Button
-            click={handlefacebook}
-            placeholder="Continuar con Facebook"
-            imgf={<BsFacebook className="text-lg text-white" />}
-            style="w-full py-2 bg-blue-700 text-white rounded-full flex justify-evenly items-center"
-          />
+            // click={handlefacebook}
+            className="w-full py-2 bg-blue-700 text-white rounded-full flex justify-evenly items-center"
+          ><BsFacebook className="text-lg text-white" /> Continuar con Facebook </Button>
           <Button
-            click={handlegoogle}
-            placeholder="Continuar con Google"
-            imgf={<BsGoogle className="text-lg text-black" />}
-            style="w-full py-2 border-2 border-zinc-300 text-black rounded-full flex justify-evenly items-center"
-          />
+            // click={handlegoogle}
+            className="w-full py-2 border-2 border-zinc-300 text-black rounded-full flex justify-evenly items-center"
+          ><BsGoogle className="text-lg text-black" /> Continuar con Google</Button>
           <p className="text-center text-xs w-full m-auto">
             Si continúas, aceptas los
             <a

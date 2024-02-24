@@ -9,10 +9,6 @@ export const Home = () => {
   return (
     <>
       <Header />
-      <div className="pt-20 relative flex-col flex carrusel">
-        <h2 className="text-center text-5xl p-5 ">Encuentra la próxima</h2>
-        <DefaultCarousel />
-      </div>
       <section className="bg-yellow-200">
         <h3 className="flex items-center justify-center p-3 text-base">
           Así es como funciona
@@ -28,7 +24,7 @@ export const Home = () => {
       <section className="overflow-hidden bg-pink-100">
         <Sesion3 />
       </section>
-      <footer className="flex justify-between items-center flex-wrap relative overflow-hidden">
+      <footer className="flex justify-between bg-black/80 items-center flex-wrap relative overflow-hidden">
         <div className="footer absolute flex-wrap flex gap-3 justify-between top-0 left-0 right-0 bottom-0 -z-10">
           <div className="-mt-16 flex flex-col gap-10 w-52">
             <img
