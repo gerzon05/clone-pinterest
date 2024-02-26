@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import { LogoPinterest } from "./icons/LogoPinterest";
 import { Button } from "./ui/Button";
+import { Facebook } from "./icons/Facebook"
+import { Google } from "./icons/Google";
+import { MouseEventHandler } from "react";
 // import { useAuth } from "../context/authContext";
 // import { useNavigate } from "react-router-dom";
-import { BsFacebook, BsGoogle, BsPinterest } from "react-icons/Bs";
+// import { BsFacebook, BsGoogle, BsPinterest } from "react-icons/Bs";
 
-export const Registro = (props: string) => {
+type Props = {
+  envi: MouseEventHandler<HTMLButtonElement>
+  style?: string
+}
+
+export const Registro = (props: Props) => {
   // const [user, setUser] = useState({
   //   email: "",
   //   password: "",
@@ -33,12 +41,12 @@ export const Registro = (props: string) => {
     <div className={props.style}>
       <div className="relative ">
         <button
-          // onClick={props.envi}
+          onClick={props.envi}
           className="absolute right-2 -top-4 text-4xl"
         >
           ×
         </button>
-        <BsPinterest className="text-4xl w-full text-red-700" />
+        <div className="flex justify-center"><LogoPinterest /></div>
         <h2 className="text-xl font-semibold text-center text">
           Bienvenidos a Pinterest
         </h2>
@@ -91,11 +99,11 @@ export const Registro = (props: string) => {
           <Button
             // click={handlefacebook}
             className="w-full py-2 bg-blue-700 text-white rounded-full flex justify-evenly items-center"
-          ><BsFacebook className="text-lg text-white" /> Continuar con Facebook </Button>
+          ><Facebook /> Continuar con Facebook </Button>
           <Button
             // click={handlegoogle}
             className="w-full py-2 border-2 border-zinc-300 text-black rounded-full flex justify-evenly items-center"
-          ><BsGoogle className="text-lg text-black" /> Continuar con Google</Button>
+          ><Google /> Continuar con Google</Button>
           <p className="text-center text-xs w-full m-auto">
             Si continúas, aceptas los
             <a
@@ -120,7 +128,7 @@ export const Registro = (props: string) => {
           </p>
           <p className="w-10/12 m-auto text-sm text-center">
             ¿Ya eres miembro?
-            <a className="font-extrabold px-1">Iniciar sesión</a>
+            <a className="font-extrabold px-1 cursor-pointer">Iniciar sesión</a>
           </p>
         </div>
       </div>

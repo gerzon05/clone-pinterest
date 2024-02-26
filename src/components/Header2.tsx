@@ -1,12 +1,12 @@
-import { BsPinterest } from "react-icons/Bs";
-import { FaSearch } from "react-icons/Fa";
-import { IoIosNotifications } from "react-icons/Io";
-import { AiFillMessage } from "react-icons/Ai";
-import { BiChevronDown } from "react-icons/Bi";
-import React, { useState } from "react";
+// import { FaSearch } from "react-icons/Fa";
+// import { IoIosNotifications } from "react-icons/Io";
+// import { AiFillMessage } from "react-icons/Ai";
+// import { BiChevronDown } from "react-icons/Bi";
 // import { useNavigate } from "react-router-dom";
 // import { useAuth } from "../context/authContext";
 // import { Perfil } from "./Perfil";
+
+import { LogoPinterest } from "./icons/LogoPinterest";
 
 export const Header2 = () => {
   // const { user } = useAuth();
@@ -46,7 +46,7 @@ export const Header2 = () => {
             // onClick={"handeclick"}
             className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300"
           >
-            <BsPinterest className="text-3xl text-red-700" />
+            <LogoPinterest />
           </div>
           <div className="md:flex items-center">
             <div>
