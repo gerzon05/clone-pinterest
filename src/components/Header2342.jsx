@@ -4,7 +4,6 @@
 // import { Registro } from "./Registro";
 // import {BsPinterest} from 'react-icons/Bs'
 
-
 // export const Header = () => {
 //   const [wachtsesion, setWachtSesion] = useState(false)
 //   const [wachtRegister, setWachtRegister] = useState(false)

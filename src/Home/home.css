@@ -40,7 +40,7 @@
     transform: translateY(-10px);
   }
 }
-.principal::after{
+.principal::after {
   content: 'Helechos en tu futuro hogar que dan buen rollo';
   position: absolute;
   top: 0;
@@ -50,10 +50,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white; 
+  color: white;
   font-size: 28px;
 }
-.principal1::after{
+.principal1::after {
   content: 'Mi dormitorio escandinavo';
   display: flex;
   align-items: center;
@@ -67,7 +67,7 @@
   text-align: center;
   font-size: 28px;
 }
-.principal2::after{
+.principal2::after {
   content: 'La terraza de mis sueños';
   display: flex;
   align-items: center;
@@ -80,7 +80,7 @@
   right: 0;
   font-size: 28px;
 }
-.principal3::after{
+.principal3::after {
   content: 'Nuestra renovación del baño';
   display: flex;
   align-items: center;
@@ -94,7 +94,7 @@
   font-size: 22px;
 }
 
-.footer::after{
+.footer::after {
   content: '';
   position: absolute;
   top: 0;
@@ -104,6 +104,6 @@
   background-color: rgba(0, 0, 0, 0.598);
 }
 
-.trans{
-  transform: translate(-50%,-50%);
+.trans {
+  transform: translate(-50%, -50%);
 }

@@ -3,7 +3,6 @@ import { resolve } from 'node:path'
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
 import { defineConfig } from 'vite'
 
-
 export default defineConfig({
   root: './',
   base: './',

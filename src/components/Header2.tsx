@@ -6,7 +6,7 @@
 // import { useAuth } from "../context/authContext";
 // import { Perfil } from "./Perfil";
 
-import { LogoPinterest } from "./icons/LogoPinterest";
+import { LogoPinterest } from './icons/LogoPinterest'
 
 export const Header2 = () => {
   // const { user } = useAuth();
@@ -40,87 +40,87 @@ export const Header2 = () => {
   // };
   return (
     <>
-      <header className="p-1 flex justify-evenly items-center fixed z-30 top-0 w-full bg-white">
-        <section className="flex justify-between">
+      <header className='p-1 flex justify-evenly items-center fixed z-30 top-0 w-full bg-white'>
+        <section className='flex justify-between'>
           <div
             // onClick={"handeclick"}
-            className="flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300"
+            className='flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300'
           >
             <LogoPinterest />
           </div>
-          <div className="md:flex items-center">
+          <div className='md:flex items-center'>
             <div>
               <button
                 // onClick={handeclick}
-                className="rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black"
+                className='rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black'
               >
                 Inicio
               </button>
             </div>
-            <div >
+            <div>
               <button
                 // onClick={handeclickexplorar}
-                className="rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black"
+                className='rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black'
               >
                 Explorar
               </button>
             </div>
-            <div >
+            <div>
               <select
                 // onChange={handleOptionChange}
-                className="flex justify-center items-center border-0 w-28"
+                className='flex justify-center items-center border-0 w-28'
               >
                 <option>Crear</option>
-                <option value="option1">Crear Idea Pin</option>
-                <option value="option2">Crear Pin</option>
+                <option value='option1'>Crear Idea Pin</option>
+                <option value='option2'>Crear Pin</option>
               </select>
             </div>
           </div>
         </section>
-        <form className="w-2/6 relative">
-          <label className="absolute top-1/3 left-[10px]">
-            <FaSearch className="text-slate-600" />
+        <form className='w-2/6 relative'>
+          <label className='absolute top-1/3 left-[10px]'>
+            <FaSearch className='text-slate-600' />
           </label>
           <input
             // onChange={handleChange}
-            type="text"
-            className="rounded-full p-2 pl-7  w-full bg-slate-200 border-0"
-            placeholder="Buscar"
+            type='text'
+            className='rounded-full p-2 pl-7  w-full bg-slate-200 border-0'
+            placeholder='Buscar'
           />
         </form>
-        <div className="flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300">
+        <div className='flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300'>
           <figure>
-            <IoIosNotifications className="sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-lg text-gray-600" />
+            <IoIosNotifications className='sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-lg text-gray-600' />
           </figure>
         </div>
-        <div className="flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300">
+        <div className='flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300'>
           <figure>
-            <AiFillMessage className="sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-lg text-gray-600" />
+            <AiFillMessage className='sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-lg text-gray-600' />
           </figure>
         </div>
-        <div className="flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300">
+        <div className='flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300'>
           <figure
           // onClick={handeclickperfil}
           >
             <img
               src={
-                "https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+                'https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png'
               }
-              className="rounded-full object-cover"
-              alt="foto de perfil"
+              className='rounded-full object-cover'
+              alt='foto de perfil'
             />
           </figure>
         </div>
-        <div className="flex w-10 h-10 justify-center items-center rounded-full p-2 hover:bg-slate-300">
+        <div className='flex w-10 h-10 justify-center items-center rounded-full p-2 hover:bg-slate-300'>
           <button
             // onClick={handlePerfil}
-            className="border-0 border-white rounded-full bg-white"
+            className='border-0 border-white rounded-full bg-white'
           >
-            <BiChevronDown className="text-3xl" />
+            <BiChevronDown className='text-3xl' />
           </button>
         </div>
         {/* <Perfil /> */}
       </header>
     </>
-  );
-};
+  )
+}
