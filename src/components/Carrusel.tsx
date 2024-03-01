@@ -16,7 +16,7 @@ export function DefaultCarousel() {
           src='https://i.postimg.cc/PxWs8JQj/dos.png'
         />
         <Img
-          className='w-full h-full oobject-cover rounded-md'
+          className='w-full h-full object-cover rounded-md'
           alt='imagen de una idea para una cena especial'
           src='https://i.postimg.cc/zvqmwNxR/tres.png'
         />
