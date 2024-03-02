@@ -2,7 +2,7 @@ import { LogoPinterest } from './icons/LogoPinterest'
 import { Button } from './ui/Button'
 import { Facebook } from './icons/Facebook'
 import { Google } from './icons/Google'
-import { Register, AuthRegister, ErrorSaveRegister } from '@/store/state'
+import { Register, AuthRegister, ErrorSaveRegister, Login } from '@/store/state'
 import {
   FacebookAuthProvider,
   GoogleAuthProvider,
@@ -10,6 +10,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth'
 import { auth } from '../firebase/firebase'
+import { LinkA } from './ui/LinkA'
 
 type Props = {
   style?: string
@@ -24,6 +25,7 @@ export const Registro = (props: Props) => {
   const { errorcontentregister } = ErrorSaveRegister()
   const { emailcontent, passwordcontent } = AuthRegister()
   const { regifalse } = Register()
+  const { converttrue } = Login()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -31,8 +33,6 @@ export const Registro = (props: Props) => {
     await createUserWithEmailAndPassword(auth, AuthEmail, AuthPassword)
       .then(() => {
         errorcontentregister('Se registro correctamente')
-        emailcontent('')
-        passwordcontent('')
       })
       .catch((error: any) => {
         if (error.code === 'auth/weak-password') {
@@ -52,6 +52,11 @@ export const Registro = (props: Props) => {
   const handlefacebook = () => {
     const facebookprovide = new FacebookAuthProvider()
     signInWithPopup(auth, facebookprovide)
+  }
+
+  const handlelogin = () => {
+    converttrue()
+    regifalse()
   }
   return (
     <div className={props.style}>
@@ -74,6 +79,7 @@ export const Registro = (props: Props) => {
         <p className='text-center'>Encuentra nuevas ideas para probar</p>
         <form
           onSubmit={handleSubmit}
+          id='miFormulario'
           className='flex flex-col w-4/5 m-auto gap-2'
         >
           <div className='flex flex-col'>
@@ -102,7 +108,7 @@ export const Registro = (props: Props) => {
             </p>
             {error}
           </div>
-          <Button className='w-full py-2 bg-red-700 text-white rounded-full'>
+          <Button className='w-full py-2 bg-red-700 text-white text-center rounded-full'>
             Registrarse
           </Button>
           <b className='text-center'>O</b>
@@ -122,29 +128,34 @@ export const Registro = (props: Props) => {
           </Button>
           <p className='text-center text-xs w-full m-auto'>
             Si continúas, aceptas los
-            <a
+            <LinkA
               href='https://policy.pinterest.com/es/terms-of-service'
               className='font-extrabold px-1'
             >
               Términos del servicio
-            </a>
+            </LinkA>
             de Pinterest y confirmas que has leído nuestra
-            <a
+            <LinkA
               href='https://policy.pinterest.com/es/privacy-policy'
               className='font-extrabold px-1'
             >
               Política de privacidad.
-            </a>
-            <a
+            </LinkA>
+            <LinkA
               href='https://policy.pinterest.com/es/notice-at-collection'
               className='font-extrabold px-1'
             >
               Aviso de recopilación de datos.
-            </a>
+            </LinkA>
           </p>
           <p className='w-10/12 m-auto text-sm text-center'>
             ¿Ya eres miembro?
-            <a className='font-extrabold px-1 cursor-pointer'>Iniciar sesión</a>
+            <Button
+              onClick={handlelogin}
+              className='font-extrabold px-1 cursor-pointer'
+            >
+              Iniciar sesión
+            </Button>
           </p>
         </div>
       </div>

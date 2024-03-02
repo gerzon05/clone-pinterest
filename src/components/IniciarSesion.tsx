@@ -2,42 +2,57 @@ import { Button } from './ui/Button'
 import { LogoPinterest } from './icons/LogoPinterest'
 import { Facebook } from './icons/Facebook'
 import { Google } from './icons/Google'
-import { Login } from '@/store/state'
-// import { useAuth } from "../context/authContext";
-// import { useNavigate } from "react-router-dom";
-// import { useState } from "react";
-// import {BsFacebook, BsGoogle, BsPinterest} from "react-icons/Bs"
+import { AuthLogin, ErrorSaveRegister, Login } from '@/store/state'
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth'
+import { auth } from '../firebase/firebase'
+import { LinkA } from './ui/LinkA'
 
 type Props = {
   style?: string
 }
 
 export const IniciarSesion = (props: Props) => {
+  const email = AuthLogin((state) => state.email)
+  const password = AuthLogin((state) => state.password)
+  const error = ErrorSaveRegister((state) => state.error)
+
   const { convertfalse } = Login()
+  const { errorcontentregister } = ErrorSaveRegister()
+  const { emailLogin, passwordLogin } = AuthLogin()
 
-  // const [user, setUser] = useState({
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const { login, loginwhithgoogle, loginwhithfacebook, erropass } =
-  //   useAuth("");
-  // const navigate = useNavigate();
-  // const handleChange = ({ target: { name, value } }) => {
-  //   setUser({ ...user, [name]: value });
-  // };
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   login(user.email, user.password);
-  // };
-  // const handlegoogle = async () => {
-  //   await loginwhithgoogle();
-  //   navigate("/pagehome");
-  // };
-  // const handlefacebook = async () => {
-  //   await loginwhithfacebook();
-  //   navigate("/pagehome");
-  // };
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    errorcontentregister('')
+    await signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        errorcontentregister('Se inicio sesion correctamente')
+      })
+      .catch((error: any) => {
+        console.log(error.code)
+        if (error.code === 'auth/wrong-password') {
+          errorcontentregister('Contraseña incorrecta')
+        } else if (error.code === 'auth/user-not-found') {
+          errorcontentregister('el correo no existe')
+        } else if (error.code === 'auth/too-many-requests') {
+          errorcontentregister(
+            'tu cuenta se deshabilitado temporalmente, intente mas tarde',
+          )
+        }
+      })
+  }
+  const handlegoogle = () => {
+    const googleprovide = new GoogleAuthProvider()
+    signInWithPopup(auth, googleprovide)
+  }
+  const handlefacebook = () => {
+    const facebookprovide = new FacebookAuthProvider()
+    signInWithPopup(auth, facebookprovide)
+  }
   return (
     <>
       <div className={props.style}>
@@ -54,7 +69,7 @@ export const IniciarSesion = (props: Props) => {
           Bienvenidos a Pinterest
         </h2>
         <form
-          // onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
           className='flex flex-col w-4/5 m-auto gap-2'
         >
           <div className='flex flex-col'>
@@ -62,9 +77,10 @@ export const IniciarSesion = (props: Props) => {
             <input
               type='email'
               name='email'
-              // onChange={handleChange}
+              onChange={(event) => emailLogin(event.target.value)}
               placeholder='correo'
               className='rounded-2xl w-full border-spacing-1'
+              required
             />
           </div>
           <div>
@@ -72,13 +88,14 @@ export const IniciarSesion = (props: Props) => {
             <input
               type='password'
               name='password'
-              // onChange={handleChange}
+              onChange={(event) => passwordLogin(event.target.value)}
               placeholder='ingrese su contraseña'
               className='rounded-2xl w-full border-spacing-1'
+              required
             />
           </div>
           <a>¿olvidate tu contraseña?</a>
-          {/* <p>{erropass}</p> */}
+          <p>{error}</p>
           <Button
             placeholder='Continuar'
             className='w-full py-2 bg-red-700 text-white rounded-full'
@@ -89,38 +106,38 @@ export const IniciarSesion = (props: Props) => {
         </form>
         <div className='flex flex-col w-4/5 m-auto gap-2'>
           <Button
-            // click={handlefacebook}
+            onClick={handlefacebook}
             className='w-full py-2 bg-blue-700 text-white rounded-full flex justify-evenly items-center'
           >
             <Facebook /> Continuar con Facebook
           </Button>
           <Button
-            // click={handlegoogle}
+            onClick={handlegoogle}
             className='w-full py-2 border-2 border-zinc-300 text-black rounded-full flex justify-evenly items-center'
           >
             <Google /> Continuar con Google{' '}
           </Button>
           <p className='text-center text-xs w-full m-auto'>
             Si continúas, aceptas los
-            <a
+            <LinkA
               href='https://policy.pinterest.com/es/terms-of-service'
               className='font-extrabold px-1'
             >
               Términos del servicio
-            </a>
+            </LinkA>
             de Pinterest y confirmas que has leído nuestra
-            <a
+            <LinkA
               href='https://policy.pinterest.com/es/privacy-policy'
               className='font-extrabold px-1'
             >
               Política de privacidad.
-            </a>
-            <a
+            </LinkA>
+            <LinkA
               href='https://policy.pinterest.com/es/notice-at-collection'
               className='font-extrabold px-1'
             >
               Aviso de recopilación de datos.
-            </a>
+            </LinkA>
           </p>
         </div>
       </div>

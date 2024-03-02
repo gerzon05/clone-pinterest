@@ -16,6 +16,12 @@ interface objectRegister {
   emailcontent: (by: string) => void
   passwordcontent: (by: string) => void
 }
+interface objectLogin {
+  email: string
+  password: string
+  emailLogin: (by: string) => void
+  passwordLogin: (by: string) => void
+}
 interface ErrorSaveRegister {
   error: string
   errorcontentregister: (by: string) => void
@@ -38,6 +44,12 @@ export const AuthRegister = create<objectRegister>((set) => ({
   emailcontent: (by) => set((state) => ({ email: (state.email = by) })),
   passwordcontent: (by) =>
     set((state) => ({ password: (state.password = by) })),
+}))
+export const AuthLogin = create<objectLogin>((set) => ({
+  email: '',
+  password: '',
+  emailLogin: (by) => set((state) => ({ email: (state.email = by) })),
+  passwordLogin: (by) => set((state) => ({ password: (state.password = by) })),
 }))
 export const ErrorSaveRegister = create<ErrorSaveRegister>((set) => ({
   error: '',
