@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import React from 'react'
 import { Nuevo } from '../components/PageHome'
+import { HeaderPageHome } from '../components/HeaderPageHome'
 
 export const Route = createFileRoute('/pagehome')({
   component: PageHome,
@@ -9,6 +9,7 @@ export const Route = createFileRoute('/pagehome')({
 function PageHome() {
   return (
     <>
+      <HeaderPageHome />
       <h1>soy la pagina home</h1>
       <Nuevo />
     </>

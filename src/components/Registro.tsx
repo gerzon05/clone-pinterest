@@ -11,6 +11,7 @@ import {
 } from 'firebase/auth'
 import { auth } from '../firebase/firebase'
 import { LinkA } from './ui/LinkA'
+import { useNavigate } from '@tanstack/react-router'
 
 type Props = {
   style?: string
@@ -25,7 +26,9 @@ export const Registro = (props: Props) => {
   const { errorcontentregister } = ErrorSaveRegister()
   const { emailcontent, passwordcontent } = AuthRegister()
   const { regifalse } = Register()
-  const { converttrue } = Login()
+  const { converttrue, convertfalse } = Login()
+
+  const navigate = useNavigate({ from: '/' })
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -45,13 +48,28 @@ export const Registro = (props: Props) => {
         }
       })
   }
-  const handlegoogle = () => {
+
+  const handlegoogle = async () => {
     const googleprovide = new GoogleAuthProvider()
-    signInWithPopup(auth, googleprovide)
+    await signInWithPopup(auth, googleprovide)
+      .then(() => {
+        navigate({ to: '/pagehome' })
+        convertfalse()
+      })
+      .catch((error: any) => {
+        console.log(error.code)
+      })
   }
-  const handlefacebook = () => {
+  const handlefacebook = async () => {
     const facebookprovide = new FacebookAuthProvider()
-    signInWithPopup(auth, facebookprovide)
+    await signInWithPopup(auth, facebookprovide)
+      .then(() => {
+        navigate({ to: '/pagehome' })
+        convertfalse()
+      })
+      .catch((error: any) => {
+        console.log(error.code)
+      })
   }
 
   const handlelogin = () => {

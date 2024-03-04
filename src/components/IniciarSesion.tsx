@@ -2,7 +2,7 @@ import { Button } from './ui/Button'
 import { LogoPinterest } from './icons/LogoPinterest'
 import { Facebook } from './icons/Facebook'
 import { Google } from './icons/Google'
-import { AuthLogin, ErrorSaveRegister, Login } from '@/store/state'
+import { AuthLogin, CurrentUser, ErrorSaveRegister, Login } from '@/store/state'
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -11,10 +11,9 @@ import {
 } from 'firebase/auth'
 import { auth } from '../firebase/firebase'
 import { LinkA } from './ui/LinkA'
+import { useNavigate } from '@tanstack/react-router'
 
-type Props = {
-  style?: string
-}
+type Props = { style: string }
 
 export const IniciarSesion = (props: Props) => {
   const email = AuthLogin((state) => state.email)
@@ -24,13 +23,19 @@ export const IniciarSesion = (props: Props) => {
   const { convertfalse } = Login()
   const { errorcontentregister } = ErrorSaveRegister()
   const { emailLogin, passwordLogin } = AuthLogin()
+  const { usercontent } = CurrentUser()
+
+  const navigate = useNavigate({ from: '/' })
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     errorcontentregister('')
     await signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        errorcontentregister('Se inicio sesion correctamente')
+      .then((userCredencial) => {
+        usercontent(userCredencial.user)
+        navigate({ to: '/pagehome' })
+        convertfalse()
+        errorcontentregister('')
       })
       .catch((error: any) => {
         console.log(error.code)
@@ -45,13 +50,29 @@ export const IniciarSesion = (props: Props) => {
         }
       })
   }
-  const handlegoogle = () => {
+  const handlegoogle = async () => {
     const googleprovide = new GoogleAuthProvider()
-    signInWithPopup(auth, googleprovide)
+    await signInWithPopup(auth, googleprovide)
+      .then((userCredencial) => {
+        navigate({ to: '/pagehome' })
+        convertfalse()
+        usercontent(userCredencial.user)
+      })
+      .catch((error: any) => {
+        console.log(error.code)
+      })
   }
-  const handlefacebook = () => {
+  const handlefacebook = async () => {
     const facebookprovide = new FacebookAuthProvider()
-    signInWithPopup(auth, facebookprovide)
+    await signInWithPopup(auth, facebookprovide)
+      .then((userCredencial) => {
+        navigate({ to: '/pagehome' })
+        convertfalse()
+        usercontent(userCredencial.user)
+      })
+      .catch((error: any) => {
+        console.log(error.code)
+      })
   }
   return (
     <>

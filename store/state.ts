@@ -5,6 +5,11 @@ interface Statelogin {
   converttrue: () => void
   convertfalse: () => void
 }
+interface StatePerfil {
+  bool: boolean
+  perfiltrue: (by?: boolean) => void
+  perfilfalse: () => void
+}
 interface Stateregister {
   bool: boolean
   regitrue: () => void
@@ -25,6 +30,10 @@ interface objectLogin {
 interface ErrorSaveRegister {
   error: string
   errorcontentregister: (by: string) => void
+}
+interface CurrentUser {
+  user: Object
+  usercontent: (by: object) => void
 }
 
 export const Login = create<Statelogin>((set) => ({
@@ -54,4 +63,13 @@ export const AuthLogin = create<objectLogin>((set) => ({
 export const ErrorSaveRegister = create<ErrorSaveRegister>((set) => ({
   error: '',
   errorcontentregister: (by) => set((state) => ({ error: (state.error = by) })),
+}))
+export const PerfilState = create<StatePerfil>((set) => ({
+  bool: false,
+  perfiltrue: () => set((state) => ({ bool: (state.bool = !state.bool) })),
+  perfilfalse: () => set(() => ({ bool: false })),
+}))
+export const CurrentUser = create<CurrentUser>((set) => ({
+  user: Object,
+  usercontent: (by) => set((state) => ({ user: (state.user = by) })),
 }))

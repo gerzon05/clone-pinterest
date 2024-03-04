@@ -1,20 +1,28 @@
-import React from 'react'
-import { useAuth } from '../context/authContext'
-import { BsCheck } from 'react-icons/Bs'
-import { GrShare } from 'react-icons/Gr'
-import { useNavigate } from 'react-router-dom'
+import { signOut } from 'firebase/auth'
+import { auth } from '../firebase/firebase'
+import { Check, Share } from 'lucide-react'
+import { useNavigate } from '@tanstack/react-router'
+import { CurrentUser, PerfilState } from '@/store/state'
 
-export const Perfil = (props) => {
-  const navigate = useNavigate()
-  const { logout, user } = useAuth()
-  const handlelogout = () => {
-    logout()
+export const Perfil = () => {
+  const perfil = PerfilState((state) => state.bool)
+  const navigate = useNavigate({ from: '/pagehome' })
+
+  const user = CurrentUser((state) => state.user)
+
+  console.log(user)
+
+  // const { user } = useAuth()
+  const handlelogout = async () => {
+    await signOut(auth).then(() => {
+      navigate({ to: '/' })
+    })
   }
 
   return (
     <div
       className={
-        props.valor === true
+        perfil
           ? 'fixed w-80 top-16 m-1 right-0 bottom-0 bg-white rounded-3xl p-5 overflow-y-auto'
           : 'hidden'
       }
@@ -23,15 +31,15 @@ export const Perfil = (props) => {
         <figure>
           <article className='relative pt-4'>
             <p className='absolute text-xs top-0 left-0'>Actualmente en</p>
-            <BsCheck className='absolute right-4 top-10 text-lg' />
+            <Check className='absolute right-4 top-10 text-lg' />
             <div
-              onClick={props.handeclick}
+              // onClick={props.handeclick}
               className='rounded-2xl flex justify-center items-center p-2 gap-2 hover:bg-slate-300 '
             >
               <div>
                 <img
                   src={
-                    user.photoURL ||
+                    (user as { photoURL: string }).photoURL ||
                     'https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png'
                   }
                   className='rounded-full w-12 h-12 object-cover'
@@ -39,9 +47,11 @@ export const Perfil = (props) => {
                 />
               </div>
               <div>
-                <h2 className='text-sm'>{user.displayName || 'usuario'}</h2>
+                <h2 className='text-sm'>
+                  {(user as { displayName: string }).displayName}
+                </h2>
                 <p className='text-sm'>personal</p>
-                <p className='text-sm'>{user.email}</p>
+                <p className='text-sm'>{(user as { email: string }).email}</p>
               </div>
             </div>
           </article>
@@ -60,7 +70,7 @@ export const Perfil = (props) => {
             <p className='text-xs'>Mas opciones</p>
             <div>
               <button
-                onClick={() => navigate('/perfil/editarperfil')}
+                // onClick={() => navigate('/perfil/editarperfil')}
                 className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'
               >
                 Ajustes
@@ -76,19 +86,19 @@ export const Perfil = (props) => {
               </button>
               <button className='flex justify-between items-center text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
                 obtener ayuda
-                <GrShare className='font-black text-xs' />
+                <Share className='font-black text-xs' />
               </button>
               <button className='flex justify-between items-center text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
                 Ver terminos de servicios
-                <GrShare className='font-black text-xs' />
+                <Share className='font-black text-xs' />
               </button>
               <button className='flex justify-between items-center text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
                 Ver pilotica de privacidad
-                <GrShare className='font-black text-xs' />
+                <Share className='font-black text-xs' />
               </button>
               <button className='flex justify-between items-center text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
                 Valora la version beta
-                <GrShare className='font-black text-xs' />
+                <Share className='font-black text-xs' />
               </button>
               <button
                 className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'
