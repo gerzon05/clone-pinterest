@@ -10,7 +10,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "fmt": "prettier . -write",
-    "fmt-check": "prettier . --check"
+    "fmt-check": "prettier . --check",
+    "ci": "pnpm run lint"
   },
   "dependencies": {
     "@tanstack/react-router": "1.16.6",
