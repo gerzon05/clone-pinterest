@@ -10,8 +10,6 @@ export const Perfil = () => {
 
   const user = CurrentUser((state) => state.user)
 
-  console.log(user)
-
   // const { user } = useAuth()
   const handlelogout = async () => {
     await signOut(auth).then(() => {

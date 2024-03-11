@@ -1,7 +1,7 @@
 // import { useAuth } from "../context/authContext";
-// import { Pin } from "./Pin";
+import { Pin } from './Pin'
 
-export const Nuevo = () => {
+export const NuevoPageHome = () => {
   // const { loading } = useAuth();
 
   // if (loading) return <h2>loading</h2>;
@@ -10,10 +10,9 @@ export const Nuevo = () => {
 
   return (
     <>
-      <div className='w-full mt-16 flex justify-center items-center'>
+      <div className='w-full flex justify-center items-center'>
         <div className='container sm:columns-2 md:columns-4 lg:columns-5 xl:columns-6 2xl:columns-8 gap-8 p-4'>
-          {/* <Pin buscador={estabus} /> */}
-          Mostar pines
+          <Pin />
         </div>
       </div>
     </>
