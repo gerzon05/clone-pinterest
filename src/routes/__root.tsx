@@ -1,5 +1,5 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { TanStackRouterDevtools } from '../components/ReactLeazy'
 import { Suspense } from 'react'
 // import { BsPinterest } from 'react-icons/bs'
 
