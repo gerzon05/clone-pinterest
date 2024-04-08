@@ -35,6 +35,7 @@ interface ErrorSaveRegister {
 interface CurrentUser {
   user: Object
   usercontent: (by: object) => void
+  logout: () => void
 }
 
 export const Login = create<Statelogin>((set) => ({
@@ -75,6 +76,7 @@ export const CurrentUser = create(
     (set) => ({
       user: Object,
       usercontent: (by) => set((state) => ({ user: (state.user = by) })),
+      logout: () => set(() => ({ user: Object })),
     }),
     {
       name: 'admin',
