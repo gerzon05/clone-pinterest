@@ -1,20 +1,13 @@
-// import { FaSearch } from "react-icons/Fa";
-// import { IoIosNotifications } from "react-icons/Io";
-// import { AiFillMessage } from "react-icons/Ai";
-// import { BiChevronDown } from "react-icons/Bi";
-// import { useNavigate } from "react-router-dom";
-// import { useAuth } from "../context/authContext";
-// import { Perfil } from "./Perfil";
-
 import { Bell, ChevronDown, MessageCircleMore, Search } from 'lucide-react'
 import { LogoPinterest } from './icons/LogoPinterest'
 import { Perfil } from './Perfil'
-import { PerfilState } from '@/store/state'
+import { CurrentUser, PerfilState } from '@/store/state'
 import { Link } from '@tanstack/react-router'
 
 export const HeaderPageHome = () => {
   // const { user } = useAuth();
   const { perfiltrue } = PerfilState()
+  const user = CurrentUser((state) => state.user)
   // const [mostrar, setMostrar] = useState(false);
   // // const navigate = useNavigate();
   const handlePerfil = () => {
@@ -99,11 +92,10 @@ export const HeaderPageHome = () => {
           </figure>
         </div>
         <div className='flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300'>
-          <figure
-          // onClick={handeclickperfil}
-          >
+          <figure>
             <img
               src={
+                (user as { photoURL: string }).photoURL ||
                 'https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png'
               }
               className='rounded-full object-cover'
