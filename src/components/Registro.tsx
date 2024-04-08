@@ -97,7 +97,6 @@ export const Registro = (props: Props) => {
         <p className='text-center'>Encuentra nuevas ideas para probar</p>
         <form
           onSubmit={handleSubmit}
-          id='miFormulario'
           className='flex flex-col w-4/5 m-auto gap-2'
         >
           <div className='flex flex-col'>
