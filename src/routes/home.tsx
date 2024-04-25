@@ -1,15 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
 import { DefaultCarousel } from '../components/Carrusel'
 import { Button } from '../components/ui/Button'
 import { Img } from '../components/ui/Img'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 
-export const Route = createFileRoute('/')({
-  component: Index,
-})
-
-function Index() {
+export function Home() {
   return (
     <>
       <Header />

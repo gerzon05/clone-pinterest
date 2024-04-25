@@ -14,8 +14,6 @@
     "ci": "pnpm run lint"
   },
   "dependencies": {
-    "@tanstack/react-router": "1.16.6",
-    "@tanstack/router-devtools": "1.16.6",
     "firebase": "10.3.0",
     "flowbite-react": "0.5.0",
     "localforage": "1.10.0",
@@ -24,12 +22,12 @@
     "prettier": "3.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "zustand": "^4.5.1"
+    "wouter": "3.1.2",
+    "zustand": "4.5.1"
   },
   "devDependencies": {
-    "@tanstack/router-vite-plugin": "^1.16.5",
     "@types/react": "18.2.15",
-    "@types/react-dom": "^18.2.19",
+    "@types/react-dom": "18.2.19",
     "@vitejs/plugin-react-swc": "3.3.2",
     "autoprefixer": "10.4.15",
     "eslint": "8.45.0",
