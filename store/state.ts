@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface Statelogin {
   bool: boolean
@@ -34,6 +35,7 @@ interface ErrorSaveRegister {
 interface CurrentUser {
   user: Object
   usercontent: (by: object) => void
+  logout: () => void
 }
 
 export const Login = create<Statelogin>((set) => ({
@@ -69,7 +71,16 @@ export const PerfilState = create<StatePerfil>((set) => ({
   perfiltrue: () => set((state) => ({ bool: (state.bool = !state.bool) })),
   perfilfalse: () => set(() => ({ bool: false })),
 }))
-export const CurrentUser = create<CurrentUser>((set) => ({
-  user: Object,
-  usercontent: (by) => set((state) => ({ user: (state.user = by) })),
-}))
+export const CurrentUser = create(
+  persist<CurrentUser>(
+    (set) => ({
+      user: Object,
+      usercontent: (by) => set((state) => ({ user: (state.user = by) })),
+      logout: () => set(() => ({ user: Object })),
+    }),
+    {
+      name: 'admin',
+      storage: createJSONStorage(() => sessionStorage),
+    },
+  ),
+)

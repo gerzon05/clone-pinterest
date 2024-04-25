@@ -9,12 +9,14 @@ export const Perfil = () => {
   const navigate = useNavigate({ from: '/pagehome' })
 
   const user = CurrentUser((state) => state.user)
+  const logout = CurrentUser((state) => state.logout)
 
-  // const { user } = useAuth()
   const handlelogout = async () => {
     await signOut(auth).then(() => {
       navigate({ to: '/' })
+      logout()
     })
+
   }
 
   return (
