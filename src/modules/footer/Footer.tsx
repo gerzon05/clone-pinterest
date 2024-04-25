@@ -1,6 +1,6 @@
-import { Registro } from './Registro'
-import { Login, Register } from '../../store/state'
-import { Img } from './ui/Img'
+import { Registro } from '../register/Registro'
+import { Login, Register } from '../../../store/state'
+import { Img } from '../../ui/Img'
 
 export function Footer() {
   const Loginstate = Login((state) => state.bool)

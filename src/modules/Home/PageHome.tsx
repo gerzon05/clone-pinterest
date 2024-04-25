@@ -1,5 +1,5 @@
 // import { useAuth } from "../context/authContext";
-import { Pin } from './Pin'
+import { Pin } from '../../components/Pin'
 
 export const NuevoPageHome = () => {
   // const { loading } = useAuth();

@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth'
-import { auth } from '../firebase/firebase'
+import { auth } from '../../../firebase/firebase'
 import { Check, Share } from 'lucide-react'
 import { useLocation } from 'wouter'
 import { PerfilState } from '@/store/state'

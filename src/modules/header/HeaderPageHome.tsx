@@ -1,6 +1,6 @@
 import { Bell, ChevronDown, MessageCircleMore, Search } from 'lucide-react'
-import { LogoPinterest } from '../../components/icons/LogoPinterest'
-import { Perfil } from '../../components/Perfil'
+import { LogoPinterest } from '../../icons/LogoPinterest'
+import { Perfil } from '../perfil/components/Perfil'
 import { CurrentUser, PerfilState } from '@/store/state'
 import { Link } from 'wouter'
 

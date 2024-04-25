@@ -1,8 +1,8 @@
-import { DefaultCarousel } from '../components/Carrusel'
-import { Button } from '../components/ui/Button'
-import { Img } from '../components/ui/Img'
+import { DefaultCarousel } from '../modules/Home/components/Carrusel'
+import { Button } from '../ui/Button'
+import { Img } from '../ui/Img'
 import { Header } from '../modules/header/Header'
-import { Footer } from '../components/Footer'
+import { Footer } from '../modules/footer/Footer'
 
 export function Home() {
   return (

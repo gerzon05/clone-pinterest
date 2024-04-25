@@ -1,5 +1,5 @@
 import { HeaderPageHome } from '../modules/header/HeaderPageHome'
-import { NuevoPageHome } from '../components/PageHome'
+import { NuevoPageHome } from '../modules/Home/PageHome'
 
 export function PageHome() {
   return (

@@ -1,5 +1,5 @@
 import { Carousel } from 'flowbite-react'
-import { Img } from './ui/Img'
+import { Img } from '../../../ui/Img'
 
 export function DefaultCarousel() {
   return (
