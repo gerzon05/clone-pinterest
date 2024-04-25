@@ -1,4 +1,4 @@
-import { Home } from "@/src/routes/home";
+import { Home } from "./routes/home";
 import { Route } from "wouter";
 import { Perfil } from "./routes/perfil";
 import { PageHome } from "./routes/pagehome";

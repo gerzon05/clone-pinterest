@@ -2,7 +2,7 @@ import { Button } from './ui/Button'
 import { LogoPinterest } from './icons/LogoPinterest'
 import { Facebook } from './icons/Facebook'
 import { Google } from './icons/Google'
-import { AuthLogin, CurrentUser, ErrorSaveRegister, Login } from '@/store/state'
+import { AuthLogin, CurrentUser, ErrorSaveRegister, Login } from '../../store/state'
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -11,11 +11,14 @@ import {
 } from 'firebase/auth'
 import { auth } from '../firebase/firebase'
 import { LinkA } from './ui/LinkA'
-import { useNavigate } from '@tanstack/react-router'
+import { useLocation } from 'wouter'
 
 type Props = { style: string }
 
 export const IniciarSesion = (props: Props) => {
+
+  const [_, setLocation] = useLocation()
+
   const email = AuthLogin((state) => state.email)
   const password = AuthLogin((state) => state.password)
   const error = ErrorSaveRegister((state) => state.error)
@@ -25,15 +28,13 @@ export const IniciarSesion = (props: Props) => {
   const { emailLogin, passwordLogin } = AuthLogin()
   const { usercontent } = CurrentUser()
 
-  const navigate = useNavigate({ from: '/' })
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     errorcontentregister('')
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredencial) => {
         usercontent(userCredencial.user)
-        navigate({ to: '/pagehome' })
+        setLocation('/pagehome')
         convertfalse()
         errorcontentregister('')
       })
@@ -54,7 +55,7 @@ export const IniciarSesion = (props: Props) => {
     const googleprovide = new GoogleAuthProvider()
     await signInWithPopup(auth, googleprovide)
       .then((userCredencial) => {
-        navigate({ to: '/pagehome' })
+        setLocation('/pagehome')
         convertfalse()
         usercontent(userCredencial.user)
       })
@@ -66,7 +67,7 @@ export const IniciarSesion = (props: Props) => {
     const facebookprovide = new FacebookAuthProvider()
     await signInWithPopup(auth, facebookprovide)
       .then((userCredencial) => {
-        navigate({ to: '/pagehome' })
+        setLocation('/pagehome')
         convertfalse()
         usercontent(userCredencial.user)
       })

@@ -1,19 +1,19 @@
 import { signOut } from 'firebase/auth'
 import { auth } from '../firebase/firebase'
 import { Check, Share } from 'lucide-react'
-import { useNavigate } from '@tanstack/react-router'
+import { useLocation } from 'wouter'
 import { CurrentUser, PerfilState } from '@/store/state'
 
 export const Perfil = () => {
   const perfil = PerfilState((state) => state.bool)
-  const navigate = useNavigate({ from: '/pagehome' })
+  const [_, serLocatation] = useLocation()
 
   const user = CurrentUser((state) => state.user)
   const logout = CurrentUser((state) => state.logout)
 
   const handlelogout = async () => {
     await signOut(auth).then(() => {
-      navigate({ to: '/' })
+      serLocatation('/')
       logout()
     })
 

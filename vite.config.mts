@@ -1,20 +1,15 @@
 import react from '@vitejs/plugin-react-swc'
-import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
 import { defineConfig } from 'vite'
+import { resolve } from 'node:path'
 
 export default defineConfig({
   root: './',
   base: './',
-  plugins: [
-    react(),
-    TanStackRouterVite({
-      generatedRouteTree: './routeTree.gen.ts',
-      routesDirectory: './routes',
-    }),
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
-      '@': new URL('./', import.meta.url).pathname,
+      '@': resolve(__dirname, './src'),
+      types: resolve(__dirname, './types'),
     },
   },
 })

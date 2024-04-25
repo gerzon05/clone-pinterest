@@ -11,7 +11,7 @@ import {
 } from 'firebase/auth'
 import { auth } from '../firebase/firebase'
 import { LinkA } from './ui/LinkA'
-import { useNavigate } from '@tanstack/react-router'
+import { useLocation } from 'wouter'
 
 type Props = {
   style?: string
@@ -28,7 +28,7 @@ export const Registro = (props: Props) => {
   const { regifalse } = Register()
   const { converttrue, convertfalse } = Login()
 
-  const navigate = useNavigate({ from: '/' })
+  const [_, setLocatation] = useLocation()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -53,7 +53,7 @@ export const Registro = (props: Props) => {
     const googleprovide = new GoogleAuthProvider()
     await signInWithPopup(auth, googleprovide)
       .then(() => {
-        navigate({ to: '/pagehome' })
+        setLocatation('/pagehome')
         convertfalse()
       })
       .catch((error: any) => {
@@ -64,7 +64,7 @@ export const Registro = (props: Props) => {
     const facebookprovide = new FacebookAuthProvider()
     await signInWithPopup(auth, facebookprovide)
       .then(() => {
-        navigate({ to: '/pagehome' })
+        setLocatation('/pagehome')
         convertfalse()
       })
       .catch((error: any) => {

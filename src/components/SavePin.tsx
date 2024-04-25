@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { HeaderPageHome } from './HeaderPageHome'
+import { HeaderPageHome } from '../modules/header/HeaderPageHome'
 import { app } from '../firebase/firebase'
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'

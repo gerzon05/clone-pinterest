@@ -1,8 +1,8 @@
 import { Bell, ChevronDown, MessageCircleMore, Search } from 'lucide-react'
-import { LogoPinterest } from './icons/LogoPinterest'
-import { Perfil } from './Perfil'
+import { LogoPinterest } from '../../components/icons/LogoPinterest'
+import { Perfil } from '../../components/Perfil'
 import { CurrentUser, PerfilState } from '@/store/state'
-import { Link } from '@tanstack/react-router'
+import { Link } from 'wouter'
 
 export const HeaderPageHome = () => {
   // const { user } = useAuth();

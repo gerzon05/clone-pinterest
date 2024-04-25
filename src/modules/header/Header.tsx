@@ -1,10 +1,10 @@
-import { LogoPinterest } from './icons/LogoPinterest'
-import { LinkA } from './ui/LinkA'
-import { Link } from '@tanstack/react-router'
-import { Registro } from './Registro'
-import { IniciarSesion } from './IniciarSesion'
+import { LogoPinterest } from '../../components/icons/LogoPinterest'
+import { LinkA } from '../../components/ui/LinkA'
+import { Link } from 'wouter'
+import { Registro } from '../../components/Registro'
+import { IniciarSesion } from '../../components/IniciarSesion'
 import { Login, Register } from '@/store/state'
-import { Button } from './ui/Button'
+import { Button } from '../../components/ui/Button'
 
 export const Header = () => {
   const Loginstate = Login((state) => state.bool)
