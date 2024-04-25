@@ -2,7 +2,12 @@ import { Button } from './ui/Button'
 import { LogoPinterest } from './icons/LogoPinterest'
 import { Facebook } from './icons/Facebook'
 import { Google } from './icons/Google'
-import { AuthLogin, CurrentUser, ErrorSaveRegister, Login } from '../../store/state'
+import {
+  AuthLogin,
+  ErrorSaveRegister,
+  Login,
+} from '../../store/state'
+import { CurrentUser } from '@/store/CurrentUser'
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -16,7 +21,6 @@ import { useLocation } from 'wouter'
 type Props = { style: string }
 
 export const IniciarSesion = (props: Props) => {
-
   const [_, setLocation] = useLocation()
 
   const email = AuthLogin((state) => state.email)

@@ -12,7 +12,6 @@ import {
 import { auth } from '../firebase/firebase'
 import { LinkA } from './ui/LinkA'
 import { useLocation } from 'wouter'
-
 type Props = {
   style?: string
 }

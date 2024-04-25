@@ -2,7 +2,8 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../firebase/firebase'
 import { Check, Share } from 'lucide-react'
 import { useLocation } from 'wouter'
-import { CurrentUser, PerfilState } from '@/store/state'
+import { PerfilState } from '@/store/state'
+import { CurrentUser } from '@/store/CurrentUser'
 
 export const Perfil = () => {
   const perfil = PerfilState((state) => state.bool)
@@ -16,7 +17,6 @@ export const Perfil = () => {
       serLocatation('/')
       logout()
     })
-
   }
 
   return (
