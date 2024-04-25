@@ -1,5 +1,5 @@
 export interface CurrentUser {
-  user: Object
+  user: null | object
   usercontent: (by: object) => void
   logout: () => void
 }

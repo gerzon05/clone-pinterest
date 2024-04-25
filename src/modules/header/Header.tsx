@@ -1,9 +1,9 @@
 import { LogoPinterest } from '../../icons/LogoPinterest'
 import { LinkA } from '../../ui/LinkA'
 import { Link } from 'wouter'
-import { Registro } from '../register/Registro'
-import IniciarSesion from '../login/IniciarSesion'
-import { Login, Register } from '@/store/state'
+import { Registro } from '../login/components/Registro'
+import IniciarSesion from '../login/components/IniciarSesion'
+import { Login, Register } from '../login/hooks/loginstate'
 import { Button } from '../../ui/Button'
 
 export const Header = () => {

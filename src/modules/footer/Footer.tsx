@@ -1,5 +1,5 @@
-import { Registro } from '../register/Registro'
-import { Login, Register } from '../../../store/state'
+import { Registro } from '../login/components/Registro'
+import { Login, Register } from '../login/hooks/loginstate'
 import { Img } from '../../ui/Img'
 
 export function Footer() {

@@ -34,7 +34,7 @@
     "devtools.tsx",
     "components",
     "vite-env.d.ts",
-    "hooks",
+    "src/hooks",
     "routes",
     "stores"
   ],

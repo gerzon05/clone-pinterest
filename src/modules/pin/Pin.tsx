@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore'
-import { app } from '../firebase/firebase'
-import { CurrentUser } from '@/store/state'
+import { app } from '../../firebase/firebase'
+import { UserState } from '../../hooks/user'
 import { CircleEllipsis, Share } from 'lucide-react'
 
 const db = getFirestore(app)
 
 export const Pin = () => {
-  const user = CurrentUser((state) => state.user)
+  const user = UserState((state) => state.user)
 
   const [photos, setPhotos] = useState<object[]>([])
   // const [photos2, setPhotos2] = useState([])

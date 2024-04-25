@@ -1,36 +1,17 @@
 import { Bell, ChevronDown, MessageCircleMore, Search } from 'lucide-react'
 import { LogoPinterest } from '../../icons/LogoPinterest'
 import { Perfil } from '../perfil/components/Perfil'
-import { CurrentUser, PerfilState } from '@/store/state'
+import { PerfilState } from '../perfil/hooks/perfilhook'
+import { UserState } from '../../hooks/user'
 import { Link } from 'wouter'
 
 export const HeaderPageHome = () => {
   // const { user } = useAuth();
   const { perfiltrue } = PerfilState()
-  const user = CurrentUser((state) => state.user)
-  // const [mostrar, setMostrar] = useState(false);
-  // // const navigate = useNavigate();
+  const user = UserState((state) => state.user)
   const handlePerfil = () => {
     perfiltrue()
   }
-  // const handleOptionChange = (event) => {
-  //   const selectedOption = event.target.value;
-  //   if (selectedOption === "option1") {
-  //     // navigate("/savepin");
-  //   } else if (selectedOption === "option2") {
-  //     // navigate("/savepin");
-  //   }
-  // };
-  // const handleChange = (event) => {
-  //   event.preventDefault();
-  //   buscador(event.target.value);
-  // };
-  // const handeclickperfil = () => {
-  //   // navigate("/mi-perfil");
-  // };
-  // const handeclickexplorar = () => {
-  //   // navigate("/explorar");
-  // };
   return (
     <>
       <header className='p-1 flex justify-evenly items-center sticky z-30 top-0 w-full bg-white'>

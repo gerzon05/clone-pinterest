@@ -2,15 +2,15 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../../../firebase/firebase'
 import { Check, Share } from 'lucide-react'
 import { useLocation } from 'wouter'
-import { PerfilState } from '@/store/state'
-import { CurrentUser } from '@/store/CurrentUser'
+import { PerfilState } from '../hooks/perfilhook'
+import { UserState } from '../../../hooks/user'
 
 export const Perfil = () => {
   const perfil = PerfilState((state) => state.bool)
   const [_, serLocatation] = useLocation()
 
-  const user = CurrentUser((state) => state.user)
-  const logout = CurrentUser((state) => state.logout)
+  const user = UserState((state) => state.user)
+  const logout = UserState((state) => state.logout)
 
   const handlelogout = async () => {
     await signOut(auth).then(() => {

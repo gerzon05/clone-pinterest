@@ -1,70 +1,63 @@
-import { Button } from '../../ui/Button'
-import { LogoPinterest } from '../../icons/LogoPinterest'
-import { Facebook } from '../../icons/Facebook'
-import { Google } from '../../icons/Google'
-import { ErrorSaveRegister, Login } from '@/store/state'
-import { UserState } from '@/store/user'
+import { LogoPinterest } from '../../../icons/LogoPinterest'
+import { Button } from '../../../ui/Button'
+import { Facebook } from '../../../icons/Facebook'
+import { Google } from '../../../icons/Google'
+import { Login, Register } from '../hooks/loginstate'
 import {
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
   FacebookAuthProvider,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth'
-import { auth } from '../../firebase/firebase'
-import { LinkA } from '../../ui/LinkA'
+import { auth } from '../../../firebase/firebase'
+import { LinkA } from '../../../ui/LinkA'
 import { useLocation } from 'wouter'
 import { useForm } from 'react-hook-form'
 
-type Props = { style: string }
-
+type Props = {
+  style?: string
+}
 interface FormData {
   email: string
   password: string
 }
 
-export default function IniciarSesion(props: Props) {
+export const Registro = (props: Props) => {
   const { register, handleSubmit } = useForm<FormData>()
-  const [_, setLocation] = useLocation()
+  const Registerstate = Register((state) => state.bool)
+  const { regifalse } = Register()
+  const { converttrue, convertfalse } = Login()
 
-  const error = ErrorSaveRegister((state) => state.error)
-
-  const { convertfalse } = Login()
-  const { errorcontentregister } = ErrorSaveRegister()
-  const { usercontent } = UserState()
+  const [_, setLocatation] = useLocation()
 
   const onSubmit = handleSubmit(async (data) => {
-    errorcontentregister('')
+    // errorcontentregister('')
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password).then(
-        (userCredencial) => {
-          usercontent(userCredencial.user)
-          setLocation('/pagehome')
-          convertfalse()
-          errorcontentregister('')
-        },
-      )
+      await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      ).then(() => {
+        // errorcontentregister('Se registro correctamente')
+      })
     } catch (error: any) {
-      if (error.code === 'auth/wrong-password') {
-        errorcontentregister('Contraseña incorrecta')
-      } else if (error.code === 'auth/user-not-found') {
-        errorcontentregister('el correo no existe')
-      } else if (error.code === 'auth/too-many-requests') {
-        errorcontentregister(
-          'tu cuenta se deshabilitado temporalmente, intente mas tarde',
-        )
+      if (error.code === 'auth/weak-password') {
+        // errorcontentregister('la contraseña debe tener mas de 6 caracteres')
+      } else if (
+        error.code === 'auth/email-already-in-use' ||
+        error.code === 'auth/invalid-email'
+      ) {
+        // errorcontentregister('el correo ya esta en uso')
       }
-    } finally {
-      // loading.setLoad(false)
-      setLocation('/')
     }
   })
+
   const handlegoogle = async () => {
     const googleprovide = new GoogleAuthProvider()
     await signInWithPopup(auth, googleprovide)
-      .then((userCredencial) => {
-        setLocation('/pagehome')
+      .then(() => {
+        setLocatation('/pagehome')
         convertfalse()
-        usercontent(userCredencial.user)
       })
       .catch((error: any) => {
         console.log(error.code)
@@ -73,58 +66,64 @@ export default function IniciarSesion(props: Props) {
   const handlefacebook = async () => {
     const facebookprovide = new FacebookAuthProvider()
     await signInWithPopup(auth, facebookprovide)
-      .then((userCredencial) => {
-        setLocation('/pagehome')
+      .then(() => {
+        setLocatation('/pagehome')
         convertfalse()
-        usercontent(userCredencial.user)
       })
       .catch((error: any) => {
         console.log(error.code)
       })
   }
+
+  const handlelogin = () => {
+    converttrue()
+    regifalse()
+  }
   return (
-    <>
-      <div className={props.style}>
-        <Button
-          onClick={() => convertfalse()}
-          className='absolute right-2 top-0 text-4xl'
-        >
-          ×
-        </Button>
-        <figure className='flex justify-center'>
+    <div className={props.style}>
+      <div className='relative '>
+        {Registerstate && (
+          <Button
+            onClick={() => regifalse()}
+            className='absolute right-2 -top-8 text-4xl'
+          >
+            ×
+          </Button>
+        )}
+
+        <div className='flex justify-center'>
           <LogoPinterest />
-        </figure>
+        </div>
         <h2 className='text-xl font-semibold text-center text'>
           Bienvenidos a Pinterest
         </h2>
+        <p className='text-center'>Encuentra nuevas ideas para probar</p>
         <form onSubmit={onSubmit} className='flex flex-col w-4/5 m-auto gap-2'>
           <div className='flex flex-col'>
             <label>Correo</label>
             <input
-              type='email'
-              {...register('email')}
-              placeholder='correo'
-              className='rounded-2xl w-full border-spacing-1'
               required
+              type='email'
+              placeholder='correo'
+              {...register('email')}
+              className='rounded-2xl w-full border-spacing-1'
             />
           </div>
           <div>
             <label>Contraseña</label>
             <input
+              required
               type='password'
               {...register('password')}
-              placeholder='ingrese su contraseña'
+              placeholder='crea una contraseña'
               className='rounded-2xl w-full border-spacing-1'
-              required
             />
+            <p className='text-xs'>
+              la contraseña debe tener mas de 6 caracteres
+            </p>
           </div>
-          <a>¿olvidate tu contraseña?</a>
-          <p>{error}</p>
-          <Button
-            placeholder='Continuar'
-            className='w-full py-2 bg-red-700 text-white rounded-full'
-          >
-            Iniciar Sesion
+          <Button className='w-full py-2 bg-red-700 text-white text-center rounded-full'>
+            Registrarse
           </Button>
           <b className='text-center'>O</b>
         </form>
@@ -133,13 +132,13 @@ export default function IniciarSesion(props: Props) {
             onClick={handlefacebook}
             className='w-full py-2 bg-blue-700 text-white rounded-full flex justify-evenly items-center'
           >
-            <Facebook /> Continuar con Facebook
+            <Facebook /> Continuar con Facebook{' '}
           </Button>
           <Button
             onClick={handlegoogle}
             className='w-full py-2 border-2 border-zinc-300 text-black rounded-full flex justify-evenly items-center'
           >
-            <Google /> Continuar con Google{' '}
+            <Google /> Continuar con Google
           </Button>
           <p className='text-center text-xs w-full m-auto'>
             Si continúas, aceptas los
@@ -163,8 +162,17 @@ export default function IniciarSesion(props: Props) {
               Aviso de recopilación de datos.
             </LinkA>
           </p>
+          <p className='w-10/12 m-auto text-sm text-center'>
+            ¿Ya eres miembro?
+            <Button
+              onClick={handlelogin}
+              className='font-extrabold px-1 cursor-pointer'
+            >
+              Iniciar sesión
+            </Button>
+          </p>
         </div>
       </div>
-    </>
+    </div>
   )
 }

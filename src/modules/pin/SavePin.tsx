@@ -1,16 +1,16 @@
 import { useState } from 'react'
-import { HeaderPageHome } from '../modules/header/HeaderPageHome'
-import { app } from '../firebase/firebase'
+import { HeaderPageHome } from '../header/HeaderPageHome'
+import { app } from '../../firebase/firebase'
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { CurrentUser } from '@/store/state'
+import { UserState } from '@/src/hooks/user'
 
 const db = getFirestore(app)
 const storage = getStorage(app)
 
 export const SavePin = () => {
   const [cargueimg, setCargueImg] = useState('')
-  const user = CurrentUser((state) => state.user)
+  const user = UserState((state) => state.user)
 
   let Urlimg: string = ''
   interface ImageData {
@@ -53,11 +53,11 @@ export const SavePin = () => {
     } catch (error) {
       setCargueImg('hubo un error al subir la imagen' + error)
     }
-    ;(event.target as HTMLFormElement).titulo.value = ''
-    ;(event.target as HTMLFormElement).descripcionimg.value = ''
-    ;(event.target as HTMLFormElement).enlace.value = ''
-    ;(event.target as HTMLFormElement).categoria.value = ''
-    ;(event.target as HTMLFormElement).file.value = ''
+    ; (event.target as HTMLFormElement).titulo.value = ''
+      ; (event.target as HTMLFormElement).descripcionimg.value = ''
+      ; (event.target as HTMLFormElement).enlace.value = ''
+      ; (event.target as HTMLFormElement).categoria.value = ''
+      ; (event.target as HTMLFormElement).file.value = ''
   }
   const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const archivoimg = event.target.files?.[0]
