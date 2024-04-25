@@ -2,7 +2,8 @@ import { Button } from '../../ui/Button'
 import { LogoPinterest } from '../../icons/LogoPinterest'
 import { Facebook } from '../../icons/Facebook'
 import { Google } from '../../icons/Google'
-import { ErrorSaveRegister, Login, CurrentUser } from '@/store/state'
+import { ErrorSaveRegister, Login } from '@/store/state'
+import { UserState } from '@/store/user'
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -29,11 +30,10 @@ export default function IniciarSesion(props: Props) {
 
   const { convertfalse } = Login()
   const { errorcontentregister } = ErrorSaveRegister()
-  const { usercontent } = CurrentUser()
+  const { usercontent } = UserState()
 
   const onSubmit = handleSubmit(async (data) => {
     errorcontentregister('')
-    console.log(data)
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password).then(
         (userCredencial) => {
@@ -58,30 +58,6 @@ export default function IniciarSesion(props: Props) {
       setLocation('/')
     }
   })
-
-  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault()
-  //   errorcontentregister('')
-  //   await signInWithEmailAndPassword(auth, email, password)
-  //     .then((userCredencial) => {
-  //       usercontent(userCredencial.user)
-  //       setLocation('/pagehome')
-  //       convertfalse()
-  //       errorcontentregister('')
-  //     })
-  //     .catch((error: any) => {
-  //       console.log(error.code)
-  //       if (error.code === 'auth/wrong-password') {
-  //         errorcontentregister('Contraseña incorrecta')
-  //       } else if (error.code === 'auth/user-not-found') {
-  //         errorcontentregister('el correo no existe')
-  //       } else if (error.code === 'auth/too-many-requests') {
-  //         errorcontentregister(
-  //           'tu cuenta se deshabilitado temporalmente, intente mas tarde',
-  //         )
-  //       }
-  //     })
-  // }
   const handlegoogle = async () => {
     const googleprovide = new GoogleAuthProvider()
     await signInWithPopup(auth, googleprovide)

@@ -2,7 +2,7 @@ import { LogoPinterest } from '../../icons/LogoPinterest'
 import { Button } from '../../ui/Button'
 import { Facebook } from '../../icons/Facebook'
 import { Google } from '../../icons/Google'
-import { Register, AuthRegister, ErrorSaveRegister, Login } from '@/store/state'
+import { Register, ErrorSaveRegister, Login } from '@/store/state'
 import {
   FacebookAuthProvider,
   GoogleAuthProvider,
@@ -12,41 +12,48 @@ import {
 import { auth } from '../../firebase/firebase'
 import { LinkA } from '../../ui/LinkA'
 import { useLocation } from 'wouter'
+import { useForm } from 'react-hook-form'
 type Props = {
   style?: string
 }
+interface FormData {
+  email: string
+  password: string
+}
 
 export const Registro = (props: Props) => {
+  const { register, handleSubmit } = useForm<FormData>()
+
   const error = ErrorSaveRegister((state) => state.error)
   const Registerstate = Register((state) => state.bool)
-  const AuthEmail = AuthRegister((state) => state.email)
-  const AuthPassword = AuthRegister((state) => state.password)
 
   const { errorcontentregister } = ErrorSaveRegister()
-  const { emailcontent, passwordcontent } = AuthRegister()
   const { regifalse } = Register()
   const { converttrue, convertfalse } = Login()
 
   const [_, setLocatation] = useLocation()
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const onSubmit = handleSubmit(async (data) => {
     errorcontentregister('')
-    await createUserWithEmailAndPassword(auth, AuthEmail, AuthPassword)
-      .then(() => {
+    try {
+      await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      ).then(() => {
         errorcontentregister('Se registro correctamente')
       })
-      .catch((error: any) => {
-        if (error.code === 'auth/weak-password') {
-          errorcontentregister('la contraseña debe tener mas de 6 caracteres')
-        } else if (
-          error.code === 'auth/email-already-in-use' ||
-          error.code === 'auth/invalid-email'
-        ) {
-          errorcontentregister('el correo ya esta en uso')
-        }
-      })
-  }
+    } catch (error: any) {
+      if (error.code === 'auth/weak-password') {
+        errorcontentregister('la contraseña debe tener mas de 6 caracteres')
+      } else if (
+        error.code === 'auth/email-already-in-use' ||
+        error.code === 'auth/invalid-email'
+      ) {
+        errorcontentregister('el correo ya esta en uso')
+      }
+    }
+  })
 
   const handlegoogle = async () => {
     const googleprovide = new GoogleAuthProvider()
@@ -94,19 +101,15 @@ export const Registro = (props: Props) => {
           Bienvenidos a Pinterest
         </h2>
         <p className='text-center'>Encuentra nuevas ideas para probar</p>
-        <form
-          onSubmit={handleSubmit}
-          className='flex flex-col w-4/5 m-auto gap-2'
-        >
+        <form onSubmit={onSubmit} className='flex flex-col w-4/5 m-auto gap-2'>
           <div className='flex flex-col'>
             <label>Correo</label>
             <input
               required
               type='email'
               placeholder='correo'
-              name='email'
+              {...register('email')}
               className='rounded-2xl w-full border-spacing-1'
-              onChange={(event) => emailcontent(event.target.value)}
             />
           </div>
           <div>
@@ -114,10 +117,9 @@ export const Registro = (props: Props) => {
             <input
               required
               type='password'
-              name='password'
+              {...register('password')}
               placeholder='crea una contraseña'
               className='rounded-2xl w-full border-spacing-1'
-              onChange={(event) => passwordcontent(event.target.value)}
             />
             <p className='text-xs'>
               la contraseña debe tener mas de 6 caracteres

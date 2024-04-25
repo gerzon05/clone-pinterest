@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface Statelogin {
   bool: boolean
@@ -16,26 +15,10 @@ interface Stateregister {
   regitrue: () => void
   regifalse: () => void
 }
-interface objectRegister {
-  email: string
-  password: string
-  emailcontent: (by: string) => void
-  passwordcontent: (by: string) => void
-}
-interface objectLogin {
-  email: string
-  password: string
-  emailLogin: (by: string) => void
-  passwordLogin: (by: string) => void
-}
+
 interface ErrorSaveRegister {
   error: string
   errorcontentregister: (by: string) => void
-}
-interface CurrentUser {
-  user: Object
-  usercontent: (by: object) => void
-  logout: () => void
 }
 
 export const Login = create<Statelogin>((set) => ({
@@ -49,19 +32,7 @@ export const Register = create<Stateregister>((set) => ({
   regitrue: () => set(() => ({ bool: true })),
   regifalse: () => set(() => ({ bool: false })),
 }))
-export const AuthRegister = create<objectRegister>((set) => ({
-  email: '',
-  password: '',
-  emailcontent: (by) => set((state) => ({ email: (state.email = by) })),
-  passwordcontent: (by) =>
-    set((state) => ({ password: (state.password = by) })),
-}))
-export const AuthLogin = create<objectLogin>((set) => ({
-  email: '',
-  password: '',
-  emailLogin: (by) => set((state) => ({ email: (state.email = by) })),
-  passwordLogin: (by) => set((state) => ({ password: (state.password = by) })),
-}))
+
 export const ErrorSaveRegister = create<ErrorSaveRegister>((set) => ({
   error: '',
   errorcontentregister: (by) => set((state) => ({ error: (state.error = by) })),
@@ -71,16 +42,3 @@ export const PerfilState = create<StatePerfil>((set) => ({
   perfiltrue: () => set((state) => ({ bool: (state.bool = !state.bool) })),
   perfilfalse: () => set(() => ({ bool: false })),
 }))
-export const CurrentUser = create(
-  persist<CurrentUser>(
-    (set) => ({
-      user: Object,
-      usercontent: (by) => set((state) => ({ user: (state.user = by) })),
-      logout: () => set(() => ({ user: Object })),
-    }),
-    {
-      name: 'admin',
-      storage: createJSONStorage(() => sessionStorage),
-    },
-  ),
-)
