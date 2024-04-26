@@ -47,7 +47,10 @@ export default function IniciarSesion(props: Props) {
       } else if (error.code === 'auth/user-not-found') {
         toast.error('ERROR', { description: 'el correo no existe' })
       } else if (error.code === 'auth/too-many-requests') {
-        toast.error('ERROR', { description: 'tu cuenta se deshabilitado temporalmente, intente mas tarde' })
+        toast.error('ERROR', {
+          description:
+            'tu cuenta se deshabilitado temporalmente, intente mas tarde',
+        })
       } else {
         toast.error('Error al iniciar sesion')
       }

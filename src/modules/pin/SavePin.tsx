@@ -53,11 +53,11 @@ export const SavePin = () => {
     } catch (error) {
       setCargueImg('hubo un error al subir la imagen' + error)
     }
-    ; (event.target as HTMLFormElement).titulo.value = ''
-      ; (event.target as HTMLFormElement).descripcionimg.value = ''
-      ; (event.target as HTMLFormElement).enlace.value = ''
-      ; (event.target as HTMLFormElement).categoria.value = ''
-      ; (event.target as HTMLFormElement).file.value = ''
+    ;(event.target as HTMLFormElement).titulo.value = ''
+    ;(event.target as HTMLFormElement).descripcionimg.value = ''
+    ;(event.target as HTMLFormElement).enlace.value = ''
+    ;(event.target as HTMLFormElement).categoria.value = ''
+    ;(event.target as HTMLFormElement).file.value = ''
   }
   const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const archivoimg = event.target.files?.[0]
