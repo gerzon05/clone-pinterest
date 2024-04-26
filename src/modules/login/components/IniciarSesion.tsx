@@ -14,6 +14,9 @@ import { auth } from '../../../firebase/firebase'
 import { LinkA } from '../../../ui/LinkA'
 import { useLocation } from 'wouter'
 import { useForm } from 'react-hook-form'
+// import { toast } from 'sonner'
+// import { Toaster } from '@/src/components/sonner'
+import { Toaster, toast } from 'sonner'
 
 type Props = { style: string }
 
@@ -30,25 +33,23 @@ export default function IniciarSesion(props: Props) {
   const { usercontent } = UserState()
 
   const onSubmit = handleSubmit(async (data) => {
-    // errorcontentregister('')
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password).then(
         (userCredencial) => {
           usercontent(userCredencial.user)
           setLocation('/home')
           convertfalse()
-          // errorcontentregister('')
         },
       )
     } catch (error: any) {
       if (error.code === 'auth/wrong-password') {
-        // errorcontentregister('Contraseña incorrecta')
+        toast.error('ERROR', { description: 'Contraseña incorrecta' })
       } else if (error.code === 'auth/user-not-found') {
-        // errorcontentregister('el correo no existe')
+        toast.error('ERROR', { description: 'el correo no existe' })
       } else if (error.code === 'auth/too-many-requests') {
-        // errorcontentregister(
-        // 'tu cuenta se deshabilitado temporalmente, intente mas tarde',
-        // )
+        toast.error('ERROR', { description: 'tu cuenta se deshabilitado temporalmente, intente mas tarde' })
+      } else {
+        toast.error('Error al iniciar sesion')
       }
     } finally {
       // loading.setLoad(false)
@@ -76,7 +77,7 @@ export default function IniciarSesion(props: Props) {
         usercontent(userCredencial.user)
       })
       .catch((error: any) => {
-        console.log(error.code)
+        toast.error('ERROR', { description: error.code })
       })
   }
   return (
@@ -116,6 +117,7 @@ export default function IniciarSesion(props: Props) {
             />
           </div>
           <a>¿olvidate tu contraseña?</a>
+          <Toaster position='top-center' />
           <Button
             placeholder='Continuar'
             className='w-full py-2 bg-red-700 text-white rounded-full'

@@ -13,6 +13,7 @@ import { auth } from '../../../firebase/firebase'
 import { LinkA } from '../../../ui/LinkA'
 import { useLocation } from 'wouter'
 import { useForm } from 'react-hook-form'
+import { Toaster, toast } from 'sonner'
 
 type Props = {
   style?: string
@@ -31,23 +32,22 @@ export const Registro = (props: Props) => {
   const [_, setLocatation] = useLocation()
 
   const onSubmit = handleSubmit(async (data) => {
-    // errorcontentregister('')
     try {
       await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.password,
       ).then(() => {
-        // errorcontentregister('Se registro correctamente')
+        toast.success('Registro exitoso')
       })
     } catch (error: any) {
       if (error.code === 'auth/weak-password') {
-        // errorcontentregister('la contraseña debe tener mas de 6 caracteres')
+        toast.error('la contraseña es muy debil')
       } else if (
         error.code === 'auth/email-already-in-use' ||
         error.code === 'auth/invalid-email'
       ) {
-        // errorcontentregister('el correo ya esta en uso')
+        toast.error('el correo ya esta en uso')
       }
     }
   })
@@ -56,22 +56,22 @@ export const Registro = (props: Props) => {
     const googleprovide = new GoogleAuthProvider()
     await signInWithPopup(auth, googleprovide)
       .then(() => {
-        setLocatation('/pagehome')
+        setLocatation('/home')
         convertfalse()
       })
       .catch((error: any) => {
-        console.log(error.code)
+        toast.error(error.code)
       })
   }
   const handlefacebook = async () => {
     const facebookprovide = new FacebookAuthProvider()
     await signInWithPopup(auth, facebookprovide)
       .then(() => {
-        setLocatation('/pagehome')
+        setLocatation('/home')
         convertfalse()
       })
       .catch((error: any) => {
-        console.log(error.code)
+        toast.error(error.code)
       })
   }
 
@@ -122,6 +122,7 @@ export const Registro = (props: Props) => {
               la contraseña debe tener mas de 6 caracteres
             </p>
           </div>
+          <Toaster position='top-center' />
           <Button className='w-full py-2 bg-red-700 text-white text-center rounded-full'>
             Registrarse
           </Button>
