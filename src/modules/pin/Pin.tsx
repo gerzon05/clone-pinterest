@@ -7,7 +7,11 @@ import { useLoading } from '@/hooks/use-loading'
 
 const db = getFirestore(app)
 
-export const Pin = () => {
+interface PinProps {
+  filter?: string
+}
+
+export const Pin = ({ filter }: PinProps) => {
   const user = UserState((state) => state.user)
   const loading = useLoading()
 
@@ -35,7 +39,7 @@ export const Pin = () => {
     const getimg = async () => {
       try {
         loading.setLoad(true)
-        const basedatos = await getDocs(collection(db, 'imagenes'))
+        const basedatos = await getDocs(collection(db, (filter || 'imagenes')))
         const docs: object[] = []
         basedatos.forEach((img) => {
           docs.push(img.data())

@@ -42,7 +42,7 @@ export const HeaderPageHome = () => {
             </div>
             <div>
               <button
-                // onClick={handeclickexplorar}
+                onClick={() => setLocation('/home/explorar')}
                 className='rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black'
               >
                 Explorar
