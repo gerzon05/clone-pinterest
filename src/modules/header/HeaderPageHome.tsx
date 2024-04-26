@@ -1,16 +1,25 @@
 import { Bell, ChevronDown, MessageCircleMore, Search } from 'lucide-react'
-import { LogoPinterest } from '../../icons/LogoPinterest'
-import { Perfil } from '../perfil/components/Perfil'
-import { PerfilState } from '../perfil/hooks/perfilhook'
-import { UserState } from '../../hooks/user'
-import { Link } from 'wouter'
+import { LogoPinterest } from '@/icons/LogoPinterest'
+import { Perfil } from '@/modules/perfil/components/Perfil'
+import { PerfilState } from '@/modules/perfil/hooks/perfilhook'
+import { UserState } from '@/hooks/user'
+import { Link, useLocation } from 'wouter'
 
 export const HeaderPageHome = () => {
-  // const { user } = useAuth();
+  const [_, setLocation] = useLocation()
   const { perfiltrue } = PerfilState()
   const user = UserState((state) => state.user)
   const handlePerfil = () => {
     perfiltrue()
+  }
+
+  const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value
+    if (value === 'option1') {
+      setLocation("/home")
+    } else {
+      setLocation("/home/save-imagen")
+    }
   }
   return (
     <>
@@ -25,7 +34,7 @@ export const HeaderPageHome = () => {
           <div className='md:flex items-center'>
             <div>
               <button
-                // onClick={handeclick}
+                onClick={() => setLocation('/home')}
                 className='rounded-full focus:text-white text-black px-2 py-1 text-sm sm:px-3 sm:py-1 md:px-4 md:py-2 sm:text-base md:text-lg focus:bg-black'
               >
                 Inicio
@@ -41,7 +50,7 @@ export const HeaderPageHome = () => {
             </div>
             <div>
               <select
-                // onChange={handleOptionChange}
+                onChange={handleOptionChange}
                 className='flex justify-center items-center border-0 w-28'
               >
                 <option>Crear</option>

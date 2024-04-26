@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
 import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore'
-import { app } from '../../firebase/firebase'
-import { UserState } from '../../hooks/user'
-import { CircleEllipsis, Share } from 'lucide-react'
+import { app } from '@/firebase/firebase'
+import { UserState } from '@/hooks/user'
+import { CircleEllipsis, RotateCcw, Share } from 'lucide-react'
+import { useLoading } from '@/hooks/use-loading'
 
 const db = getFirestore(app)
 
 export const Pin = () => {
   const user = UserState((state) => state.user)
+  const loading = useLoading()
 
   const [photos, setPhotos] = useState<object[]>([])
   // const [photos2, setPhotos2] = useState([])
@@ -32,6 +34,7 @@ export const Pin = () => {
   useEffect(() => {
     const getimg = async () => {
       try {
+        loading.setLoad(true)
         const basedatos = await getDocs(collection(db, 'imagenes'))
         const docs: object[] = []
         basedatos.forEach((img) => {
@@ -41,11 +44,17 @@ export const Pin = () => {
       } catch (error) {
         console.log(error)
       }
+      finally {
+        loading.setLoad(false)
+      }
     }
     getimg()
   }, [])
   return (
     <>
+      {
+        loading.load && <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'><RotateCcw size={40} className='animate-spin  inline-block' /></div>
+      }
       {photos.map((photo, index) => (
         <div key={index}>
           {popap.bool && (

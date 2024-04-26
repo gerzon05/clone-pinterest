@@ -23,11 +23,13 @@
     /*Paths */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": ["./src/*"],
+      "types/*": ["./types/*"]
+    },
   },
   "include": [
     "src",
+    "types",
     "shims.d.ts",
     "routeTree.gen.ts",
     "main.tsx",
