@@ -21,6 +21,18 @@ export const HeaderPageHome = () => {
       setLocation("/home/save-imagen")
     }
   }
+  const handleOptionChangeMovil = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value
+    if (value === 'option1') {
+      setLocation("/home")
+    } else if (value === 'option2') {
+      setLocation("/home/Explorar")
+    } else if (value === 'option3') {
+      setLocation("/home")
+    } else if (value === 'option4') {
+      setLocation("/home/save-imagen")
+    }
+  }
   return (
     <>
       <header className='p-1 flex justify-evenly items-center sticky z-30 top-0 w-full bg-white'>
@@ -31,7 +43,13 @@ export const HeaderPageHome = () => {
           >
             <LogoPinterest />
           </Link>
-          <div className='md:flex items-center'>
+          <select onChange={handleOptionChangeMovil} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 h-9 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 my-auto md:hidden">
+            <option value='option1'>Inicio</option>
+            <option value='option2'>Explorar</option>
+            <option value='option3'>Crear Idea Pin</option>
+            <option value='option4'>Crear Pin</option>
+          </select>
+          <div className='hidden md:flex items-center'>
             <div>
               <button
                 onClick={() => setLocation('/home')}
@@ -49,18 +67,23 @@ export const HeaderPageHome = () => {
               </button>
             </div>
             <div>
-              <select
+              <select onChange={handleOptionChange} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option defaultValue="crear">Crear</option>
+                <option value='option1'>Crear Idea Pin</option>
+                <option value='option2'>Crear Pin</option>
+              </select>
+              {/* <select
                 onChange={handleOptionChange}
                 className='flex justify-center items-center border-0 w-28'
               >
                 <option>Crear</option>
                 <option value='option1'>Crear Idea Pin</option>
                 <option value='option2'>Crear Pin</option>
-              </select>
+              </select> */}
             </div>
           </div>
         </section>
-        <form className='w-2/6 relative'>
+        <form className='w-2/6 relative hidden md:block'>
           <label className='absolute top-1/2 -translate-y-1/2 left-2'>
             <Search className='text-slate-600' />
           </label>
