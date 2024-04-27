@@ -16,11 +16,6 @@ export const Pin = ({ filter }: PinProps) => {
   const loading = useLoading()
 
   const [photos, setPhotos] = useState<object[]>([])
-  // const [photos2, setPhotos2] = useState([])
-  const [popap, setPopap] = useState<{ img: string; bool: boolean }>({
-    img: '',
-    bool: false,
-  })
 
   const handlesaveimg = async (url: string) => {
     const guardar = {
@@ -61,20 +56,6 @@ export const Pin = ({ filter }: PinProps) => {
       }
       {photos.map((photo, index) => (
         <div key={index}>
-          {popap.bool && (
-            <div
-              onClick={() => setPopap({ img: '', bool: false })}
-              className='z-50 fixed flex justify-center items-center w-full left-0 top-0 bottom-0 bg-transparent backdrop-blur-[1px]'
-            >
-              <div>
-                <img
-                  src={popap.img}
-                  className='cursor-zoom-out w-[260] sm:w.[500px] md:w-[650px] lg:w-[700px] h-[80vh] aspect-auto object-cover rounded-xl'
-                  alt={(photo as { titulo: string }).titulo}
-                />
-              </div>
-            </div>
-          )}
           <div className='group py-2 cursor-zoom-in relative overflow-hidden'>
             <img
               src={(photo as { imagen: string }).imagen}
@@ -82,13 +63,7 @@ export const Pin = ({ filter }: PinProps) => {
               alt={(photo as { titulo: string }).titulo}
             />
             <span
-              onClick={() =>
-                setPopap({
-                  img: (photo as { imagen: string }).imagen,
-                  bool: true,
-                })
-              }
-              className='absolute flex flex-col justify-between my-2 z-10 top-0 w-full bottom-0 bg-transparent pointer-events-none rounded-xl group-hover:bg-black/50 group-hover:pointer-events-auto '
+              className='hidden absolute md:flex flex-col justify-between my-2 z-10 top-0 w-full bottom-0 bg-transparent pointer-events-none rounded-xl group-hover:bg-black/50 group-hover:pointer-events-auto '
             >
               <article className='flex justify-end p-3 opacity-0 group-hover:opacity-100'>
                 <button
