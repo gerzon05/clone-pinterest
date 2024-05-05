@@ -15,22 +15,22 @@ export const HeaderPageHome = () => {
 
   const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value
-    if (value === 'option1') {
-      setLocation("/home")
+    if (value === 'option2') {
+      setLocation('/home/save-imagen')
     } else {
-      setLocation("/home/save-imagen")
+      setLocation('/home')
     }
   }
   const handleOptionChangeMovil = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value
     if (value === 'option1') {
-      setLocation("/home")
+      setLocation('/home')
     } else if (value === 'option2') {
-      setLocation("/home/Explorar")
+      setLocation('/home/Explorar')
     } else if (value === 'option3') {
-      setLocation("/home")
+      setLocation('/home')
     } else if (value === 'option4') {
-      setLocation("/home/save-imagen")
+      setLocation('/home/save-imagen')
     }
   }
   return (
@@ -38,12 +38,16 @@ export const HeaderPageHome = () => {
       <header className='p-1 flex justify-evenly items-center sticky z-30 top-0 w-full bg-white'>
         <section className='flex justify-between'>
           <Link
-            to='/pagehome'
+            to='/home'
             className='flex w-14 h-14 justify-center items-center rounded-full p-2 hover:bg-slate-300'
           >
             <LogoPinterest />
           </Link>
-          <select onChange={handleOptionChangeMovil} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 h-9 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 my-auto md:hidden">
+          <select
+            onChange={handleOptionChangeMovil}
+            id='countries'
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 h-9 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 my-auto md:hidden'
+          >
             <option value='option1'>Inicio</option>
             <option value='option2'>Explorar</option>
             <option value='option3'>Crear Idea Pin</option>
@@ -67,19 +71,15 @@ export const HeaderPageHome = () => {
               </button>
             </div>
             <div>
-              <select onChange={handleOptionChange} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option defaultValue="crear">Crear</option>
+              <select
+                onChange={handleOptionChange}
+                id='countries'
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+              >
+                <option value='options0'>Crear</option>
                 <option value='option1'>Crear Idea Pin</option>
                 <option value='option2'>Crear Pin</option>
               </select>
-              {/* <select
-                onChange={handleOptionChange}
-                className='flex justify-center items-center border-0 w-28'
-              >
-                <option>Crear</option>
-                <option value='option1'>Crear Idea Pin</option>
-                <option value='option2'>Crear Pin</option>
-              </select> */}
             </div>
           </div>
         </section>

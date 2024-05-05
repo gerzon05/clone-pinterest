@@ -1,13 +1,11 @@
 import { DefaultCarousel } from '../modules/Home/components/Carrusel'
 import { Button } from '../ui/Button'
 import { Img } from '../ui/Img'
-import { Header } from '../modules/header/Header'
 import { Footer } from '../modules/footer/Footer'
 
 export function Home() {
   return (
     <>
-      <Header />
       <main>
         <DefaultCarousel />
         <section className='flex justify-center items-center flex-wrap bg-yellow-200'>

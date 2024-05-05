@@ -14,9 +14,7 @@ import { auth } from '../../../firebase/firebase'
 import { LinkA } from '../../../ui/LinkA'
 import { useLocation } from 'wouter'
 import { useForm } from 'react-hook-form'
-// import { toast } from 'sonner'
-// import { Toaster } from '@/src/components/sonner'
-import { Toaster, toast } from 'sonner'
+import { toast } from 'sonner'
 
 type Props = { style: string }
 
@@ -120,7 +118,6 @@ export default function IniciarSesion(props: Props) {
             />
           </div>
           <a>¿olvidate tu contraseña?</a>
-          <Toaster position='top-center' />
           <Button
             placeholder='Continuar'
             className='w-full py-2 bg-red-700 text-white rounded-full'
