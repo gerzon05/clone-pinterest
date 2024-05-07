@@ -3,9 +3,14 @@ import { Pin } from '@/modules/pin/Pin'
 import { ArrowLeft } from 'lucide-react'
 import { useLocation } from 'wouter'
 import { sectionMock } from './utils/sectionMock'
+import { UserState } from '@/hooks/user'
 
 export function ExplorarSecion({ params }: { params: any }) {
+  const user = UserState((state) => state.user)
   const [_, setLocation] = useLocation()
+  if (!user) {
+    setLocation('/')
+  }
 
   const { title } = params
 

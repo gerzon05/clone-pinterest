@@ -5,7 +5,9 @@ import { Pin } from '@/modules/pin/Pin'
 export function PageHome() {
   const user = UserState((state) => state.user)
   const [_, setLocatation] = useLocation()
-  if (!user) {
+  console.log(user)
+  if (user == null) {
+    console.log('no hay usuario')
     setLocatation('/')
   }
   return (

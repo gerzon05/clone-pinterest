@@ -7,7 +7,7 @@ export const UserState = create(
     (set) => ({
       user: null,
       usercontent: (by) => set((state) => ({ user: (state.user = by) })),
-      logout: () => set(() => ({ user: Object })),
+      logout: () => set(() => ({ user: null })),
     }),
     {
       name: 'admin',

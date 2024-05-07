@@ -7,6 +7,7 @@ import { UserState } from '../../../hooks/user'
 
 export const Perfil = () => {
   const perfil = PerfilState((state) => state.bool)
+  const { perfilfalse } = PerfilState()
   const [_, serLocatation] = useLocation()
 
   const user = UserState((state) => state.user)
@@ -16,6 +17,7 @@ export const Perfil = () => {
     await signOut(auth).then(() => {
       serLocatation('/')
       logout()
+      perfilfalse()
     })
   }
 

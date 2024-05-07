@@ -6,7 +6,8 @@ import { useLocation } from 'wouter'
 export function Explorar() {
   const user = UserState((state) => state.user)
   const [_, setLocatation] = useLocation()
-  if (!user) {
+  if (user == null) {
+    console.log('no hay usuario')
     setLocatation('/')
   }
   return (

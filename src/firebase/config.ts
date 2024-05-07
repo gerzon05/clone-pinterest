@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: 'AIzaSyCaLXYykxQjKT36uthI0c56TFQI0yzsTcM',
-  authDomain: 'clone-pinterest-173e8.firebaseapp.com',
-  projectId: 'clone-pinterest-173e8',
-  storageBucket: 'clone-pinterest-173e8.appspot.com',
-  messagingSenderId: '676189242028',
-  appId: '1:676189242028:web:ddbf48d43d083f3db8d509',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
