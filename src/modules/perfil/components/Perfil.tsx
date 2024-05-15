@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth'
 import { auth } from '../../../firebase/firebase'
 import { Check, Share } from 'lucide-react'
-import { useLocation } from 'wouter'
+import { Link, useLocation } from 'wouter'
 import { PerfilState } from '../hooks/perfilhook'
 import { UserState } from '../../../hooks/user'
 
@@ -35,7 +35,6 @@ export const Perfil = () => {
             <p className='absolute text-xs top-0 left-0'>Actualmente en</p>
             <Check className='absolute right-4 top-10 text-lg' />
             <div
-              // onClick={props.handeclick}
               className='rounded-2xl flex justify-center items-center p-2 gap-2 hover:bg-slate-300 '
             >
               <div>
@@ -71,13 +70,13 @@ export const Perfil = () => {
           </article>
           <article>
             <p className='text-xs'>Mas opciones</p>
-            <div>
-              <button
-                // onClick={() => navigate('/perfil/editarperfil')}
-                className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'
+            <div className='pt-3'>
+              <Link to='/edit-Perfil'
+               onClick={perfilfalse}
+                className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 !w-full'
               >
                 Ajustes
-              </button>
+              </Link>
               <button className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
                 Optimiza tu feed de inicio
               </button>

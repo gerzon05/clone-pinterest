@@ -1,5 +1,6 @@
 import { UserState } from '@/hooks/user'
 import { HeaderPageHome } from '@/modules/header/HeaderPageHome'
+import EditPerfil from '@/routes/editperfil'
 import { Explorar } from '@/routes/explorar/explorar'
 import { ExplorarSecion } from '@/routes/explorar/section'
 import { PageHome } from '@/routes/pagehome'
@@ -21,6 +22,7 @@ export default function Layout() {
       <Route path='/home/explorar' component={Explorar} />
       <Route path='/home/explorar/:title' component={ExplorarSecion} />
       <Route path='/home/img/:name' component={ShowImage} />
+      <Route path='/edit-Perfil' component={EditPerfil} />
     </main>
   )
 }
