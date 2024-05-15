@@ -39,14 +39,15 @@ export const Perfil = () => {
               className='rounded-2xl flex justify-center items-center p-2 gap-2 hover:bg-slate-300 '
             >
               <div>
-                <img
-                  src={
-                    (user as { photoURL: string }).photoURL ||
-                    'https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png'
-                  }
-                  className='rounded-full w-12 h-12 object-cover'
-                  alt='foto de perfil'
+                  {
+                  !(user as { photoURL: string }).photoURL ? <div className="relative inline-flex items-center justify-center w-11 h-11 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                  <span className="font-medium text-gray-600 dark:text-gray-300">{(user as { email: string }).email.slice(0,1).toUpperCase()}</span>
+              </div> : <img
+                  src={(user as { photoURL: string }).photoURL}
+                  className='rounded-full object-cover w-11 h-11'
+                  alt='imagen de perfil'
                 />
+                }
               </div>
               <div>
                 <h2 className='text-sm'>
