@@ -106,15 +106,19 @@ export const HeaderPageHome = () => {
         </div>
         <div className='flex sm:w-10 md:w-10 sm:h-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300'>
           <figure>
-            {
-              !(user as { photoURL: string }).photoURL ? <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-              <span className="font-medium text-gray-600 dark:text-gray-300">{(user as { email: string }).email.slice(0,1).toUpperCase()}</span>
-          </div> : <img
-              src={(user as { photoURL: string }).photoURL}
-              className='rounded-full object-cover'
-              alt='imagen de perfil'
-            />
-            }
+            {!(user as { photoURL: string }).photoURL ? (
+              <div className='relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600'>
+                <span className='font-medium text-gray-600 dark:text-gray-300'>
+                  {(user as { email: string }).email.slice(0, 1).toUpperCase()}
+                </span>
+              </div>
+            ) : (
+              <img
+                src={(user as { photoURL: string }).photoURL}
+                className='rounded-full object-cover'
+                alt='imagen de perfil'
+              />
+            )}
           </figure>
         </div>
         <div className='flex w-10 h-10 justify-center items-center rounded-full p-2 hover:bg-slate-300'>

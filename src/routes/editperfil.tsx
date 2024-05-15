@@ -1,5 +1,3 @@
 export default function EditPerfil() {
-    return(
-        <h1>editar perfil</h1>
-    )
+  return <h1>editar perfil</h1>
 }

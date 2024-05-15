@@ -10,7 +10,6 @@ import ShowImage from '@/routes/showImage'
 import { Route } from 'wouter'
 
 export default function Layout() {
-
   const user = UserState((state) => state.user)
 
   return (
