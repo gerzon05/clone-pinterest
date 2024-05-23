@@ -1,18 +1,13 @@
 import { Bell, MessageCircleMore, Search } from 'lucide-react'
 import { LogoPinterest } from '@/icons/LogoPinterest'
 import { Perfil } from '@/modules/perfil/components/Perfil'
-import { PerfilState } from '@/modules/perfil/hooks/perfilhook'
 import { UserState } from '@/hooks/user'
 import { Link, useLocation } from 'wouter'
 import { Avatar } from 'flowbite-react'
 
 export const HeaderPageHome = () => {
   const [_, setLocation] = useLocation()
-  const { perfiltrue } = PerfilState()
   const user = UserState((state) => state.user)
-  const handlePerfil = () => {
-    perfiltrue()
-  }
 
   const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value
@@ -113,7 +108,7 @@ export const HeaderPageHome = () => {
             rounded
           />
         ) : (
-          <div className='w-14 h-14'>
+          <div className='w-9'>
             <Avatar
             img={(user as { photoURL: string }).photoURL}
             alt={`avatar of ${(user as { displayName: string }).displayName}`}
