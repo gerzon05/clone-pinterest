@@ -1,12 +1,14 @@
 import { signOut } from 'firebase/auth'
 import { auth } from '../../../firebase/firebase'
-import { Check, Share } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { Link, useLocation } from 'wouter'
 import { PerfilState } from '../hooks/perfilhook'
-import { UserState } from '../../../hooks/user'
+import { Dropdown, Flowbite, Avatar } from 'flowbite-react'
+import type { CustomFlowbiteTheme } from 'flowbite-react'
+import { UserState } from '@/hooks/user'
+import { Options } from '../type/options'
 
 export const Perfil = () => {
-  const perfil = PerfilState((state) => state.bool)
   const { perfilfalse } = PerfilState()
   const [_, serLocatation] = useLocation()
 
@@ -21,34 +23,34 @@ export const Perfil = () => {
     })
   }
 
+  const customTheme: CustomFlowbiteTheme = {
+    dropdown: {
+      arrowIcon: 'text-xl',
+      floating: {
+        base: '!top-3 p-3 rounded-md !border-0 shadow-lg !left-2 lg:!left-7 w-fit bg-white',
+      },
+    },
+  }
+
   return (
-    <div
-      className={
-        perfil
-          ? 'fixed w-80 top-16 m-1 right-0 bottom-0 bg-white rounded-3xl p-5 overflow-y-auto'
-          : 'hidden'
-      }
-    >
-      <section>
-        <figure>
-          <article className='relative pt-4'>
-            <p className='absolute text-xs top-0 left-0'>Actualmente en</p>
-            <Check className='absolute right-4 top-10 text-lg' />
-            <div className='rounded-2xl flex justify-center items-center p-2 gap-2 hover:bg-slate-300 '>
-              <div>
+    <Flowbite theme={{ theme: customTheme }}>
+      <Dropdown label='' size='sm' inline placement='bottom-start'>
+        <Dropdown.Item className='rounded-md'>
+            <div className='flex items-center relative text-start'>
+              <Check className='absolute right-2 top-1/2 -translate-y-1/2 text-lg' />
+              <div className='w-14'>
                 {!(user as { photoURL: string }).photoURL ? (
-                  <div className='relative inline-flex items-center justify-center w-11 h-11 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600'>
-                    <span className='font-medium text-gray-600 dark:text-gray-300'>
-                      {(user as { email: string }).email
-                        .slice(0, 1)
-                        .toUpperCase()}
-                    </span>
-                  </div>
+                  <Avatar
+                    placeholderInitials={(user as { email: string }).email
+                      .slice(0, 1)
+                      .toUpperCase()}
+                    rounded
+                  />
                 ) : (
-                  <img
-                    src={(user as { photoURL: string }).photoURL}
-                    className='rounded-full object-cover w-11 h-11'
-                    alt='imagen de perfil'
+                  <Avatar
+                    img={(user as { photoURL: string }).photoURL}
+                    alt={`avatar of ${(user as { displayName: string }).displayName}`}
+                    rounded
                   />
                 )}
               </div>
@@ -60,63 +62,19 @@ export const Perfil = () => {
                 <p className='text-sm'>{(user as { email: string }).email}</p>
               </div>
             </div>
-          </article>
-          <article>
-            <p className='text-xs'>Tus cuentas</p>
-            <div>
-              <button className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
-                Añadir cuenta
-              </button>
-              <button className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
-                Convertir cuenta para empresa
-              </button>
-            </div>
-          </article>
-          <article>
-            <p className='text-xs'>Mas opciones</p>
-            <div className='pt-3'>
-              <Link
-                to='/edit-Perfil'
-                onClick={perfilfalse}
-                className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 !w-full'
-              >
-                Ajustes
-              </Link>
-              <button className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
-                Optimiza tu feed de inicio
-              </button>
-              <button className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
-                Instala la aplicacion de windows
-              </button>
-              <button className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
-                Tus derechos de privacidad
-              </button>
-              <button className='flex justify-between items-center text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
-                obtener ayuda
-                <Share className='font-black text-xs' />
-              </button>
-              <button className='flex justify-between items-center text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
-                Ver terminos de servicios
-                <Share className='font-black text-xs' />
-              </button>
-              <button className='flex justify-between items-center text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
-                Ver pilotica de privacidad
-                <Share className='font-black text-xs' />
-              </button>
-              <button className='flex justify-between items-center text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'>
-                Valora la version beta
-                <Share className='font-black text-xs' />
-              </button>
-              <button
-                className='text-start rounded-xl font-bold p-2 gap-2 hover:bg-slate-300 w-full'
-                onClick={handlelogout}
-              >
-                Cerrar sesión
-              </button>
-            </div>
-          </article>
-        </figure>
-      </section>
-    </div>
+        </Dropdown.Item>
+        {
+          Options.map((option) => (
+            <Dropdown.Item key={option.value} className='rounded-md'>
+              <Link href={option.path} className='w-full text-left'>
+                {option.value}</Link>
+            </Dropdown.Item>
+          ))
+        }
+        <Dropdown.Item className='rounded-md'>
+          <button onClick={handlelogout} className='w-full text-left'>Log out</button>
+        </Dropdown.Item>
+      </Dropdown>
+    </Flowbite>
   )
 }

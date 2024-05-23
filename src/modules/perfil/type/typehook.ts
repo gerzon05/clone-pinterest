@@ -1,5 +1,5 @@
-export interface StatePerfil {
-  bool: boolean
-  perfiltrue: (by?: boolean) => void
-  perfilfalse: () => void
+export type typeOptions = {
+    value: string
+    path: string
 }
+
