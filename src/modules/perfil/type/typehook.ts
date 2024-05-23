@@ -1,5 +1,4 @@
 export type typeOptions = {
-    value: string
-    path: string
+  value: string
+  path: string
 }
-
