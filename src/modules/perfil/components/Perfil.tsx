@@ -2,14 +2,12 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../../../firebase/firebase'
 import { Check } from 'lucide-react'
 import { Link, useLocation } from 'wouter'
-import { PerfilState } from '../hooks/perfilhook'
 import { Dropdown, Flowbite, Avatar } from 'flowbite-react'
 import type { CustomFlowbiteTheme } from 'flowbite-react'
 import { UserState } from '@/hooks/user'
 import { Options } from '../type/options'
 
 export const Perfil = () => {
-  const { perfilfalse } = PerfilState()
   const [_, serLocatation] = useLocation()
 
   const user = UserState((state) => state.user)
@@ -19,7 +17,6 @@ export const Perfil = () => {
     await signOut(auth).then(() => {
       serLocatation('/')
       logout()
-      perfilfalse()
     })
   }
 
