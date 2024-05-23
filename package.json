@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "fmt": "prettier . -write",
     "fmt-check": "prettier . --check",
-    "ci": "pnpm run lint"
+    "ci": "pnpm run lint",
+    "build-tsc": "tsc -p ./src"
   },
   "dependencies": {
     "firebase": "10.3.0",

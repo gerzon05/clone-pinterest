@@ -113,11 +113,13 @@ export const HeaderPageHome = () => {
             rounded
           />
         ) : (
-          <Avatar
+          <div className='w-14 h-14'>
+            <Avatar
             img={(user as { photoURL: string }).photoURL}
             alt={`avatar of ${(user as { displayName: string }).displayName}`}
             rounded
           />
+          </div>
         )}
         <div className='flex w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300'>
           <Perfil />
