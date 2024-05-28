@@ -1,11 +1,12 @@
+import { addDoc, collection, getFirestore } from 'firebase/firestore'
+import { toast } from 'sonner'
 import { app } from '@/firebase/firebase'
 import { UserState } from '@/store/user'
-import { addDoc, collection, getFirestore } from 'firebase/firestore'
 
 const db = getFirestore(app)
 
 export async function UseSaveImage({ url }: { url: string }) {
-  const user = UserState((state) => state.user)
+  const user = UserState(state => state.user)
 
   const guardar = {
     imgURL: url,
@@ -14,7 +15,8 @@ export async function UseSaveImage({ url }: { url: string }) {
     await addDoc(collection(db, (user as { email: string }).email), {
       ...guardar,
     })
-  } catch (error) {
-    console.log(error)
+  }
+  catch (error) {
+    toast.error('Error al guardar la imagen')
   }
 }

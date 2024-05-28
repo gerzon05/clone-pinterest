@@ -1,4 +1,4 @@
-import { TypeProps } from '../type/type'
+import type { TypeProps } from '../type/type'
 
 export const sectionMock: TypeProps[] = [
   {

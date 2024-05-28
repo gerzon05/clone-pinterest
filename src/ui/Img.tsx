@@ -1,8 +1,7 @@
-import React from 'react'
-import { ImgHTMLAttributes } from 'react'
+import type { ImgHTMLAttributes } from 'react'
 
 type Props = ImgHTMLAttributes<HTMLElement>
 
-export const Img = (porps: Props) => {
+export function Img(porps: Props) {
   return <img {...porps} />
 }

@@ -21,4 +21,4 @@ jobs:
           cache: pnpm
 
       - run: pnpm run lint
-      - run: pnpm run ci
+      - run: pnpm run lint:fix

@@ -1,5 +1,6 @@
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import { app } from '@/firebase/firebase'
 import { useLoading } from '@/store/use-loading'
 
@@ -19,13 +20,15 @@ export function UseGetImage({ filter }: UseGetImageProps) {
         loading.setLoad(true)
         const database = await getDocs(collection(db, filter || 'imagenes'))
         const docs: object[] = []
-        database.forEach((img) => {
+        database.forEach((img: any) => {
           docs.push(img.data())
         })
         setPhotos(docs)
-      } catch (error) {
-        console.log(error)
-      } finally {
+      }
+      catch (error) {
+        toast.error('Error al cargar las imagenes')
+      }
+      finally {
         loading.setLoad(false)
       }
     }

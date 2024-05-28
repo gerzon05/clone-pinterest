@@ -1,4 +1,4 @@
-import { typeOptions } from './typehook'
+import type { typeOptions } from './typehook'
 
 export const Options: typeOptions[] = [
   { value: 'Añadir cuenta', path: '/add-account' },

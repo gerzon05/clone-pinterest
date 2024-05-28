@@ -1,16 +1,16 @@
+import { Link } from 'wouter'
 import { LogoPinterest } from '../../icons/LogoPinterest'
 import { LinkA } from '../../ui/LinkA'
-import { Link } from 'wouter'
 import { Registro } from '../login/components/Registro'
 import IniciarSesion from '../login/components/IniciarSesion'
 import { Login, Register } from '../login/hooks/loginstate'
 import { Button } from '../../ui/Button'
 
-export const Header = () => {
-  const Loginstate = Login((state) => state.bool)
+export function Header() {
+  const Loginstate = Login(state => state.bool)
   const { converttrue, convertfalse } = Login()
 
-  const Registerstate = Register((state) => state.bool)
+  const Registerstate = Register(state => state.bool)
   const { regitrue, regifalse } = Register()
 
   function handlelogin() {
@@ -26,32 +26,32 @@ export const Header = () => {
   return (
     <>
       <div>
-        <header className='flex justify-between p-5 sticky w-full flex-wrap bg-white z-10'>
-          <Link to='/' className='flex items-center'>
+        <header className="flex justify-between p-5 sticky w-full flex-wrap bg-white z-10">
+          <Link to="/" className="flex items-center">
             <LogoPinterest />
-            <h1 className='text-1xl text-red-700 font-sans font-semibold'>
+            <h1 className="text-1xl text-red-700 font-sans font-semibold">
               Pinterest
             </h1>
           </Link>
-          <nav className='flex gap-4 items-center'>
-            <LinkA className='hidden md:block font-semibold px-2 after:content-normal cursor-pointer hover:border-b-2 border-b-gray-950'>
+          <nav className="flex gap-4 items-center">
+            <LinkA className="hidden md:block font-semibold px-2 after:content-normal cursor-pointer hover:border-b-2 border-b-gray-950">
               Info
             </LinkA>
-            <LinkA className='hidden md:block font-semibold px-2 after:content-normal cursor-pointer hover:border-b-2 border-b-gray-950'>
+            <LinkA className="hidden md:block font-semibold px-2 after:content-normal cursor-pointer hover:border-b-2 border-b-gray-950">
               Empresas
             </LinkA>
-            <LinkA className='hidden md:block font-semibold px-2 after:content-normal cursor-pointer hover:border-b-2 border-b-gray-950'>
+            <LinkA className="hidden md:block font-semibold px-2 after:content-normal cursor-pointer hover:border-b-2 border-b-gray-950">
               Block
             </LinkA>
             <Button
               onClick={() => handlelogin()}
-              className='text-xs md:text-xl translate font-semibold py-2 px-5 bg-red-600 rounded-3xl text-white'
+              className="text-xs md:text-xl translate font-semibold py-2 px-5 bg-red-600 rounded-3xl text-white"
             >
               Iniciar Sesión
             </Button>
             <Button
               onClick={() => handleregister()}
-              className='text-xs md:text-xl font-semibold py-2 px-5 bg-gray-200 rounded-3xl '
+              className="text-xs md:text-xl font-semibold py-2 px-5 bg-gray-200 rounded-3xl "
             >
               Registrarse
             </Button>
