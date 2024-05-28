@@ -3,7 +3,7 @@ import { Pin } from '@/modules/pin/Pin'
 import { ArrowLeft } from 'lucide-react'
 import { useLocation } from 'wouter'
 import { sectionMock } from './utils/sectionMock'
-import { UserState } from '@/hooks/user'
+import { UserState } from '@/store/user'
 
 export function ExplorarSecion({ params }: { params: any }) {
   const user = UserState((state) => state.user)

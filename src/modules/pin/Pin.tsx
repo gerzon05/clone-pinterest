@@ -1,13 +1,8 @@
-import { useEffect, useState } from 'react'
-import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore'
-import { app } from '@/firebase/firebase'
-import { UserState } from '@/hooks/user'
 import { CircleEllipsis, RotateCcw, Share } from 'lucide-react'
-import { useLoading } from '@/hooks/use-loading'
 import { useLocation } from 'wouter'
-import { StateImage } from '@/hooks/hookimage'
-
-const db = getFirestore(app)
+import { StateImage } from '@/store/hookimage'
+import { UseGetImage } from '@/hooks/useGetImage'
+import { UseSaveImage } from '@/hooks/useSaveImage'
 
 interface PinProps {
   filter?: string
@@ -15,43 +10,13 @@ interface PinProps {
 
 export const Pin = ({ filter }: PinProps) => {
   const [_, setLocation] = useLocation()
-  const user = UserState((state) => state.user)
   const { setImage } = StateImage()
-  const loading = useLoading()
 
-  const [photos, setPhotos] = useState<object[]>([])
-
-  const handlesaveimg = async (url: string) => {
-    const guardar = {
-      imgURL: url,
-    }
-    try {
-      await addDoc(collection(db, (user as { email: string }).email), {
-        ...guardar,
-      })
-    } catch (error) {
-      console.log(error)
-    }
+  const handleSaveImage = (url: string) => {
+    UseSaveImage({ url })
   }
 
-  useEffect(() => {
-    const getimg = async () => {
-      try {
-        loading.setLoad(true)
-        const basedatos = await getDocs(collection(db, filter || 'imagenes'))
-        const docs: object[] = []
-        basedatos.forEach((img) => {
-          docs.push(img.data())
-        })
-        setPhotos(docs)
-      } catch (error) {
-        console.log(error)
-      } finally {
-        loading.setLoad(false)
-      }
-    }
-    getimg()
-  }, [])
+  const { photos, loading } = UseGetImage({ filter: filter })
 
   const handleImage = (photo: object) => {
     setImage(photo)
@@ -79,7 +44,7 @@ export const Pin = ({ filter }: PinProps) => {
               <article className='flex justify-end p-3 opacity-0 group-hover:opacity-100'>
                 <button
                   onClick={() =>
-                    handlesaveimg((photo as { imagen: string }).imagen)
+                    handleSaveImage((photo as { imagen: string }).imagen)
                   }
                   className='py-1 px-4 bg-red-700 text-base rounded-full text-white'
                 >

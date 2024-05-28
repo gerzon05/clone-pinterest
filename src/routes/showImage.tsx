@@ -1,5 +1,5 @@
-import { StateImage } from '@/hooks/hookimage'
-import { UserState } from '@/hooks/user'
+import { StateImage } from '@/store/hookimage'
+import { UserState } from '@/store/user'
 import { Button } from 'flowbite-react'
 import { ArrowLeft } from 'lucide-react'
 import { useLocation } from 'wouter'

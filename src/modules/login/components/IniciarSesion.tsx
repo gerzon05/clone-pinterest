@@ -3,7 +3,7 @@ import { LogoPinterest } from '../../../icons/LogoPinterest'
 import { Facebook } from '../../../icons/Facebook'
 import { Google } from '../../../icons/Google'
 import { Login } from '../hooks/loginstate'
-import { UserState } from '../../../hooks/user'
+import { UserState } from '../../../store/user'
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,

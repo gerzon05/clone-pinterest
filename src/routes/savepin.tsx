@@ -1,5 +1,5 @@
 import { useLocation } from 'wouter'
-import { UserState } from '../hooks/user'
+import { UserState } from '../store/user'
 import { SaveImage } from '@/modules/pin/SaveImage'
 
 export default function SavePin() {

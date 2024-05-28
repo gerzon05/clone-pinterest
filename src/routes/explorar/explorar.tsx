@@ -1,4 +1,4 @@
-import { UserState } from '@/hooks/user'
+import { UserState } from '@/store/user'
 import { SectionHome } from '@/modules/explorar/components/section-home'
 import { ExplorarSection } from '@/modules/explorar/type/sections'
 import { useLocation } from 'wouter'

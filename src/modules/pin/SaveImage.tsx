@@ -1,7 +1,7 @@
 import { app } from '@/firebase/firebase'
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { UserState } from '@/hooks/user'
+import { UserState } from '@/store/user'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 

@@ -1,4 +1,4 @@
-import { UserState } from '@/hooks/user'
+import { UserState } from '@/store/user'
 import { HeaderPageHome } from '@/modules/header/HeaderPageHome'
 import EditPerfil from '@/routes/editperfil'
 import { Explorar } from '@/routes/explorar/explorar'

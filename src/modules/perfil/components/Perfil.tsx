@@ -4,7 +4,7 @@ import { Check } from 'lucide-react'
 import { Link, useLocation } from 'wouter'
 import { Dropdown, Flowbite, Avatar } from 'flowbite-react'
 import type { CustomFlowbiteTheme } from 'flowbite-react'
-import { UserState } from '@/hooks/user'
+import { UserState } from '@/store/user'
 import { Options } from '../type/options'
 
 export const Perfil = () => {

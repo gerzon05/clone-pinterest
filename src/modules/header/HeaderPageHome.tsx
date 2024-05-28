@@ -1,7 +1,7 @@
 import { Bell, MessageCircleMore, Search } from 'lucide-react'
 import { LogoPinterest } from '@/icons/LogoPinterest'
 import { Perfil } from '@/modules/perfil/components/Perfil'
-import { UserState } from '@/hooks/user'
+import { UserState } from '@/store/user'
 import { Link, useLocation } from 'wouter'
 import { Avatar } from 'flowbite-react'
 
@@ -110,10 +110,10 @@ export const HeaderPageHome = () => {
         ) : (
           <div className='w-9'>
             <Avatar
-            img={(user as { photoURL: string }).photoURL}
-            alt={`avatar of ${(user as { displayName: string }).displayName}`}
-            rounded
-          />
+              img={(user as { photoURL: string }).photoURL}
+              alt={`avatar of ${(user as { displayName: string }).displayName}`}
+              rounded
+            />
           </div>
         )}
         <div className='flex w-9 h-9 justify-center items-center rounded-full p-2 hover:bg-slate-300'>

@@ -1,19 +1,12 @@
-import { UserState } from '@/hooks/user'
-import { useLocation } from 'wouter'
 import { Pin } from '@/modules/pin/Pin'
+import { useValidateUser } from '@/hooks/useValidateUser'
 
 export function PageHome() {
-  const user = UserState((state) => state.user)
-  const [_, setLocatation] = useLocation()
-  console.log(user)
-  if (user == null) {
-    console.log('no hay usuario')
-    setLocatation('/')
-  }
+  useValidateUser()
   return (
     <>
       <div className='w-full flex justify-center items-center'>
-        <div className='container columns-4 md:columns-6 lg:columns-7 xl:columns-8 2xl:columns-9 py-4'>
+        <div className='container columns-3 md:columns-4 lg:columns-6 xl:columns-7 2xl:columns-8 py-4'>
           <Pin />
         </div>
       </div>
