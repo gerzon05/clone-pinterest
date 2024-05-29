@@ -8,6 +8,7 @@ import { PageHome } from '@/routes/pagehome'
 import { Perfil } from '@/routes/perfil'
 import SavePin from '@/routes/savepin'
 import ShowImage from '@/routes/showImage'
+import { MyPerfil } from '@/modules/perfil/components/MyPerfil'
 
 export default function Layout() {
   const user = UserState(state => state.user)
@@ -22,6 +23,7 @@ export default function Layout() {
       <Route path="/home/explorar/:title" component={ExplorarSecion} />
       <Route path="/home/img/:name" component={ShowImage} />
       <Route path="/edit-Perfil" component={EditPerfil} />
+      <Route path="/my-Perfil" component={MyPerfil} />
     </main>
   )
 }

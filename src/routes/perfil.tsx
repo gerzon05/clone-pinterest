@@ -1,7 +1,7 @@
+import { MyPerfil } from '@/modules/perfil/components/MyPerfil'
+
 export function Perfil() {
   return (
-    <div>
-      <h1>Perfil</h1>
-    </div>
+    <MyPerfil />
   )
 }

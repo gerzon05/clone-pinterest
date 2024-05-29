@@ -2,6 +2,7 @@ import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import { TextInput } from 'flowbite-react'
 import { UserState } from '@/store/user'
 import { app } from '@/firebase/firebase'
 
@@ -10,9 +11,9 @@ const storage = getStorage(app)
 
 interface FormData {
   titulo: string
-  descripcionimg: string
+  description: string
   enlace: string
-  categoria: string
+  category: string
   imagen: string
 }
 
@@ -20,44 +21,44 @@ export function SaveImage() {
   const { register, handleSubmit } = useForm<FormData>()
   const user = UserState(state => state.user)
 
-  let Urlimg: string = ''
+  let Url_image: string = ''
 
-  const saveinfo = handleSubmit(async (data) => {
-    const newimage: FormData = {
+  const save_info = handleSubmit(async (data) => {
+    const new_image: FormData = {
       titulo: data.titulo,
-      descripcionimg: data.descripcionimg,
+      description: data.description,
       enlace: data.enlace,
-      categoria: data.categoria,
-      imagen: Urlimg,
+      category: data.category,
+      imagen: Url_image,
     }
     try {
-      await addDoc(collection(db, data.categoria), {
-        ...newimage,
+      await addDoc(collection(db, data.category), {
+        ...new_image,
       })
       await addDoc(collection(db, 'imagenes'), {
-        ...newimage,
+        ...new_image,
       })
-      toast.success('su imagen se guardo con exito')
+      toast.success('su imagen se guardo Correctamente')
     }
     catch (error) {
       toast.error(`hubo un error al subir la imagen${error}`)
     }
   })
   const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const archivoimg = event.target.files?.[0]
-    if (!archivoimg)
+    const archivo_image = event.target.files?.[0]
+    if (!archivo_image)
       return
-    const refImg = ref(storage, `imagenes/${archivoimg.name}`)
-    await uploadBytes(refImg, archivoimg)
-    Urlimg = await getDownloadURL(refImg)
+    const refImg = ref(storage, `imagenes/${archivo_image.name}`)
+    await uploadBytes(refImg, archivo_image)
+    Url_image = await getDownloadURL(refImg)
   }
   return (
     <>
-      <main className="bg-white p-12 flex justify-center">
-        <div className=" rounded-2xl max-w-4xl p-8">
-          <section className="flex">
-            <form onSubmit={saveinfo}>
-              <div className="flex justify-center items-center gap-4">
+      <main className="bg-white p-2 md:p-16 flex justify-center">
+        <div className=" rounded-2xl w-full">
+          <section>
+            <form onSubmit={save_info}>
+              <div className="flex justify-center items-center flex-wrap w-full md:w-[80%] m-auto">
                 <div className="flex items-center justify-center w-full md:w-1/2">
                   <label
                     htmlFor="dropzone-file"
@@ -91,6 +92,7 @@ export function SaveImage() {
                     <input
                       id="dropzone-file"
                       type="file"
+                      required
                       className="hidden"
                       onChange={handleFile}
                     />
@@ -98,14 +100,13 @@ export function SaveImage() {
                 </div>
                 <section className="w-full md:w-1/2 p-2 flex flex-col gap-9">
                   <div>
-                    <input
+                    <TextInput
                       {...register('titulo')}
                       type="text"
                       className="w-full border-0 text-4xl"
                       placeholder="Añade un titulo"
                       required
                     />
-                    <hr className="bg-black h-px" />
                   </div>
                   <figure className="flex items-center gap-3">
                     <img
@@ -124,38 +125,44 @@ export function SaveImage() {
                     </span>
                   </figure>
                   <figure>
-                    <input
-                      {...register('descripcionimg')}
+                    <TextInput
+                      {...register('description')}
                       type="text"
-                      className="w-full border-0 text-1xl"
+                      required
                       placeholder="Indica en que consiste tu pin"
                     />
-                    <hr className="bg-black h-px" />
                   </figure>
                   <figure>
-                    <input
+                    <TextInput
                       {...register('enlace')}
                       type="text"
-                      className="w-full border-0 text-1xl"
                       placeholder="Añade un enlace de destino"
                     />
-                    <hr className="bg-black h-px" />
                   </figure>
                   <figure>
-                    <input
+                    <select
                       required
-                      {...register('categoria')}
-                      type="text"
-                      className="w-full border-0 text-1xl"
-                      placeholder="añade la categoria de tu pin"
-                    />
-                    <hr className="bg-black h-px" />
+                      {...register('category')}
+                      id="countries"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option value="deporte">Deporte</option>
+                      <option value="inspiracion">Inspiración</option>
+                      <option value="tiempo-libre">Tiempo libre</option>
+                      <option value="carros">Carros</option>
+                      <option value="motos">Motos</option>
+                      <option value="pasatiempo">Pasatiempos</option>
+                      <option value="trabajo">Trabajo</option>
+                      <option value="educacion">Educación</option>
+                    </select>
                   </figure>
                 </section>
               </div>
-              <button className="rounded-lg bg-red-700 w-full mt-5 py-3 text-xl text-white">
-                Guardar
-              </button>
+              <div className="flex justify-center mt-10">
+                <button className="rounded-lg bg-red-700 w-full py-3 text-xl text-white w-full md:w-[80%]">
+                  Guardar
+                </button>
+              </div>
             </form>
           </section>
         </div>
