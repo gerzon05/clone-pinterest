@@ -35,7 +35,7 @@ export function HeaderPageHome() {
   }
   return (
     <>
-      <header className="p-1 flex justify-evenly items-center sticky z-30 top-0 w-full bg-white">
+      <header className="p-1 flex justify-evenly items-center sticky z-50 top-0 w-full bg-white">
         <section className="flex justify-between">
           <Link
             to="/home"
