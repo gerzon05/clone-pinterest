@@ -21,3 +21,5 @@ jobs:
         run: pnpm run lint
       - name: Run lint fix
         run: pnpm run lint:fix
+      - name: Run build
+        run: pnpm run build
