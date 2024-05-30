@@ -2,7 +2,7 @@ import { useLocation } from 'wouter'
 import { useState } from 'react'
 import { Avatar } from 'flowbite-react'
 import { UserState } from '@/store/user'
-import { Pin } from '@/modules/pin/Pin'
+import { PinFavorite } from '@/modules/pin/PinFavorite'
 
 export function MyPerfil() {
   const [_, setLocation] = useLocation()
@@ -74,9 +74,9 @@ export function MyPerfil() {
         <div>
           {save_image
             ? (
-              <div className="w-full flex justify-center items-center">
+              <div className="w-full relative py-5 flex justify-center items-center">
                 <div className="container columns-3 md:columns-4 lg:columns-6 xl:columns-7 2xl:columns-8 py-4">
-                  <Pin filter={(user as { email: string }).email} />
+                  <PinFavorite filter={(user as { email: string }).email} />
                 </div>
               </div>
               )

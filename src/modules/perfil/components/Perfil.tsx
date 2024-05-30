@@ -32,8 +32,8 @@ export function Perfil() {
   return (
     <Flowbite theme={{ theme: customTheme }}>
       <Dropdown label="" size="sm" inline placement="bottom-start">
-        <Dropdown.Item className="rounded-md">
-          <div className="flex items-center relative text-start" onClick={() => setLocatation('/my-Perfil')}>
+        <Dropdown.Item className="rounded-md" onClick={() => setLocatation('/my-Perfil')}>
+          <div className="flex items-center relative text-start">
             <Check className="absolute right-2 top-1/2 -translate-y-1/2 text-lg" />
             <div className="w-14">
               {!(user as { photoURL: string }).photoURL
@@ -69,10 +69,8 @@ export function Perfil() {
             </Link>
           </Dropdown.Item>
         ))}
-        <Dropdown.Item className="rounded-md">
-          <button onClick={handlelogout} className="w-full text-left">
-            Log out
-          </button>
+        <Dropdown.Item className="rounded-md" onClick={handlelogout}>
+          Log out
         </Dropdown.Item>
       </Dropdown>
     </Flowbite>
