@@ -13,8 +13,6 @@ export function PinFavorite({ filter }: PinProps) {
 
   const { photos, loading } = UseGetImage({ filter })
 
-  console.log(photos)
-
   const handleImage = (photo: object) => {
     setImage(photo)
     setLocation(
