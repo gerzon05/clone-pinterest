@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet'
 import { DefaultCarousel } from '../modules/Home/components/Carrusel'
 import { Button } from '../ui/Button'
 import { Img } from '../ui/Img'
@@ -7,6 +8,10 @@ import { Header } from '@/modules/header/Header'
 export function Home() {
   return (
     <>
+      <Helmet>
+        <title>Clone Pinterest</title>
+        <meta name="description" content="Clone Pinterest" />
+      </Helmet>
       <main>
         <Header />
         <DefaultCarousel />

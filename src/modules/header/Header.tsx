@@ -1,4 +1,5 @@
 import { Link } from 'wouter'
+import { Helmet } from 'react-helmet'
 import { LogoPinterest } from '../../icons/LogoPinterest'
 import { LinkA } from '../../ui/LinkA'
 import { Registro } from '../login/components/Registro'
@@ -25,6 +26,22 @@ export function Header() {
 
   return (
     <>
+      {
+        Loginstate && (
+          <Helmet>
+            <title>Iniciar Sesión</title>
+            <meta name="description" content="Iniciar Sesión para el clone de Pinterest" />
+          </Helmet>
+        )
+      }
+      {
+        Registerstate && (
+          <Helmet>
+            <title>Registrarse</title>
+            <meta name="description" content="Registrare para el clone de Pinterest" />
+          </Helmet>
+        )
+      }
       <div>
         <header className="flex justify-between p-5 sticky w-full flex-wrap bg-white z-10">
           <Link to="/" className="flex items-center">

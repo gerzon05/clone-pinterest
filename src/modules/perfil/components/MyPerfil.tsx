@@ -1,6 +1,7 @@
 import { useLocation } from 'wouter'
 import { useState } from 'react'
 import { Avatar } from 'flowbite-react'
+import { Helmet } from 'react-helmet'
 import { UserState } from '@/store/user'
 import { PinFavorite } from '@/modules/pin/PinFavorite'
 
@@ -12,6 +13,10 @@ export function MyPerfil() {
   const email = (user as ({ email: string })).email
   return (
     <>
+      <Helmet>
+        <title>Mi Perfil del Clone de Pinterest</title>
+        <meta name="description" content="Información sobre mi perfil del clone de Pinterest" />
+      </Helmet>
       <div className="mt-16">
         <article className="pt-5">
           {!(user as { photoURL: string }).photoURL
@@ -34,11 +39,10 @@ export function MyPerfil() {
                 />
               </div>
               )}
-          <h2 className="text-center font-medium text-3xl py-1">
-            {'Usuario'
-            || (user as { displayName: string }).displayName.charAt(0).toUpperCase()
+          <h1 className="text-center font-medium text-3xl py-1">
+            {(user as { displayName: string }).displayName.charAt(0).toUpperCase()
             + (user as { displayName: string }).displayName.slice(1)}
-          </h2>
+          </h1>
           <p className="text-center text-xs py-1">
             @
             {email.split('@')[0]}

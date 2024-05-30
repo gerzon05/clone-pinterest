@@ -117,12 +117,10 @@ export function SaveImage() {
                       alt="foto de perfil"
                       className="w-8 h-8 rounded-full object-cover"
                     />
-                    <span>
-                      <h2>
-                        {(user as { displayName: string }).displayName
-                        || (user as { email: string }).email}
-                      </h2>
-                    </span>
+                    <h1>
+                      {(user as { displayName: string }).displayName
+                      || (user as { email: string }).email}
+                    </h1>
                   </figure>
                   <figure>
                     <TextInput

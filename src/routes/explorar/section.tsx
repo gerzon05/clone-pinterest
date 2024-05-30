@@ -1,5 +1,6 @@
 import { ArrowLeft } from 'lucide-react'
 import { useLocation } from 'wouter'
+import { Helmet } from 'react-helmet'
 import { sectionMock } from './utils/sectionMock'
 import { Pin } from '@/modules/pin/Pin'
 import { SectionHome } from '@/modules/explorar/components/section-home'
@@ -20,6 +21,10 @@ export function ExplorarSecion({ params }: { params: any }) {
         (section, index) =>
           section.title === title && (
             <div key={index}>
+              <Helmet>
+                <title>{`Categoría de ${section.title}`}</title>
+                <meta name="description" content="explorar las categorías que tiene el clone de Pinterest" />
+              </Helmet>
               <div className="flex flex-col items-center justify-center relative">
                 <button
                   onClick={() => setLocation('/home/explorar')}
