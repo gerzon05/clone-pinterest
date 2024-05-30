@@ -1,3 +1,4 @@
+[![CI Actions with Github](https://github.com/gerzon05/clone-pinterest/actions/workflows/ci.yaml/badge.svg)](https://github.com/gerzon05/clone-pinterest/actions/workflows/ci.yaml)
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
