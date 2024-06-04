@@ -59,7 +59,7 @@ export function Pin({ filter }: PinProps) {
                 <CircleEllipsis className=" text-3xl" />
               </button>
             </article>
-            <button className="hidden absolute md:flex flex-col justify-between my-2 z-10 top-0 w-full bottom-0 bg-transparent pointer-events-none rounded-xl group-hover:bg-black/50 group-hover:pointer-events-auto" onClick={() => handleImage(photo)}>
+            <button className="absolute z-10 top-0 w-full my-2 bottom-0 bg-transparent pointer-events-none rounded-xl group-hover:bg-black/50 group-hover:pointer-events-auto" onClick={() => handleImage(photo)}>
             </button>
           </div>
         </div>
