@@ -21,7 +21,7 @@ export function Pin({ filter }: PinProps) {
     UseSaveImage({ photo, email })
   }
 
-  const { photos, loading, photosSearch } = UseLookImage({ filter })
+  const { photos, loading } = UseLookImage({ filter })
 
   const handleImage = (photo: LookImage) => {
     setImage(photo)
@@ -29,8 +29,6 @@ export function Pin({ filter }: PinProps) {
       `/home/img/imagen-${photo.title.replace(/ /g, '-').toLowerCase()}`,
     )
   }
-
-  console.log(photosSearch)
 
   return (
     <>
