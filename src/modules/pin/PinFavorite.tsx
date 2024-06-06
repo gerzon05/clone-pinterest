@@ -1,7 +1,8 @@
 import { CircleEllipsis, RotateCcw, Share } from 'lucide-react'
 import { useLocation } from 'wouter'
 import { StateImage } from '@/store/hookimage'
-import { UseGetImage } from '@/hooks/useGetImage'
+import type { LookImage } from '@/hooks/useLookImage'
+import { UseLookImage } from '@/hooks/useLookImage'
 
 interface PinProps {
   filter?: string
@@ -11,12 +12,12 @@ export function PinFavorite({ filter }: PinProps) {
   const [_, setLocation] = useLocation()
   const { setImage } = StateImage()
 
-  const { photos, loading } = UseGetImage({ filter })
+  const { photos, loading } = UseLookImage({ filter })
 
-  const handleImage = (photo: object) => {
+  const handleImage = (photo: LookImage) => {
     setImage(photo)
     setLocation(
-      `/home/img/imagen-${(photo as { titulo: string }).titulo.replace(/ /g, '-').toLowerCase()}`,
+      `/home/img/imagen-${photo.title.replace(/ /g, '-').toLowerCase()}`,
     )
   }
 
@@ -27,11 +28,11 @@ export function PinFavorite({ filter }: PinProps) {
           <RotateCcw size={40} className="animate-spin  inline-block" />
         </div>
       )}
-      {photos.map((photo, index) => (
+      {photos?.map((photo, index) => (
         <div key={index}>
           <div className="group py-2 cursor-zoom-in relative overflow-hidden">
             <img
-              src={(photo as { imgURL: string }).imgURL}
+              src={photo.image}
               className="w-full aspect-auto object-cover rounded-xl"
               alt="imagen favorita"
             />

@@ -1,6 +1,7 @@
 import { Bell, MessageCircleMore, Search } from 'lucide-react'
 import { Link, useLocation } from 'wouter'
 import { Avatar } from 'flowbite-react'
+import React from 'react'
 import { LogoPinterest } from '@/icons/LogoPinterest'
 import { Perfil } from '@/modules/perfil/components/Perfil'
 import { UserState } from '@/store/user'
@@ -8,6 +9,16 @@ import { UserState } from '@/store/user'
 export function HeaderPageHome() {
   const [_, setLocation] = useLocation()
   const user = UserState(state => state.user)
+  // const [search, setSearch] = useState('')
+
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearch(e.target.value)
+  //   getMovies({ search: e.target.value })
+  // }
+  // const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  //   e.preventDefault()
+  //   setSearch(e.target.search.value)
+  // }
 
   const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value
@@ -88,8 +99,8 @@ export function HeaderPageHome() {
             <Search className="text-slate-600" />
           </label>
           <input
-            // onChange={handleChange}
             type="text"
+            name="search"
             className="rounded-full p-2 pl-9 w-full bg-slate-200 border-0"
             placeholder="Buscar"
           />

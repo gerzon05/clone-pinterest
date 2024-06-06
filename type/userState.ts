@@ -1,3 +1,5 @@
+import type { LookImage } from '@/hooks/useLookImage'
+
 export interface CurrentUser {
   user: null | object
   usercontent: (by: object) => void
@@ -5,6 +7,6 @@ export interface CurrentUser {
 }
 
 export interface contextImage {
-  image: null | object
+  image: LookImage
   setImage: (by: object) => void
 }

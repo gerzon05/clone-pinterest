@@ -21,7 +21,7 @@ export default function ShowImage() {
   return (
     <>
       <Helmet>
-        <title>{`Imagen ${(image as { titulo: string }).titulo}`}</title>
+        <title>{`Imagen ${image.title}`}</title>
         <meta name="description" content="imagen del clone de Pinterest" />
       </Helmet>
       <div className="p-10">
@@ -33,15 +33,15 @@ export default function ShowImage() {
         </Button>
         <article className="flex p-3 justify-evenly flex-wrap h-[80vh]">
           <img
-            src={(image as { imagen: string }).imagen}
-            alt={(image as { titulo: string }).titulo}
+            src={image.image}
+            alt={image.title}
             className="rounded-md  w-96 h-full object-cover"
           />
           <div className="text-center md:text-start text-xl flex flex-col gap-3 p-6 justify-center">
             <h2 className="font-bold text-5xl uppercase">
-              {(image as { titulo: string }).titulo.replace(/ /g, ' ')}
+              {image.title.replace(/ /g, ' ')}
             </h2>
-            <p>{(image as { descripcionimg: string }).descripcionimg}</p>
+            <p>{image.description}</p>
           </div>
         </article>
       </div>

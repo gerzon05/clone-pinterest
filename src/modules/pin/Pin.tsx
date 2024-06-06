@@ -1,9 +1,10 @@
 import { CircleEllipsis, RotateCcw, Share } from 'lucide-react'
 import { useLocation } from 'wouter'
 import { StateImage } from '@/store/hookimage'
-import { UseGetImage } from '@/hooks/useGetImage'
 import { UseSaveImage } from '@/hooks/useSaveImage'
 import { UserState } from '@/store/user'
+import type { LookImage } from '@/hooks/useLookImage'
+import { UseLookImage } from '@/hooks/useLookImage'
 
 interface PinProps {
   filter?: string
@@ -16,18 +17,20 @@ export function Pin({ filter }: PinProps) {
 
   const email = (user as ({ email: string })).email
 
-  const handleSaveImage = (url: string) => {
-    UseSaveImage({ url, email })
+  const handleSaveImage = (photo: LookImage) => {
+    UseSaveImage({ photo, email })
   }
 
-  const { photos, loading } = UseGetImage({ filter })
+  const { photos, loading, photosSearch } = UseLookImage({ filter })
 
-  const handleImage = (photo: object) => {
+  const handleImage = (photo: LookImage) => {
     setImage(photo)
     setLocation(
-      `/home/img/imagen-${(photo as { titulo: string }).titulo.replace(/ /g, '-').toLowerCase()}`,
+      `/home/img/imagen-${photo.title.replace(/ /g, '-').toLowerCase()}`,
     )
   }
+
+  console.log(photosSearch)
 
   return (
     <>
@@ -36,17 +39,17 @@ export function Pin({ filter }: PinProps) {
           <RotateCcw size={40} className="animate-spin  inline-block" />
         </div>
       )}
-      {photos.map((photo, index) => (
+      {photos?.map((photo, index: number) => (
         <div key={index}>
-          <div className="group py-2 cursor-zoom-in relative overflow-hidden">
+          <div className="group py-2 relative overflow-hidden">
             <img
-              src={(photo as { imagen: string }).imagen}
+              src={photo.image}
               className="w-full aspect-auto object-cover rounded-xl"
-              alt={(photo as { titulo: string }).titulo}
+              alt={photo.title}
             />
             <button
               onClick={() =>
-                handleSaveImage((photo as { imagen: string }).imagen)}
+                handleSaveImage(photo)}
               className="py-1 px-4 bg-red-700 text-base absolute top-4 right-2 rounded-full z-40 text-white opacity-0 group-hover:opacity-100"
             >
               Guardar
@@ -59,7 +62,7 @@ export function Pin({ filter }: PinProps) {
                 <CircleEllipsis className=" text-3xl" />
               </button>
             </article>
-            <button className="absolute z-10 top-0 w-full my-2 bottom-0 bg-transparent pointer-events-none rounded-xl group-hover:bg-black/50 group-hover:pointer-events-auto" onClick={() => handleImage(photo)}>
+            <button className="absolute z-10 top-0 w-full my-2 bottom-0 bg-transparent pointer-events-none rounded-xl group-hover:bg-black/50 group-hover:pointer-events-auto cursor-zoom-in" onClick={() => handleImage(photo)}>
             </button>
           </div>
         </div>
